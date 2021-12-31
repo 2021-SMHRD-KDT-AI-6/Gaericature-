@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Project</string>
+
+    <!--  activity_main.xml  -->
+    <string name="mainTitle">개리커쳐</string>
+
+    <!--  fragment_gallery.xml  -->
+    <string name="btnGallery">갤러리</string>
+</resources>
