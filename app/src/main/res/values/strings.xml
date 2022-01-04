@@ -6,4 +6,11 @@
 
     <!--  fragment_gallery.xml  -->
     <string name="btnGallery">갤러리</string>
+    <string name="btnCamera">카메라</string>
+    <string name="tvGallery">사진을 올려주세요.</string>
+    
+    <!--  fragment_mypage.xml  -->
+    <string name="tvLevel">회원등급</string>
+    <string name="tvPoint">포인트</string>
+    <string name="tvInterest">관심 상품</string>
 </resources>

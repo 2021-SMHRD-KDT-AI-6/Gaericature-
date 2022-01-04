@@ -14,33 +14,57 @@
 
         <ImageView
             android:id="@+id/imgGallery"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
             android:src="@drawable/dog"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toTopOf="@+id/imgChange"
+            app:layout_constraintEnd_toEndOf="@+id/tvGallery"
+            app:layout_constraintStart_toStartOf="@+id/tvGallery"
+            app:layout_constraintTop_toBottomOf="@+id/tvGallery" />
 
         <Button
             android:id="@+id/btnGallery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="52dp"
-            android:layout_marginTop="64dp"
             android:text="@string/btnGallery"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnCamera"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgGallery" />
+            app:layout_constraintTop_toBottomOf="@+id/imgChange" />
 
         <Button
             android:id="@+id/btnCamera"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="128dp"
-            android:layout_marginTop="64dp"
-            android:text="카메라"
+            android:text="@string/btnCamera"
+            app:layout_constraintBottom_toBottomOf="@+id/btnGallery"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btnGallery"
-            app:layout_constraintTop_toBottomOf="@+id/imgGallery" />
+            app:layout_constraintTop_toTopOf="@+id/btnGallery" />
+
+        <ImageView
+            android:id="@+id/imgChange"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            app:layout_constraintBottom_toTopOf="@+id/btnGallery"
+            app:layout_constraintEnd_toEndOf="@+id/imgGallery"
+            app:layout_constraintStart_toStartOf="@+id/imgGallery"
+            app:layout_constraintTop_toBottomOf="@+id/imgGallery"
+            android:src="@drawable/dog" />
+
+        <TextView
+            android:id="@+id/tvGallery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tvGallery"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/imgGallery"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
