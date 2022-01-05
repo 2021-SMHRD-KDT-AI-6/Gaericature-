@@ -13,4 +13,9 @@
     <string name="tvLevel">회원등급</string>
     <string name="tvPoint">포인트</string>
     <string name="tvInterest">관심 상품</string>
+    <string name="tvPurchaseHistory">구매내역</string>
+    <string name="tvPurchaseAll">전체</string>
+    <string name="tvPurchaseDelivering">배송중</string>
+    <string name="tvPurchaseComplete">배송 완료</string>
+    <string name="tvMyGaericapture">보유 개리커쳐</string>
 </resources>
