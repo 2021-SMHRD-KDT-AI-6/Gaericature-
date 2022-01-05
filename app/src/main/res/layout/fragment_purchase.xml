@@ -10,24 +10,35 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="255dp"
-            android:text="Button"
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv"
+        <View
+            android:id="@+id/view4"
+            android:layout_width="wrap_content"
+            android:layout_height="4px"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv" />
+
+        <com.example.project.ExpandableHeightGridView
+            android:id="@+id/purchaseGrid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="116dp"
-            android:text="TextView"
+            android:numColumns="2"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/tv" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
