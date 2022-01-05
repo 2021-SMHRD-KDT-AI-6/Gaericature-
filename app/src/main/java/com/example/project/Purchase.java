@@ -1,33 +1,35 @@
 package com.example.project;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.android.volley.Response;
+import com.google.gson.Gson;
 
-import java.util.HashMap;
-import java.util.Map;
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class Purchase extends Fragment {
 
     TextView tv;
     Button btn;
-    RequestQueue requestQueue;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,44 +40,35 @@ public class Purchase extends Fragment {
         tv = fragment.findViewById(R.id.tv);
         btn = fragment.findViewById(R.id.btn);
 
+        int num = 2;
+        String url = "http://172.30.1.12:8081/Gaericature/testController";
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
-                String url = "http://192.168.0.115:8081/Gaericature/testController";
+                OkHttpClient client = new OkHttpClient();
 
-                StringRequest request = new StringRequest(
-                        Request.Method.POST,
-                        url,
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                if (response.equals("1")) {
-                                    tv.setText("성공");
-                                } else {
-                                    tv.setText("실패");
+                RequestBody body = new FormBody.Builder().add("num", String.valueOf(num)).build();
 
-                                }
-                            }
-                        },
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
+                Request request = new Request.Builder().url(url).post(body).build();
 
-                            }
-                        }
-                ){
-                    @Nullable
+                client.newCall(request).enqueue(new Callback() {
                     @Override
-                    protected Map<String, String> getParams() throws AuthFailureError {
-                        Map<String, String> params = new HashMap<>();
-                        String a = "2";
-                        params.put("num", a);
-
-                        return params;
+                    public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                        e.printStackTrace();
                     }
-                };
-                requestQueue.add(request);
+
+                    @Override
+                    public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                        Gson gson = new Gson();
+                        try {
+                            String strJsonOutput = response.body().string();
+                            JSONArray jsonOutput = new JSONArray(strJsonOutput);
+                            Log.d("tag", String.valueOf(jsonOutput.getJSONObject(0).getString("item_seq")));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
             }
         });
         return fragment;
