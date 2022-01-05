@@ -30,6 +30,8 @@ public class Purchase extends Fragment {
 
     TextView tv;
     Button btn;
+    String url = "http://172.30.1.12:8081/Gaericature/testController";
+    int num = 2;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,8 +42,6 @@ public class Purchase extends Fragment {
         tv = fragment.findViewById(R.id.tv);
         btn = fragment.findViewById(R.id.btn);
 
-        int num = 2;
-        String url = "http://192.168.0.115:8081/Gaericature/testController";
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
