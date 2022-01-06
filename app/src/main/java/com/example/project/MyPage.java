@@ -1,5 +1,6 @@
 package com.example.project;
 
+import android.content.Intent;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.os.Bundle;
@@ -8,8 +9,10 @@ import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -32,12 +35,12 @@ public class MyPage extends Fragment {
 
     ImageView imgProfile;
     TextView tvPurchaseAll, tvPurchaseAllNum, tvPurchaseDelivering, tvPurchaseDeliveringNum, tvPurchaseComplete, tvPurchaseCompleteNum;
-    ExpandableHeightGridView gridView;
+    ExpandableHeightGridView myPageGridView;
     MyGaericatureAdapter adapter;
     ArrayList<MyGaericatureVO> data = new ArrayList<>();
     String url = "http://172.30.1.12:8081/Gaericature/testController";
-    int num = 2;
-    String item_seq = "";
+    View viewPurchaseAll, viewPurchaseDelivering, viewPurchaseComplete;
+    String item_seq;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -52,6 +55,10 @@ public class MyPage extends Fragment {
         tvPurchaseComplete = fragment.findViewById(R.id.tvPurchaseComplete);
         tvPurchaseCompleteNum = fragment.findViewById(R.id.tvPurchaseCompleteNum);
 
+        viewPurchaseAll = fragment.findViewById(R.id.viewPurchaseAll);
+        viewPurchaseDelivering = fragment.findViewById(R.id.viewPurchaseDelivering);
+        viewPurchaseComplete = fragment.findViewById(R.id.viewPurchaseComplete);
+
         imgProfile.setBackground(new ShapeDrawable(new OvalShape()));
         imgProfile.setClipToOutline(true);
 
@@ -62,11 +69,13 @@ public class MyPage extends Fragment {
         tvPurchaseComplete.bringToFront();
         tvPurchaseCompleteNum.bringToFront();
 
-        gridView = fragment.findViewById(R.id.myPageGrid);
+
+
+        myPageGridView = fragment.findViewById(R.id.myPageGrid);
 
         OkHttpClient client = new OkHttpClient();
 
-        RequestBody body = new FormBody.Builder().add("num", String.valueOf(num)).build();
+        RequestBody body = new FormBody.Builder().build();
 
         Request request = new Request.Builder().url(url).post(body).build();
 
@@ -98,16 +107,14 @@ public class MyPage extends Fragment {
                 }
             }
         });
-
-
         return fragment;
     }
 
     Handler handler = new Handler(){
         @Override
         public void handleMessage(@NonNull Message msg) {
-            gridView.setExpanded(true);
-            gridView.setAdapter(adapter);
+            myPageGridView.setExpanded(true);
+            myPageGridView.setAdapter(adapter);
         }
     };
 
