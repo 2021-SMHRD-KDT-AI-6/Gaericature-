@@ -35,7 +35,9 @@ public class Purchase extends Fragment {
     int num = 2;
     String a;
     ExpandableHeightGridView gridView;
-    ArrayList<MyGaericatureVO> data;
+    ArrayList<itemVO> data;
+    PurchaseAdapter adapter;
+
 
 
 
@@ -54,7 +56,9 @@ public class Purchase extends Fragment {
 
         OkHttpClient client = new OkHttpClient();
 
-        RequestBody body = new FormBody.Builder().add("num", String.valueOf(num)).build();
+//        RequestBody body = new FormBody.Builder().add("num", String.valueOf(num)).build();
+
+        RequestBody body = new FormBody.Builder().build();
 
         Request request = new Request.Builder().url(url).post(body).build();
 
@@ -72,19 +76,27 @@ public class Purchase extends Fragment {
 
                     String strJsonOutput = response.body().string();
                     JSONArray jsonOutput = new JSONArray(strJsonOutput);
-                    a = String.valueOf(jsonOutput.getJSONObject(0).getString("item_seq"));
-
-                    data.add(new MyGaericatureVO(R.drawable.img1, a));
-                    data.add(new MyGaericatureVO(R.drawable.img1, a));
-                    data.add(new MyGaericatureVO(R.drawable.img1, a));
-                    data.add(new MyGaericatureVO(R.drawable.img1, a));
-                    data.add(new MyGaericatureVO(R.drawable.img1, a));
-                    data.add(new MyGaericatureVO(R.drawable.img1, a));
 
 
+//                    a = String.valueOf(jsonOutput.getJSONObject(0).getString("item_seq"));
+
+                    for( int i=0; i < jsonOutput.length(); i++){
+                        itemVO vo = new itemVO();
+                        vo.setItem_name(String.valueOf(jsonOutput.getJSONObject(i).getString("item_name")));
+                        vo.setItem_price(Integer.parseInt(jsonOutput.getJSONObject(i).getString("item_price")));
+                        vo.setItem_seq(Integer.parseInt(jsonOutput.getJSONObject(i).getString("item_seq")));
+                        vo.setItem_content(String.valueOf(jsonOutput.getJSONObject(i).getString("item_content")));
+                        vo.setItem_pic1(R.drawable.img1);
+                        data.add(vo);
+                    }
 
 
-                    MyThread myThread = new MyThread(tv);
+
+                    adapter = new PurchaseAdapter(getActivity().getApplicationContext(), R.layout.purchaselist, data);
+
+
+//                    MyThread myThread = new MyThread(a);
+                    MyThread myThread = new MyThread(adapter);
                     myThread.start();
 
                 } catch (JSONException e) {
@@ -94,39 +106,6 @@ public class Purchase extends Fragment {
         });
 
 
-
-
-
-//
-//        btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                OkHttpClient client = new OkHttpClient();
-//
-//                RequestBody body = new FormBody.Builder().add("num", String.valueOf(num)).build();
-//
-//                Request request = new Request.Builder().url(url).post(body).build();
-//
-//                client.newCall(request).enqueue(new Callback() {
-//                    @Override
-//                    public void onFailure(@NonNull Call call, @NonNull IOException e) {
-//                        e.printStackTrace();
-//                    }
-//
-//                    @Override
-//                    public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-//                        Gson gson = new Gson();
-//                        try {
-//                            String strJsonOutput = response.body().string();
-//                            JSONArray jsonOutput = new JSONArray(strJsonOutput);
-//                            Log.d("tag", String.valueOf(jsonOutput.getJSONObject(0).getString("item_seq")));
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                });
-//            }
-//        });
         return fragment;
     }
 
@@ -136,31 +115,43 @@ public class Purchase extends Fragment {
 
 
 
-            tv= (TextView) msg.obj;
-            tv.setText(a);
+//            tv= (TextView) msg.obj;
+//            tv.setText(a);
+
+            gridView.setExpanded(true);
+            gridView.setAdapter(adapter);
+
         }
     };
 
-    class MyThread extends Thread{
-        TextView tv;
 
-        public MyThread(TextView tv){
-            this.tv=tv;
+
+
+    class MyThread extends Thread{
+//        TextView tv;
+
+//        public MyThread(TextView tv){
+//            this.tv=tv;
+//        }
+
+        PurchaseAdapter adapter;
+        public MyThread(PurchaseAdapter adapter){
+            this.adapter=adapter;
         }
 
         @Override
         public void run() {
 
-            try {
-                Thread.sleep(1000);
+//            try {
+//                Thread.sleep(1000);
 
                 Message message = new Message();
-                message.obj = tv;
+//                message.obj = tv;
 
                 myHandler.sendMessage(message);
-            } catch (InterruptedException e){
-                e.printStackTrace();
-            }
+//            } catch (InterruptedException e){
+//                e.printStackTrace();
+//            }
         }
     }
 }

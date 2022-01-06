@@ -7,7 +7,7 @@ public class itemVO {
     private String item_name;
     private int item_price;
     private String item_content;
-    private String item_pic1;
+    private int item_pic1;
     private String item_pic2;
     private String item_pic3;
     private String item_pic4;
@@ -46,11 +46,11 @@ public class itemVO {
         this.item_content = item_content;
     }
 
-    public String getItem_pic1() {
+    public int getItem_pic1() {
         return item_pic1;
     }
 
-    public void setItem_pic1(String item_pic1) {
+    public void setItem_pic1(int item_pic1) {
         this.item_pic1 = item_pic1;
     }
 
