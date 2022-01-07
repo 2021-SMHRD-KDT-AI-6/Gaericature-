@@ -4,7 +4,6 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/layout/activity_purchase_history.xml" value="0.1" />
         <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/layout/activity_test.xml" value="0.2046875" />
         <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/layout/fragment_camera.xml" value="0.25" />
         <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/layout/fragment_gallery.xml" value="0.33" />
@@ -13,6 +12,8 @@
         <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/layout/fragment_purchase.xml" value="0.33" />
         <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/menu/nav_item.xml" value="0.1" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/activity_main.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/activity_purchase_detail.xml" value="0.32486136783733827" />
+        <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/fragment_gallery.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/fragment_mypage.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/fragment_purchase.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/gaericaturelist.xml" value="0.36614583333333334" />

@@ -38,7 +38,7 @@ public class MyPage extends Fragment {
     ExpandableHeightGridView myPageGridView;
     MyGaericatureAdapter adapter;
     ArrayList<MyGaericatureVO> data = new ArrayList<>();
-    String url = "http://172.30.1.12:8081/Gaericature/testController";
+    String url = "http://192.168.0.115:8081/Gaericature/testController";
     View viewPurchaseAll, viewPurchaseDelivering, viewPurchaseComplete;
     String item_seq;
     @Override

@@ -1,8 +1,9 @@
 package com.example.project;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class itemVO {
+public class itemVO implements Serializable {
     private int item_seq;
     private String item_name;
     private int item_price;
@@ -93,4 +94,12 @@ public class itemVO {
     public void setUser_id(String user_id) {
         this.user_id = user_id;
     }
+
+
+
+
+
+
+
+
 }
