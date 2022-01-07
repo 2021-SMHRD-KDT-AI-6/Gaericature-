@@ -1,4 +1,4 @@
-package com.example.project;
+package com.example.project.VO;
 
 public class MyGaericatureVO {
     private int img;

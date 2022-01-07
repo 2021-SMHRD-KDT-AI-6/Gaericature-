@@ -1,4 +1,4 @@
-package com.example.project;
+package com.example.project.VO;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -94,12 +94,5 @@ public class itemVO implements Serializable {
     public void setUser_id(String user_id) {
         this.user_id = user_id;
     }
-
-
-
-
-
-
-
 
 }

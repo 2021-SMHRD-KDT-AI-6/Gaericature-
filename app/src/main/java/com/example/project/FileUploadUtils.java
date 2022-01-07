@@ -18,7 +18,7 @@ import okhttp3.Response;
 public class FileUploadUtils {
     public static void send2Server(File file){
         RequestBody requestBody = new MultipartBody.Builder().setType(MultipartBody.FORM).addFormDataPart("files",file.getName(),RequestBody.create(MultipartBody.FORM, file)).build();
-        Request request = new Request.Builder().url("http://192.168.0.115:8081/Gaericature/imageController").post(requestBody).build();
+        Request request = new Request.Builder().url("http://172.30.1.12:8081/Gaericature/imageController").post(requestBody).build();
 
 
 

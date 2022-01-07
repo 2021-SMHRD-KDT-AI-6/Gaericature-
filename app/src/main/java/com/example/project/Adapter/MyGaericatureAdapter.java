@@ -1,4 +1,4 @@
-package com.example.project;
+package com.example.project.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.project.R;
+import com.example.project.VO.MyGaericatureVO;
 
 import java.util.ArrayList;
 

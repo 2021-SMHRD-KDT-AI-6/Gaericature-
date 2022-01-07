@@ -1,4 +1,4 @@
-package com.example.project;
+package com.example.project.Fragment;
 
 import android.content.Intent;
 import android.graphics.drawable.ShapeDrawable;
@@ -15,6 +15,15 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+
+import com.example.project.Activity.MyGaericatureFull;
+import com.example.project.Activity.MyPagePurchaseAllHistory;
+import com.example.project.Activity.MyPagePurchaseCompleteHistory;
+import com.example.project.Activity.MyPagePurchaseDeliveringHistory;
+import com.example.project.Adapter.MyGaericatureAdapter;
+import com.example.project.ExpandableHeightGridView;
+import com.example.project.R;
+import com.example.project.VO.MyGaericatureVO;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,7 +48,7 @@ public class MyPage extends Fragment {
     ExpandableHeightGridView myPageGridView;
     MyGaericatureAdapter adapter;
     ArrayList<MyGaericatureVO> data = new ArrayList<>();
-    String url = "http://192.168.0.115:8081/Gaericature/testController";
+    String url = "http://172.30.1.12:8081/Gaericature/testController";
     View viewPurchaseAll, viewPurchaseDelivering, viewPurchaseComplete;
     String item_seq;
     @Override

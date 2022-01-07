@@ -1,4 +1,4 @@
-package com.example.project;
+package com.example.project.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +15,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.project.Activity.PurchaseDetail;
+import com.example.project.Adapter.PurchaseAdapter;
+import com.example.project.ExpandableHeightGridView;
+import com.example.project.R;
+import com.example.project.VO.itemVO;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -54,7 +59,7 @@ public class Purchase extends Fragment {
 
 
 
-        String url = "http://192.168.0.115:8081/Gaericature/testController";
+        String url = "http://172.30.1.12:8081/Gaericature/testController";
 
         OkHttpClient client = new OkHttpClient();
 

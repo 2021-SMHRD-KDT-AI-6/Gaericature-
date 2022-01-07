@@ -1,22 +1,18 @@
-package com.example.project;
+package com.example.project.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 
+import com.example.project.Fragment.Gallery;
+import com.example.project.Fragment.Home;
+import com.example.project.Fragment.MyPage;
+import com.example.project.Fragment.Purchase;
+import com.example.project.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     Purchase purchase;
     MyPage myPage;
 
-    public static int id = 0;
+   public static int id = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
