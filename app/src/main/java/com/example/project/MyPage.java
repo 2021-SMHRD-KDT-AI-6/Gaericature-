@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -34,7 +33,9 @@ import okhttp3.Response;
 public class MyPage extends Fragment {
 
     ImageView imgProfile;
-    TextView tvPurchaseAll, tvPurchaseAllNum, tvPurchaseDelivering, tvPurchaseDeliveringNum, tvPurchaseComplete, tvPurchaseCompleteNum;
+    TextView tvPurchaseAll, tvPurchaseAllNum,
+            tvPurchaseDelivering, tvPurchaseDeliveringNum,
+            tvPurchaseComplete, tvPurchaseCompleteNum;
     ExpandableHeightGridView myPageGridView;
     MyGaericatureAdapter adapter;
     ArrayList<MyGaericatureVO> data = new ArrayList<>();
@@ -69,8 +70,6 @@ public class MyPage extends Fragment {
         tvPurchaseComplete.bringToFront();
         tvPurchaseCompleteNum.bringToFront();
 
-
-
         myPageGridView = fragment.findViewById(R.id.myPageGrid);
 
         OkHttpClient client = new OkHttpClient();
@@ -100,6 +99,8 @@ public class MyPage extends Fragment {
                     adapter = new MyGaericatureAdapter(getActivity().getApplicationContext(), R.layout.gaericaturelist, data);
                     MyPageThread myPageThread = new MyPageThread(adapter);
 
+
+
                     myPageThread.start();
 
                 } catch (JSONException e) {
@@ -107,6 +108,52 @@ public class MyPage extends Fragment {
                 }
             }
         });
+
+        tvPurchaseAllNum.bringToFront();
+        tvPurchaseDeliveringNum.bringToFront();
+        tvPurchaseCompleteNum.bringToFront();
+
+        viewPurchaseAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+
+                Intent intent = new Intent(getActivity(), MyPagePurchaseAllHistory.class);
+                intent.putExtra("PurchaseAllNum", String.valueOf(tvPurchaseAllNum.getText()));
+                startActivity(intent);
+            }
+        });
+
+        viewPurchaseDelivering.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), MyPagePurchaseDeliveringHistory.class);
+                intent.putExtra("PurchaseDeliveringNum", String.valueOf(tvPurchaseDeliveringNum.getText()));
+                startActivity(intent);
+            }
+        });
+
+        viewPurchaseComplete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), MyPagePurchaseCompleteHistory.class);
+                intent.putExtra("PurchaseCompleteNum", String.valueOf(tvPurchaseCompleteNum.getText()));
+                startActivity(intent);
+            }
+        });
+
+        myPageGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), MyGaericatureFull.class);
+                intent.putExtra("image", Integer.toString(data.get(i).getImg()));
+                startActivity(intent);
+
+                getActivity().overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
+            }
+        });
+
         return fragment;
     }
 
