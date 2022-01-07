@@ -14,7 +14,16 @@
         android:theme="@style/Theme.Project"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".PurchaseHistory"
+            android:name=".MyGaericatureFull"
+            android:exported="false" />
+        <activity
+            android:name=".MyPagePurchaseCompleteHistory"
+            android:exported="false" />
+        <activity
+            android:name=".MyPagePurchaseDeliveringHistory"
+            android:exported="false" />
+        <activity
+            android:name=".MyPagePurchaseAllHistory"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
