@@ -89,8 +89,8 @@ public class Gallery extends Fragment {
             // 이미지뷰에 Bitmap으로 이미지를 입력
             imgGallery.setImageBitmap(imageBitmap);
 
-            String date = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss").format(new Date());
-            tempSelectFile = new File(Environment.getExternalStorageDirectory(), "temp_"+date+".jpeg");
+//            String date = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss").format(new Date());
+            tempSelectFile = new File(Environment.getExternalStorageDirectory(), "temp.jpeg");
 
 
 
@@ -104,6 +104,9 @@ public class Gallery extends Fragment {
                 imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
                 Log.i("컴프레스", "컴프레스");
                 FileUploadUtils.send2Server(tempSelectFile);
+
+
+
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();

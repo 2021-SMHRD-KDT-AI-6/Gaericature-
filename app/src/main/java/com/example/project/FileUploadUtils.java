@@ -20,6 +20,8 @@ public class FileUploadUtils {
         RequestBody requestBody = new MultipartBody.Builder().setType(MultipartBody.FORM).addFormDataPart("files",file.getName(),RequestBody.create(MultipartBody.FORM, file)).build();
         Request request = new Request.Builder().url("http://192.168.0.115:8081/Gaericature/imageController").post(requestBody).build();
 
+
+
         OkHttpClient client = new OkHttpClient();
         client.newCall(request).enqueue(new Callback() {
             @Override
