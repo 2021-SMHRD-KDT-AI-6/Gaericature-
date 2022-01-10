@@ -17,21 +17,24 @@ import okhttp3.Response;
 
 public class FileUploadUtils {
     public static void send2Server(File file){
-        RequestBody requestBody = new MultipartBody.Builder().setType(MultipartBody.FORM).addFormDataPart("files",file.getName(),RequestBody.create(MultipartBody.FORM, file)).build();
-        Request request = new Request.Builder().url("http://172.30.1.12:8081/Gaericature/imageController").post(requestBody).build();
+                    RequestBody requestBody = new MultipartBody.Builder()
+                    .setType(MultipartBody.FORM)
+                .addFormDataPart("files",file.getName(),RequestBody.create(MultipartBody.FORM, file))
+                    .build();
+            Request request = new Request.Builder().url("http://192.168.0.115:5000/image").post(requestBody).build();
 
 
 
-        OkHttpClient client = new OkHttpClient();
+            OkHttpClient client = new OkHttpClient();
         client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                e.printStackTrace();
-            }
+                @Override
+                public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                    e.printStackTrace();
+                }
 
-            @Override
-            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                Log.i("test : ", response.body().string());
+                @Override
+                public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+
             }
         });
     }

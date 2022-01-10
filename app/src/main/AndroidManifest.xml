@@ -16,10 +16,7 @@
         android:theme="@style/Theme.Project"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".Activity.SignUpActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Activity.MainActivity"
+            android:name=".Activity.DeepImage"
             android:exported="false" />
         <activity
             android:name=".Activity.MyGaericatureFull"
@@ -37,7 +34,7 @@
             android:name=".Activity.MyPagePurchaseCompleteHistory"
             android:exported="false" />
         <activity
-            android:name=".Activity.BeginActivity"
+            android:name=".Activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

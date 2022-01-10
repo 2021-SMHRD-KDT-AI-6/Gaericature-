@@ -59,7 +59,7 @@ public class Purchase extends Fragment {
 
 
 
-        String url = "http://172.30.1.12:8081/Gaericature/testController";
+        String url = "http://192.168.0.115:8081/Gaericature/testController";
 
         OkHttpClient client = new OkHttpClient();
 
@@ -83,6 +83,7 @@ public class Purchase extends Fragment {
 
                     String strJsonOutput = response.body().string();
                     JSONArray jsonOutput = new JSONArray(strJsonOutput);
+
 
 
 //                    a = String.valueOf(jsonOutput.getJSONObject(0).getString("item_seq"));

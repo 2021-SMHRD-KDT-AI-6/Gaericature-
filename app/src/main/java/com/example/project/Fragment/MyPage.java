@@ -126,8 +126,6 @@ public class MyPage extends Fragment {
             @Override
             public void onClick(View view) {
 
-
-
                 Intent intent = new Intent(getActivity(), MyPagePurchaseAllHistory.class);
                 intent.putExtra("PurchaseAllNum", String.valueOf(tvPurchaseAllNum.getText()));
                 startActivity(intent);
