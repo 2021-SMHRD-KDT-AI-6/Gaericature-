@@ -39,8 +39,6 @@ import okhttp3.Response;
 public class Purchase extends Fragment {
 
     TextView tv;
-    int num = 2;
-    String a;
     ExpandableHeightGridView gridView;
     ArrayList<itemVO> data;
     PurchaseAdapter adapter;
@@ -83,6 +81,8 @@ public class Purchase extends Fragment {
 
                     String strJsonOutput = response.body().string();
                     JSONArray jsonOutput = new JSONArray(strJsonOutput);
+
+
 
 
 

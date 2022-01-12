@@ -109,9 +109,7 @@ public class Gallery extends Fragment {
             @Override
             public void onClick(View view) {
 
-
                 tempSelectFile = new File(Environment.getExternalStorageDirectory(), "temp.jpeg");
-
 
                 Log.i("빈 파일 생성 성공", "빈파일 생성 성공");
                 OutputStream out = null;

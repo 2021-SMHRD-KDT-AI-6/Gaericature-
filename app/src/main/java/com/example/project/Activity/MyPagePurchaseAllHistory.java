@@ -1,5 +1,6 @@
 package com.example.project.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,16 +11,34 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.project.Adapter.MyGaericatureAdapter;
 import com.example.project.R;
+import com.example.project.VO.MyGaericatureVO;
+import com.example.project.VO.MyPurchaseVO;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class MyPagePurchaseAllHistory extends AppCompatActivity {
 
-    Bitmap bitmap;
+    String url = "http://172.30.1.12:5000/purchaseall";
+    ArrayList<MyPurchaseVO> data = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,38 +48,25 @@ public class MyPagePurchaseAllHistory extends AppCompatActivity {
         Intent intent = getIntent();
         String PurchaseAllNum = intent.getExtras().getString("PurchaseAllNum");
         TextView tvAll = findViewById(R.id.tvAll);
-        tvAll.setText(PurchaseAllNum);
-        ImageView img = findViewById(R.id.img);
+        tvAll.setText(PurchaseAllNum+"개");
 
-        Thread thread = new Thread(){
+        OkHttpClient client = new OkHttpClient();
+
+        RequestBody body = new FormBody.Builder().build();
+
+        Request request = new Request.Builder().url(url).post(body).build();
+
+        client.newCall(request).enqueue(new Callback() {
             @Override
-            public void run() {
-                try{
-                    URL url = new URL("http://172.30.1.12/C:/Users/smhrd/project2/고양이.jpg");
-
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-                    conn.setDoInput(true);
-
-                    conn.connect();
-
-                    InputStream inputStream = conn.getInputStream();
-
-                    bitmap = BitmapFactory.decodeStream(inputStream);
-
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                e.printStackTrace();
             }
-        };
-        thread.start();
 
-        try {
-            thread.join();
-            img.setImageBitmap(bitmap);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                
+            }
+        });
 
     }
 }

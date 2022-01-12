@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
@@ -12,6 +13,7 @@ import com.example.project.Fragment.Home;
 import com.example.project.Fragment.MyPage;
 import com.example.project.Fragment.Purchase;
 import com.example.project.R;
+import com.example.project.RbPreference;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -62,9 +64,10 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-
-
+        // 세션에서 아이디 가져오기
+//        RbPreference pref = new RbPreference(this);
+//        String user_id = pref.getValue("user_id", null);
+//
+//        Log.d("session", user_id);
     }
-
-
 }

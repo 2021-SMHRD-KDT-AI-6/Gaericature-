@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.project.Adapter.MyGaericatureAdapter;
 import com.example.project.R;
+import com.example.project.RbPreference;
 import com.example.project.VO.MyGaericatureVO;
 
 import org.json.JSONArray;
@@ -35,7 +36,7 @@ public class BeginActivity extends AppCompatActivity {
 
     EditText edId, edPw;
     Button btnLogin, btnSignUp;
-    String url = "http://172.30.1.12:8081/Gaericature/loginController";
+    String url = "http://172.30.1.12:5000/login";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +71,12 @@ public class BeginActivity extends AppCompatActivity {
                     public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                         String result = response.body().string();
                         if (result.equals("1")){
+
+                            String user_id = edId.getText().toString();
+
+                            RbPreference pref = new RbPreference(getApplicationContext());
+                            pref.put("user_id", user_id);
+
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             startActivity(intent);
                             finish();
@@ -85,6 +92,14 @@ public class BeginActivity extends AppCompatActivity {
                         }
                     }
                 });
+            }
+        });
+
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
+                startActivity(intent);
             }
         });
     }

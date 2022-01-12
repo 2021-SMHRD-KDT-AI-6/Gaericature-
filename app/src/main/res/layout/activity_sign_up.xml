@@ -6,4 +6,79 @@
     android:layout_height="match_parent"
     tools:context=".Activity.SignUpActivity">
 
+    <EditText
+        android:id="@+id/edSignUpId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="92dp"
+        android:ems="10"
+        android:hint="@string/edId"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edSignUpPw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:hint="@string/edPw"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/edSignUpId"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edSignUpId"
+        app:layout_constraintTop_toBottomOf="@+id/edSignUpId" />
+
+    <EditText
+        android:id="@+id/edSignUpNick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="@string/edNick"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/edSignUpPw"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edSignUpPw"
+        app:layout_constraintTop_toBottomOf="@+id/edSignUpPw" />
+
+    <Button
+        android:id="@+id/btnSignUpGallery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btnGallery"
+        app:layout_constraintBottom_toBottomOf="@+id/imgSignUp"
+        app:layout_constraintEnd_toEndOf="@+id/edSignUpNick"
+        app:layout_constraintTop_toTopOf="@+id/imgSignUp" />
+
+    <ImageView
+        android:id="@+id/imgSignUp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/dog"
+        app:layout_constraintStart_toStartOf="@+id/edSignUpNick"
+        app:layout_constraintTop_toBottomOf="@+id/edSignUpNick" />
+
+    <Button
+        android:id="@+id/btnSignUpBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="29dp"
+        android:text="@string/btnBack"
+        app:layout_constraintStart_toStartOf="@+id/imgSignUp"
+        app:layout_constraintTop_toBottomOf="@+id/imgSignUp" />
+
+    <Button
+        android:id="@+id/btnSignUpComplete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btnSignUp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnSignUpBack"
+        app:layout_constraintEnd_toEndOf="@+id/btnSignUpGallery"
+        app:layout_constraintTop_toTopOf="@+id/btnSignUpBack" />
 </androidx.constraintlayout.widget.ConstraintLayout>
