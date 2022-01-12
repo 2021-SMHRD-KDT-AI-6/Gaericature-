@@ -1,5 +1,7 @@
 package com.example.project.VO;
 
+import android.graphics.Bitmap;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -9,11 +11,15 @@ public class itemVO implements Serializable {
     private int item_price;
     private String item_content;
     private int item_pic1;
-    private String item_pic2;
-    private String item_pic3;
-    private String item_pic4;
+    private Bitmap item_pic2;
+    private Bitmap item_pic3;
+    private Bitmap item_pic4;
     private Date item_date;
     private String user_id;
+
+    public itemVO(Bitmap item_pic2) {
+        this.item_pic2 = item_pic2;
+    }
 
     public int getItem_seq() {
         return item_seq;
@@ -55,27 +61,27 @@ public class itemVO implements Serializable {
         this.item_pic1 = item_pic1;
     }
 
-    public String getItem_pic2() {
+    public Bitmap getItem_pic2() {
         return item_pic2;
     }
 
-    public void setItem_pic2(String item_pic2) {
+    public void setItem_pic2(Bitmap item_pic2) {
         this.item_pic2 = item_pic2;
     }
 
-    public String getItem_pic3() {
+    public Bitmap getItem_pic3() {
         return item_pic3;
     }
 
-    public void setItem_pic3(String item_pic3) {
+    public void setItem_pic3(Bitmap item_pic3) {
         this.item_pic3 = item_pic3;
     }
 
-    public String getItem_pic4() {
+    public Bitmap getItem_pic4() {
         return item_pic4;
     }
 
-    public void setItem_pic4(String item_pic4) {
+    public void setItem_pic4(Bitmap item_pic4) {
         this.item_pic4 = item_pic4;
     }
 
@@ -94,5 +100,4 @@ public class itemVO implements Serializable {
     public void setUser_id(String user_id) {
         this.user_id = user_id;
     }
-
 }

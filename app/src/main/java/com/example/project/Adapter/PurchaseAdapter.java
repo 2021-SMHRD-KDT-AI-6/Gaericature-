@@ -50,7 +50,7 @@ public class PurchaseAdapter extends BaseAdapter {
 
         ImageView imgItem = view.findViewById(R.id.imgItem);
 
-        imgItem.setImageResource(item.get(i).getItem_pic1());
+        imgItem.setImageBitmap(item.get(i).getItem_pic2());
 
         return view;
     }
