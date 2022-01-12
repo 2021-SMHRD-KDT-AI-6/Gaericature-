@@ -7,21 +7,28 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.project.BitmapConverter;
 import com.example.project.R;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -31,7 +38,8 @@ public class DeepImage extends AppCompatActivity {
 
     Button btnCancel, btnSave;
     ImageView imgDeep;
-    Bitmap deepImage;
+    File tempSelectFile;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,10 +51,56 @@ public class DeepImage extends AppCompatActivity {
         imgDeep = findViewById(R.id.imgDeep);
 
         Intent intent = getIntent();
-        String deepImage = intent.getStringExtra("img");
-        Bitmap deepImage2 = BitmapConverter.StringToBitmap(deepImage);
-        imgDeep.setImageBitmap(deepImage2);
 
+        byte[] b = intent.getByteArrayExtra("img");
+        Bitmap img = BitmapFactory.decodeByteArray(b,0,b.length);
+
+        imgDeep.setImageBitmap(img);
+
+
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                tempSelectFile = new File(Environment.getExternalStorageDirectory(), "temp.jpeg");
+                OutputStream out = null;
+
+                try {
+                    out = new FileOutputStream(tempSelectFile);
+                    Log.i("아웃스트림", "아웃스트림");
+                    img.compress(Bitmap.CompressFormat.JPEG, 100, out);
+                    Log.i("컴프레스", "컴프레스");
+                    //FileUploadUtils.send2Server(tempSelectFile);
+
+                    RequestBody requestBody = new MultipartBody.Builder()
+                            .setType(MultipartBody.FORM)
+                            .addFormDataPart("file",tempSelectFile.getName(),RequestBody.create(MultipartBody.FORM, tempSelectFile))
+                            .build();
+                    Request request = new Request.Builder().url("http://192.168.0.115:5000/saveimage").post(requestBody).build();
+
+
+
+                    OkHttpClient client = new OkHttpClient();
+                    client.newCall(request).enqueue(new Callback() {
+                        @Override
+                        public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                            e.printStackTrace();
+                        }
+
+                        @Override
+                        public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+
+
+
+                        }
+                    });
+
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
 
 //        String url = "http://192.168.0.115:5000/deepimage";
 //        OkHttpClient client = new OkHttpClient();

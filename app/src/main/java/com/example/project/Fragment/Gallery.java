@@ -28,6 +28,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.project.Activity.DeepImage;
+import com.example.project.Activity.PurchaseDetail;
 import com.example.project.Adapter.MyGaericatureAdapter;
 import com.example.project.BitmapConverter;
 import com.example.project.FileUploadUtils;
@@ -61,17 +62,17 @@ import okhttp3.Response;
 public class Gallery extends Fragment {
 
     ImageView imgGallery;
-    Button btnGallery, btnCamera, btnChange;
-    private static final int PICK_IMAGE = 0;
-    private static final int PICK_CAMERA = 1;
-    File tempSelectFile;
-    Bitmap deepImage;
+                Button btnGallery, btnCamera, btnChange;
+        private static final int PICK_IMAGE = 0;
+        private static final int PICK_CAMERA = 1;
+        File tempSelectFile;
+        Bitmap deepImage, bitmap;
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                Bundle savedInstanceState) {
 
-        View fragment = inflater.inflate(R.layout.fragment_gallery, container, false);
+            View fragment = inflater.inflate(R.layout.fragment_gallery, container, false);
 
         btnGallery = fragment.findViewById(R.id.btnGallery);
         btnCamera = fragment.findViewById(R.id.btnCamera);
@@ -103,8 +104,6 @@ public class Gallery extends Fragment {
 //            String url = "http://192.168.0.115:5000/image";
 //            OkHttpClient client = new OkHttpClient();
 
-            BitmapDrawable img = (BitmapDrawable) imgGallery.getDrawable();
-            Bitmap bitmap = img.getBitmap();
 
             @Override
             public void onClick(View view) {
@@ -144,11 +143,22 @@ public class Gallery extends Fragment {
 
                             InputStream inputStream = response.body().byteStream();
                             deepImage = BitmapFactory.decodeStream(inputStream);
-                            String deepImage2 = BitmapConverter.BitmapToString(deepImage);
+                            ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
-                            Intent intent = new Intent(getActivity().getApplicationContext(), DeepImage.class);
-                            intent.putExtra("img", deepImage2);
+                            float scale = (float) (1024/(float)deepImage.getWidth());
+                            int image_w = (int) (deepImage.getWidth() * scale);
+                            int image_h = (int) (deepImage.getHeight() * scale);
+                            Bitmap resize = Bitmap.createScaledBitmap(deepImage,image_w,image_h,true);
+                            resize.compress(Bitmap.CompressFormat.JPEG,100,stream);
+                            byte[] b = stream.toByteArray();
+                            Log.i("byte test :: ", b.toString());
+                            Log.i("bytelength test :: ", String.valueOf(b.length));
+
+                            Intent intent = new Intent(getActivity(), DeepImage.class);
+                            intent.putExtra("img", b);
                             startActivity(intent);
+
+
 
                         }
                     });
@@ -169,7 +179,7 @@ public class Gallery extends Fragment {
         if (requestCode == PICK_IMAGE && resultCode == Activity.RESULT_OK) {
             Uri uri = data.getData();
             try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uri);
+                bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uri);
                 imgGallery.setImageBitmap(bitmap);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -181,34 +191,34 @@ public class Gallery extends Fragment {
             // Bundle로 데이터를 입력
             Bundle extras = data.getExtras();
             // Bitmap으로 컨버전
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            bitmap = (Bitmap) extras.get("data");
             // 이미지뷰에 Bitmap으로 이미지를 입력
-            imgGallery.setImageBitmap(imageBitmap);
+            imgGallery.setImageBitmap(bitmap);
 
 
-            String imgconvert = BitmapConverter.BitmapToString(imageBitmap);
-            Log.i("test : ",imgconvert);
+//            String imgconvert = BitmapConverter.BitmapToString(imageBitmap);
+//            Log.i("test : ",imgconvert);
 
 
 //            String date = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss").format(new Date());
-            tempSelectFile = new File(Environment.getExternalStorageDirectory(), "temp.jpeg");
+//            tempSelectFile = new File(Environment.getExternalStorageDirectory(), "temp.jpeg");
 
 
 
-            Log.i("빈 파일 생성 성공", "빈파일 생성 성공");
-            OutputStream out = null;
-            Log.i("널 아웃풋스트림", "널 아웃풋스트림");
-
-            try {
-                out = new FileOutputStream(tempSelectFile);
-                Log.i("아웃스트림", "아웃스트림");
-                imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
-                Log.i("컴프레스", "컴프레스");
-                FileUploadUtils.send2Server(tempSelectFile);
-
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
+//            Log.i("빈 파일 생성 성공", "빈파일 생성 성공");
+//            OutputStream out = null;
+//            Log.i("널 아웃풋스트림", "널 아웃풋스트림");
+//
+//            try {
+//                out = new FileOutputStream(tempSelectFile);
+//                Log.i("아웃스트림", "아웃스트림");
+//                imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
+//                Log.i("컴프레스", "컴프레스");
+//                FileUploadUtils.send2Server(tempSelectFile);
+//
+//            } catch (FileNotFoundException e) {
+//                e.printStackTrace();
+//            }
         }
     }
 
