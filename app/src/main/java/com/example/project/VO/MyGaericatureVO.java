@@ -1,27 +1,19 @@
 package com.example.project.VO;
 
-public class MyGaericatureVO {
-    private int img;
-    private String tvName;
+import android.graphics.Bitmap;
 
-    public MyGaericatureVO(int img, String tvName) {
+public class MyGaericatureVO {
+    private Bitmap img;
+
+    public MyGaericatureVO(Bitmap img) {
         this.img = img;
-        this.tvName = tvName;
     }
 
-    public int getImg() {
+    public Bitmap getImg() {
         return img;
     }
 
-    public void setImg(int img) {
+    public void setImg(Bitmap img) {
         this.img = img;
-    }
-
-    public String getTvName() {
-        return tvName;
-    }
-
-    public void setTvName(String tvName) {
-        this.tvName = tvName;
     }
 }

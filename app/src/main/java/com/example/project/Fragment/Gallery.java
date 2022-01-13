@@ -1,8 +1,6 @@
 package com.example.project.Fragment;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -103,13 +101,15 @@ public class Gallery extends Fragment {
 
         btnChange.setOnClickListener(new View.OnClickListener() {
 
+//            String url = "http://192.168.0.115:5000/image";
+//            OkHttpClient client = new OkHttpClient();
+
+
             @Override
             public void onClick(View view) {
 
-//                tempSelectFile = new File(Environment.getExternalStorageDirectory(), "temp.jpeg");
-                ContextWrapper cw = new ContextWrapper(getActivity().getApplicationContext());
-                File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
-                File tempSelectFile = new File(directory, "temp" + ".jpg");
+                tempSelectFile = new File(Environment.getExternalStorageDirectory(), "temp.jpeg");
+
                 Log.i("빈 파일 생성 성공", "빈파일 생성 성공");
                 OutputStream out = null;
                 Log.i("널 아웃풋스트림", "널 아웃풋스트림");
@@ -117,26 +117,15 @@ public class Gallery extends Fragment {
                 try {
                     out = new FileOutputStream(tempSelectFile);
                     Log.i("아웃스트림", "아웃스트림");
-//
-                    float scale = (float) (1024/(float)bitmap.getWidth());
-                    int image_w = (int) (bitmap.getWidth() * scale);
-                    int image_h = (int) (bitmap.getHeight() * scale);
-                    Bitmap resize = Bitmap.createScaledBitmap(bitmap,672,896,true);
-                    resize.compress(Bitmap.CompressFormat.JPEG,100,out);
-
-
-
-
-
-
-//                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
                     Log.i("컴프레스", "컴프레스");
+                    //FileUploadUtils.send2Server(tempSelectFile);
 
                     RequestBody requestBody = new MultipartBody.Builder()
                             .setType(MultipartBody.FORM)
                             .addFormDataPart("files",tempSelectFile.getName(),RequestBody.create(MultipartBody.FORM, tempSelectFile))
                             .build();
-                    Request request = new Request.Builder().url("http://192.168.0.115:5000/image").post(requestBody).build();
+                    Request request = new Request.Builder().url("http://172.30.1.12:5000/image").post(requestBody).build();
 
 
 
@@ -163,18 +152,15 @@ public class Gallery extends Fragment {
                             Log.i("byte test :: ", b.toString());
                             Log.i("bytelength test :: ", String.valueOf(b.length));
 
-
                             Intent intent = new Intent(getActivity(), DeepImage.class);
                             intent.putExtra("img", b);
                             startActivity(intent);
+
                         }
                     });
-
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
-
-
             }
         });
         return fragment;
@@ -184,7 +170,6 @@ public class Gallery extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PICK_IMAGE && resultCode == Activity.RESULT_OK) {
-
             Uri uri = data.getData();
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uri);
@@ -202,6 +187,31 @@ public class Gallery extends Fragment {
             bitmap = (Bitmap) extras.get("data");
             // 이미지뷰에 Bitmap으로 이미지를 입력
             imgGallery.setImageBitmap(bitmap);
+
+
+//            String imgconvert = BitmapConverter.BitmapToString(imageBitmap);
+//            Log.i("test : ",imgconvert);
+
+
+//            String date = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss").format(new Date());
+//            tempSelectFile = new File(Environment.getExternalStorageDirectory(), "temp.jpeg");
+
+
+
+//            Log.i("빈 파일 생성 성공", "빈파일 생성 성공");
+//            OutputStream out = null;
+//            Log.i("널 아웃풋스트림", "널 아웃풋스트림");
+//
+//            try {
+//                out = new FileOutputStream(tempSelectFile);
+//                Log.i("아웃스트림", "아웃스트림");
+//                imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
+//                Log.i("컴프레스", "컴프레스");
+//                FileUploadUtils.send2Server(tempSelectFile);
+//
+//            } catch (FileNotFoundException e) {
+//                e.printStackTrace();
+//            }
         }
     }
 

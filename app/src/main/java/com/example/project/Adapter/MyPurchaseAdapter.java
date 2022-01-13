@@ -27,17 +27,17 @@ public class MyPurchaseAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 0;
+        return myPurchase.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return null;
+        return myPurchase.get(i);
     }
 
     @Override
     public long getItemId(int i) {
-        return 0;
+        return i;
     }
 
     @Override
@@ -51,11 +51,13 @@ public class MyPurchaseAdapter extends BaseAdapter {
         TextView tvMyPurItemState = view.findViewById(R.id.tvMyPurItemState);
         TextView tvMyPurItemName = view.findViewById(R.id.tvMyPurItemName);
         TextView tvMyPurItemPrice = view.findViewById(R.id.tvMyPurItemPrice);
+        TextView tvMyPurItemCnt = view.findViewById(R.id.tvMyPurItemCnt);
         ImageView imgMyPurThumb = view.findViewById(R.id.imgMyPurThumb);
 
         tvMyPurItemState.setText(myPurchase.get(i).getDeli_yn());
         tvMyPurItemName.setText(myPurchase.get(i).getItem_name());
         tvMyPurItemPrice.setText(myPurchase.get(i).getItem_price());
+        tvMyPurItemCnt.setText(myPurchase.get(i).getItem_cnt());
         imgMyPurThumb.setImageBitmap(myPurchase.get(i).getItem_pic1());
 
         return view;

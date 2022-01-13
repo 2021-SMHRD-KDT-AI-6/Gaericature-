@@ -49,10 +49,7 @@ public class MyGaericatureAdapter extends BaseAdapter {
         }
 
         ImageView imgMyGaericature = view.findViewById(R.id.imgMyGaericature);
-        TextView tvMyGaericature = view.findViewById(R.id.tvMyGaericature);
-
-        imgMyGaericature.setImageResource(gaericature.get(i).getImg());
-        tvMyGaericature.setText(gaericature.get(i).getTvName());
+        imgMyGaericature.setImageBitmap(gaericature.get(i).getImg());
 
         return view;
     }
