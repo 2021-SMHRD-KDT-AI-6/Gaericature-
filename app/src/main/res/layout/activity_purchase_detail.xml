@@ -75,7 +75,7 @@
                 app:layout_constraintGuide_begin="361dp" />
 
             <ImageView
-                android:id="@+id/imageView6"
+                android:id="@+id/imgDetail"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
