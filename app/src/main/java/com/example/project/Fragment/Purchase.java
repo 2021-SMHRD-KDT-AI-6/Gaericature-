@@ -3,6 +3,8 @@ package com.example.project.Fragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -13,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -32,8 +35,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
@@ -49,17 +54,9 @@ import okhttp3.ResponseBody;
 public class Purchase extends Fragment {
 
     TextView tv;
-    int num = 2;
-    String a;
     ExpandableHeightGridView gridView;
-    ArrayList<itemVO> data = new ArrayList<>();;
+    ArrayList<itemVO> data = new ArrayList<>();
     PurchaseAdapter adapter;
-    int length;
-    Bitmap img;
-    JSONArray jsonArray;
-
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -71,67 +68,43 @@ public class Purchase extends Fragment {
         gridView = fragment.findViewById(R.id.purchaseGrid);
 
 
-
-//        String url = "http://192.168.0.115:8081/Gaericature/testController";
-
-        OkHttpClient client = new OkHttpClient.Builder()
-                .connectTimeout(100, TimeUnit.SECONDS)
-                .readTimeout(100, TimeUnit.SECONDS)
-                .writeTimeout(100, TimeUnit.SECONDS)
-                .build();
-
-//        RequestBody body = new FormBody.Builder().add("num", String.valueOf(num)).build();
-
+        OkHttpClient client = new OkHttpClient.Builder().build();
         RequestBody body = new FormBody.Builder().build();
-
-        Request request = new Request.Builder().url("http://192.168.0.115:5000/test2")
+        Request request = new Request.Builder().url("http://192.168.0.115:5000/itemlist")
                 .addHeader("Connection","close").post(body).build();
-
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                Log.i("콜백 실패","실패");
                 e.printStackTrace();
             }
 
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
 
+                data = new ArrayList<>();
+
                 try {
+                    JSONObject jsonObject = new JSONObject(response.body().string());
+                    JSONArray jsonArray = jsonObject.getJSONArray("result");
 
-                        Log.i("콜백 성공","성공");
-                        JSONObject jsonObject = new JSONObject(response.body().string());
-
-                        jsonArray = jsonObject.getJSONArray("result");
-                    } catch (JSONException e) {
-                        Log.i("제이슨 에러","에러");
-                        e.printStackTrace();
+                    for(int i=0;i<jsonArray.length();i++){
+                        byte[] b;
+                        b = Base64.decode(jsonArray.get(i).toString(), Base64.DEFAULT);
+                        Bitmap img = BitmapFactory.decodeByteArray(b,0,b.length);
+                        itemVO vo = new itemVO();
+                        vo.setItem_pic1(img);
+                        data.add(vo);
                     }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
 
 
+                adapter = new PurchaseAdapter(getActivity().getApplicationContext(), R.layout.purchaselist,data);
 
-
-                    for(int i =0 ; i<jsonArray.length(); i++) {
-
-                        byte[] b = new byte[0];
-                        try {
-                            b = Base64.decode(jsonArray.get(i).toString(), Base64.DEFAULT);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        Bitmap img = BitmapFactory.decodeByteArray(b, 0, b.length);
-                        data.add(new itemVO(img));
-                    }
-
-                    adapter = new PurchaseAdapter(getActivity().getApplicationContext(), R.layout.purchaselist,data);
-
-                    MyThread myThread = new MyThread(adapter);
-                    myThread.start();
-
-
-
-
+                MyThread myThread = new MyThread(adapter);
+                myThread.start();
 
 
             }
@@ -141,14 +114,12 @@ public class Purchase extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> a_parent, View a_view, int a_position, long a_id) {
 
+                ArrayList<itemVO> vo3 = new ArrayList<>();
                 Intent intent = new Intent(getActivity(), PurchaseDetail.class);
-                intent.putExtra("list", data);
+                intent.putExtra("seq", a_position);
                 startActivity(intent);
             }
         });
-
-
-
 
         return fragment;
     }
@@ -156,11 +127,6 @@ public class Purchase extends Fragment {
     Handler myHandler = new Handler(){
         @Override
         public void handleMessage(@NonNull Message msg) {
-
-
-
-//            tv= (TextView) msg.obj;
-//            tv.setText(a);
 
             gridView.setExpanded(true);
             gridView.setAdapter(adapter);
@@ -172,11 +138,6 @@ public class Purchase extends Fragment {
 
 
     class MyThread extends Thread{
-//        TextView tv;
-
-//        public MyThread(TextView tv){
-//            this.tv=tv;
-//        }
 
         PurchaseAdapter adapter;
         public MyThread(PurchaseAdapter adapter){
@@ -185,17 +146,8 @@ public class Purchase extends Fragment {
 
         @Override
         public void run() {
-
-//            try {
-//                Thread.sleep(1000);
-
-                Message message = new Message();
-//                message.obj = tv;
-
-                myHandler.sendMessage(message);
-//            } catch (InterruptedException e){
-//                e.printStackTrace();
-//            }
+            Message message = new Message();
+            myHandler.sendMessage(message);
         }
     }
 }

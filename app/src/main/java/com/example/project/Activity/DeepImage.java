@@ -3,6 +3,8 @@ package com.example.project.Activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -62,7 +64,14 @@ public class DeepImage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                tempSelectFile = new File(Environment.getExternalStorageDirectory(), "temp.jpeg");
+//                tempSelectFile = new File(Environment.getExternalStorageDirectory(), "temp.jpeg");
+
+                ContextWrapper cw = new ContextWrapper(getApplicationContext());
+                File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
+                File tempSelectFile = new File(directory, "temp" + ".jpg");
+
+
+
                 OutputStream out = null;
 
                 try {

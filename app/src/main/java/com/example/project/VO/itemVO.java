@@ -1,25 +1,23 @@
 package com.example.project.VO;
 
 import android.graphics.Bitmap;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import java.io.Serializable;
 import java.util.Date;
 
-public class itemVO implements Serializable {
+public class itemVO implements Parcelable {
     private int item_seq;
     private String item_name;
     private int item_price;
     private String item_content;
-    private int item_pic1;
+    private Bitmap item_pic1;
     private Bitmap item_pic2;
     private Bitmap item_pic3;
     private Bitmap item_pic4;
     private Date item_date;
     private String user_id;
-
-    public itemVO(Bitmap item_pic2) {
-        this.item_pic2 = item_pic2;
-    }
 
     public int getItem_seq() {
         return item_seq;
@@ -53,11 +51,11 @@ public class itemVO implements Serializable {
         this.item_content = item_content;
     }
 
-    public int getItem_pic1() {
+    public Bitmap getItem_pic1() {
         return item_pic1;
     }
 
-    public void setItem_pic1(int item_pic1) {
+    public void setItem_pic1(Bitmap item_pic1) {
         this.item_pic1 = item_pic1;
     }
 
@@ -100,4 +98,46 @@ public class itemVO implements Serializable {
     public void setUser_id(String user_id) {
         this.user_id = user_id;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(item_name);
+        parcel.writeString(item_content);
+        parcel.writeInt(item_price);
+        parcel.writeValue(item_pic2);
+        parcel.writeValue(item_pic1);
+
+
+    }
+
+    public itemVO(){
+
+    }
+
+    public itemVO(Parcel parcel){
+        item_name=parcel.readString();
+        item_content=parcel.readString();
+        item_price=parcel.readInt();
+        item_pic2=parcel.readParcelable(Bitmap.class.getClassLoader());
+        item_pic1=parcel.readParcelable(Bitmap.class.getClassLoader());
+
+    }
+
+    public static final Creator<itemVO> CREATOR = new Creator<itemVO>() {
+        @Override
+        public itemVO createFromParcel(Parcel parcel) {
+            return new itemVO(parcel);
+        }
+
+        @Override
+        public itemVO[] newArray(int i) {
+            return new itemVO[i];
+        }
+    };
+
 }
