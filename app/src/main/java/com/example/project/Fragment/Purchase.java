@@ -84,7 +84,7 @@ public class Purchase extends Fragment {
 
         RequestBody body = new FormBody.Builder().build();
 
-        Request request = new Request.Builder().url("http://192.168.0.115:5000/test2")
+        Request request = new Request.Builder().url("http://172.30.1.12:5000/deepimagelist")
                 .addHeader("Connection","close").post(body).build();
 
         client.newCall(request).enqueue(new Callback() {
@@ -108,10 +108,6 @@ public class Purchase extends Fragment {
                         e.printStackTrace();
                     }
 
-
-
-
-
                     for(int i =0 ; i<jsonArray.length(); i++) {
 
                         byte[] b = new byte[0];
@@ -124,16 +120,10 @@ public class Purchase extends Fragment {
                         data.add(new itemVO(img));
                     }
 
-                    adapter = new PurchaseAdapter(getActivity().getApplicationContext(), R.layout.purchaselist,data);
+                    adapter = new PurchaseAdapter(getActivity().getApplicationContext(), R.layout.purchaselist, data);
 
                     MyThread myThread = new MyThread(adapter);
                     myThread.start();
-
-
-
-
-
-
             }
         });
 
@@ -156,15 +146,8 @@ public class Purchase extends Fragment {
     Handler myHandler = new Handler(){
         @Override
         public void handleMessage(@NonNull Message msg) {
-
-
-
-//            tv= (TextView) msg.obj;
-//            tv.setText(a);
-
             gridView.setExpanded(true);
             gridView.setAdapter(adapter);
-
         }
     };
 
@@ -172,12 +155,6 @@ public class Purchase extends Fragment {
 
 
     class MyThread extends Thread{
-//        TextView tv;
-
-//        public MyThread(TextView tv){
-//            this.tv=tv;
-//        }
-
         PurchaseAdapter adapter;
         public MyThread(PurchaseAdapter adapter){
             this.adapter=adapter;
@@ -186,16 +163,8 @@ public class Purchase extends Fragment {
         @Override
         public void run() {
 
-//            try {
-//                Thread.sleep(1000);
-
-                Message message = new Message();
-//                message.obj = tv;
-
-                myHandler.sendMessage(message);
-//            } catch (InterruptedException e){
-//                e.printStackTrace();
-//            }
+            Message message = new Message();
+            myHandler.sendMessage(message);
         }
     }
 }

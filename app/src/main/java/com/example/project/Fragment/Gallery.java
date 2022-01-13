@@ -125,7 +125,7 @@ public class Gallery extends Fragment {
                             .setType(MultipartBody.FORM)
                             .addFormDataPart("files",tempSelectFile.getName(),RequestBody.create(MultipartBody.FORM, tempSelectFile))
                             .build();
-                    Request request = new Request.Builder().url("http://192.168.0.115:5000/image").post(requestBody).build();
+                    Request request = new Request.Builder().url("http://172.30.1.12:5000/image").post(requestBody).build();
 
 
 
@@ -156,16 +156,11 @@ public class Gallery extends Fragment {
                             intent.putExtra("img", b);
                             startActivity(intent);
 
-
-
                         }
                     });
-
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
-
-
             }
         });
         return fragment;

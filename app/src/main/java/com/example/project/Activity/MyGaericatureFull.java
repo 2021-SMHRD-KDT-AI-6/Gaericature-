@@ -4,26 +4,30 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
 
+import com.example.project.BitmapConverter;
 import com.example.project.R;
 
 public class MyGaericatureFull extends AppCompatActivity {
 
     ImageView imgMyGaericatureFull;
-    int img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_gaericature_full);
 
-        Intent intent = getIntent();
         imgMyGaericatureFull = findViewById(R.id.imgMyGaericatureFull);
-        img = Integer.parseInt(intent.getStringExtra("image"));
-        imgMyGaericatureFull.setImageResource(img);
+
+        byte[] byteArray = getIntent().getByteArrayExtra("image");
+        Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+
+        imgMyGaericatureFull.setImageBitmap(bitmap);
     }
 
     @Override

@@ -94,6 +94,7 @@ public class SignUpActivity extends AppCompatActivity {
                 String user_id = edSignUpId.getText().toString();
                 String user_pw = edSignUpPw.getText().toString();
                 String user_nick = edSignUpNick.getText().toString();
+
                 BitmapDrawable img = (BitmapDrawable) imgSignUp.getDrawable();
                 Bitmap bitmap = img.getBitmap();
 

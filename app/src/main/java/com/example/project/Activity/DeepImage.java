@@ -76,7 +76,7 @@ public class DeepImage extends AppCompatActivity {
                             .setType(MultipartBody.FORM)
                             .addFormDataPart("file",tempSelectFile.getName(),RequestBody.create(MultipartBody.FORM, tempSelectFile))
                             .build();
-                    Request request = new Request.Builder().url("http://192.168.0.115:5000/saveimage").post(requestBody).build();
+                    Request request = new Request.Builder().url("http://172.30.1.12:5000/saveimage").post(requestBody).build();
 
 
 
