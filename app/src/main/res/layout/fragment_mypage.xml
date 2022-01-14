@@ -106,7 +106,7 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/tvLevel"
-                app:layout_constraintEnd_toStartOf="@+id/tvInterest"
+                app:layout_constraintEnd_toStartOf="@+id/tvCart"
                 app:layout_constraintStart_toEndOf="@+id/tvLevel"
                 app:layout_constraintTop_toTopOf="@+id/tvLevel"
                 app:layout_constraintVertical_bias="0.0" />
@@ -123,7 +123,7 @@
                 app:layout_constraintTop_toTopOf="@+id/tvLevelT" />
 
             <TextView
-                android:id="@+id/tvInterest"
+                android:id="@+id/tvCart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="64dp"
@@ -135,14 +135,14 @@
                 app:layout_constraintTop_toTopOf="@+id/tvPoint" />
 
             <TextView
-                android:id="@+id/tvInterestT"
+                android:id="@+id/tvCartT"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tvInterest"
+                android:text="@string/tvCart"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/tvPointT"
-                app:layout_constraintEnd_toEndOf="@+id/tvInterest"
-                app:layout_constraintStart_toStartOf="@+id/tvInterest"
+                app:layout_constraintEnd_toEndOf="@+id/tvCart"
+                app:layout_constraintStart_toStartOf="@+id/tvCart"
                 app:layout_constraintTop_toTopOf="@+id/tvPointT"
                 app:layout_constraintVertical_bias="1.0" />
 

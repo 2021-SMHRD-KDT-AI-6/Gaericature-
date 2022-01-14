@@ -28,5 +28,4 @@ public class RbPreference {
             return dftValue;
         }
     }
-
 }

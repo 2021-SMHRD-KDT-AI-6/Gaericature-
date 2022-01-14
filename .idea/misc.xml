@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/drawable/edge.xml" value="0.1" />
         <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/drawable/rounded_corner_border.xml" value="0.1" />
         <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/layout/activity_begin.xml" value="0.25" />
+        <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/layout/activity_cart.xml" value="0.25" />
         <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/layout/activity_deep_image.xml" value="0.20625" />
         <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/layout/activity_my_gaericature_full.xml" value="0.1" />
@@ -15,6 +17,7 @@
         <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/layout/activity_purchase_history.xml" value="0.18" />
         <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/layout/activity_sign_up.xml" value="0.33" />
         <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/layout/activity_test.xml" value="0.2046875" />
+        <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/layout/cartlist.xml" value="0.25" />
         <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/layout/fadein.xml" value="0.25" />
         <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/layout/fadeout.xml" value="0.1" />
         <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/layout/fragment_blank.xml" value="0.20625" />
