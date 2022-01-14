@@ -21,6 +21,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.project.Activity.CartActivity;
 import com.example.project.Activity.MyGaericatureFull;
 import com.example.project.Activity.MyPagePurchaseAllHistory;
 import com.example.project.Activity.MyPagePurchaseCompleteHistory;
@@ -55,7 +56,8 @@ public class MyPage extends Fragment {
     TextView tvNickname,
             tvPurchaseAll, tvPurchaseAllNum,
             tvPurchaseDelivering, tvPurchaseDeliveringNum,
-            tvPurchaseComplete, tvPurchaseCompleteNum;
+            tvPurchaseComplete, tvPurchaseCompleteNum,
+            tvCart, tvCartT;
     ExpandableHeightGridView myPageGridView;
     MyGaericatureAdapter adapter;
     ArrayList<MyGaericatureVO> data = new ArrayList<>();
@@ -77,6 +79,8 @@ public class MyPage extends Fragment {
         tvPurchaseDeliveringNum = fragment.findViewById(R.id.tvPurchaseDeliveringNum);
         tvPurchaseComplete = fragment.findViewById(R.id.tvPurchaseComplete);
         tvPurchaseCompleteNum = fragment.findViewById(R.id.tvPurchaseCompleteNum);
+        tvCart = fragment.findViewById(R.id.tvCart);
+        tvCartT = fragment.findViewById(R.id.tvCartT);
 
         viewPurchaseAll = fragment.findViewById(R.id.viewPurchaseAll);
         viewPurchaseDelivering = fragment.findViewById(R.id.viewPurchaseDelivering);
@@ -93,6 +97,22 @@ public class MyPage extends Fragment {
         tvPurchaseCompleteNum.bringToFront();
 
         myPageGridView = fragment.findViewById(R.id.myPageGrid);
+
+        tvCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), CartActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        tvCartT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), CartActivity.class);
+                startActivity(intent);
+            }
+        });
 
 //        세션에서 아이디 가져오기
         RbPreference pref = new RbPreference(getActivity().getApplicationContext());

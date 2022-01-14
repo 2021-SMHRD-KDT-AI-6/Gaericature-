@@ -13,7 +13,7 @@
     <!--  fragment_mypage.xml  -->
     <string name="tvLevel">회원등급</string>
     <string name="tvPoint">포인트</string>
-    <string name="tvInterest">관심 상품</string>
+    <string name="tvCart">장바구니</string>
     <string name="tvPurchaseHistory">구매내역</string>
     <string name="tvPurchaseAll">전체</string>
     <string name="tvPurchaseDelivering">배송중</string>
@@ -31,7 +31,13 @@
     <string name="btnLogin">로그인</string>
     <string name="btnSignUp">회원가입</string>
     <string name="btnBack">뒤로가기</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--  activity_cart  -->
+    <string name="tvMinus">-</string>
+    <string name="tvPlus">+</string>
+    <string name="btnX">X</string>
 
 </resources>

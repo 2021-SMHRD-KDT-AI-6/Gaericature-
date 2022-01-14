@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Project"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Activity.CartActivity"
+            android:exported="false" />
+        <activity
             android:name=".PurchaseActivity"
             android:exported="false" />
         <activity
