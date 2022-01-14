@@ -20,6 +20,10 @@
     <string name="tvPurchaseComplete">배송 완료</string>
     <string name="tvMyGaericapture">보유 개리커쳐</string>
 
+    <!--  activity_purchase_ditail.xml  -->
+    <string name="btnPurchase">구매하기</string>
+    <string name="btnCart">장바구니 담기</string>
+
     <!--  activity_begin.xml  -->
     <string name="edId">ID</string>
     <string name="edPw">Pw</string>

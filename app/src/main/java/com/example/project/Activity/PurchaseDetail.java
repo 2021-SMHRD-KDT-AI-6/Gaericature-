@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.example.project.Adapter.PurchaseAdapter;
 import com.example.project.BitmapConverter;
+import com.example.project.PurchaseActivity;
 import com.example.project.R;
 import com.example.project.VO.itemVO;
 
@@ -43,10 +44,12 @@ import okhttp3.ResponseBody;
 public class PurchaseDetail extends AppCompatActivity {
 
     TextView tvName, tvPrice, tvContent;
-    Button btnPurchase;
+    Button btnPurchase, btnCart;
     ImageView imgPurchase, imgDetail;
     itemVO item = new itemVO();
     Bitmap img1,img2;
+    int seq;
+
 
 
 
@@ -59,15 +62,15 @@ public class PurchaseDetail extends AppCompatActivity {
         tvName=findViewById(R.id.tvName);
         tvPrice=findViewById(R.id.tvPrice);
         btnPurchase=findViewById(R.id.btnPurchase);
+        btnCart=findViewById(R.id.btnCart);
         imgPurchase=findViewById(R.id.imgPurchase);
         imgDetail=findViewById(R.id.imgDetail);
-
 
 
         // intent로 상품번호 가져오기
         Intent intent = getIntent();
 
-        int seq = intent.getIntExtra("seq", 0);
+        seq = intent.getIntExtra("seq", 0);
         seq+=1;
 
         OkHttpClient client = new OkHttpClient.Builder().build();
@@ -136,6 +139,14 @@ public class PurchaseDetail extends AppCompatActivity {
         });
 
 
+        btnPurchase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), PurchaseActivity.class);
+                intent.putExtra("seq",seq);
+                startActivity(intent);
+            }
+        });
     }
 
     Handler handler = new Handler(){

@@ -111,7 +111,6 @@ public class Purchase extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> a_parent, View a_view, int a_position, long a_id) {
 
-                ArrayList<itemVO> vo3 = new ArrayList<>();
                 Intent intent = new Intent(getActivity(), PurchaseDetail.class);
                 intent.putExtra("seq", a_position);
                 startActivity(intent);

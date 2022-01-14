@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Project"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".PurchaseActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.DeepImage"
             android:exported="false" />
         <activity
