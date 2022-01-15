@@ -13,13 +13,16 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Project"
+        android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".Activity.PopupActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.Dialog.Alert" />
         <activity
             android:name=".Activity.CartActivity"
             android:exported="false" />
         <activity
-            android:name=".PurchaseActivity"
+            android:name=".Activity.PurchaseActivity"
             android:exported="false" />
         <activity
             android:name=".Activity.DeepImage"
