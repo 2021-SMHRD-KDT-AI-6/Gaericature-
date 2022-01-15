@@ -132,7 +132,7 @@ public class PurchaseDetail extends AppCompatActivity {
         btnPurchase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Purchase.class);
+                Intent intent = new Intent(getApplicationContext(), PurchaseActivity.class);
                 intent.putExtra("seq",seq);
                 startActivity(intent);
             }
