@@ -1,14 +1,12 @@
 package com.example.project.Activity;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -71,7 +69,7 @@ public class PopupActivity extends AppCompatActivity {
 
                     @Override
                     public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                        Intent intent = new Intent(getApplicationContext(), PurchaseActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), Purchase.class);
                         startActivity(intent);
                         finish();
                     }

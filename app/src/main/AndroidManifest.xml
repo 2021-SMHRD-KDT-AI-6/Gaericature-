@@ -16,13 +16,13 @@
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Activity.Purchase"
+            android:exported="false" />
+        <activity
             android:name=".Activity.PopupActivity"
             android:theme="@style/Theme.AppCompat.DayNight.Dialog.Alert" />
         <activity
             android:name=".Activity.CartActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Activity.PurchaseActivity"
             android:exported="false" />
         <activity
             android:name=".Activity.DeepImage"
