@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.example.project.Adapter.CartAdapter;
 import com.example.project.ExpandableHeightGridView;
-import com.example.project.PurchaseActivity;
+import com.example.project.Activity.PurchaseActivity;
 import com.example.project.R;
 import com.example.project.RbPreference;
 import com.example.project.VO.CartVO;
