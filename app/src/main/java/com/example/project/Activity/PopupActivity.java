@@ -69,7 +69,7 @@ public class PopupActivity extends AppCompatActivity {
 
                     @Override
                     public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                        Intent intent = new Intent(getApplicationContext(), Purchase.class);
+                        Intent intent = new Intent(getApplicationContext(), PurchaseActivity.class);
                         startActivity(intent);
                         finish();
                     }
