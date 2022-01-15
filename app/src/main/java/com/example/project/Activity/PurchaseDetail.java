@@ -9,7 +9,6 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.renderscript.ScriptGroup;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -17,7 +16,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.project.PurchaseActivity;
 import com.example.project.R;
 import com.example.project.RbPreference;
 import com.example.project.VO.itemVO;
@@ -35,7 +33,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import okhttp3.ResponseBody;
 
 public class PurchaseDetail extends AppCompatActivity {
 
@@ -135,7 +132,7 @@ public class PurchaseDetail extends AppCompatActivity {
         btnPurchase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), PurchaseActivity.class);
+                Intent intent = new Intent(getApplicationContext(), Purchase.class);
                 intent.putExtra("seq",seq);
                 startActivity(intent);
             }

@@ -33,7 +33,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class PurchaseActivity extends AppCompatActivity {
+public class Purchase extends AppCompatActivity {
 
     ExpandableHeightGridView gridViewPurchase;
     ArrayList<DeliveryVO> data = new ArrayList<>();

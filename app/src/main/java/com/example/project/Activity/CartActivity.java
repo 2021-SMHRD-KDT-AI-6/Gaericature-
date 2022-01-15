@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 import com.example.project.Adapter.CartAdapter;
 import com.example.project.ExpandableHeightGridView;
-import com.example.project.PurchaseActivity;
 import com.example.project.R;
 import com.example.project.RbPreference;
 import com.example.project.VO.CartVO;
@@ -66,7 +65,7 @@ public class CartActivity extends AppCompatActivity {
         RequestBody body = new FormBody.Builder()
                 .add("user_id", user_id)
                 .build();
-        String url = "http://172.30.1.12:5000/cart";
+        String url = "http://192.168.0.115:5000/cart";
         Request request = new Request.Builder().url(url).addHeader("Connection", "close").post(body).build();
 
         client.newCall(request).enqueue(new Callback() {
@@ -110,7 +109,7 @@ public class CartActivity extends AppCompatActivity {
         btnCartPurchase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), PurchaseActivity.class);
+                Intent intent = new Intent(getApplicationContext(), Purchase.class);
                 startActivity(intent);
             }
         });
