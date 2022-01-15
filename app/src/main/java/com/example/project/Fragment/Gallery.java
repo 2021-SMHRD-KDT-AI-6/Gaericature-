@@ -192,7 +192,6 @@ public class Gallery extends Fragment {
         }
         if (requestCode == PICK_CAMERA && resultCode == Activity.RESULT_OK) {
 
-
             // Bundle로 데이터를 입력
             Bundle extras = data.getExtras();
             // Bitmap으로 컨버전

@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -63,7 +64,7 @@ public class MyPage extends Fragment {
     ArrayList<MyGaericatureVO> data = new ArrayList<>();
     View viewPurchaseAll, viewPurchaseDelivering, viewPurchaseComplete;
     Bitmap profile;
-    String nick;
+    String nick, cart;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -102,6 +103,7 @@ public class MyPage extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity().getApplicationContext(), CartActivity.class);
+                intent.putExtra("cnt", tvCart.getText());
                 startActivity(intent);
             }
         });
@@ -110,6 +112,7 @@ public class MyPage extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity().getApplicationContext(), CartActivity.class);
+                intent.putExtra("cnt", tvCart.getText());
                 startActivity(intent);
             }
         });
@@ -164,16 +167,24 @@ public class MyPage extends Fragment {
 
                 try {
                     JSONArray jsonArray = jsonObject.getJSONArray("profileimg");
+                    JSONArray jsonArray2 = jsonObject.getJSONArray("cart_count");
                     byte[] b = Base64.decode(jsonArray.get(0).toString(), Base64.DEFAULT);
                     profile = BitmapFactory.decodeByteArray(b, 0, b.length);
 
                     jsonArray = jsonObject.getJSONArray("nick");
                     nick = jsonArray.get(0).toString();
+                    cart = jsonArray2.get(0).toString();
 
-                    ProfileThread profileThread = new ProfileThread(profile, nick);
+                    ProfileThread profileThread = new ProfileThread(profile, nick, cart);
                     profileThread.start();
 
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
+                try {
+                    JSONArray jsonArray = jsonObject.getJSONArray("cart_count");
+                    tvCart.setText(jsonArray.get(0).toString());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -181,29 +192,7 @@ public class MyPage extends Fragment {
             }
         });
 
-//        OkHttpClient client2 = new OkHttpClient();
-//
-//        RequestBody body2 = new FormBody.Builder()
-//                .add("user_id", user_id).build();
-//        String url2 = "http://172.30.1.12:5000/loadprofile";
-//        Request request2 = new Request.Builder().url(url2)
-//                                                .addHeader("Connection", "close")
-//                                                .post(body2).build();
-//
-//        client2.newCall(request2).enqueue(new Callback() {
-//            @Override
-//            public void onFailure(@NonNull Call call, @NonNull IOException e) {
-//                e.printStackTrace();
-//            }
-//
-//            @Override
-//            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-//                InputStream inputStream = response.body().byteStream();
-//                profile = BitmapFactory.decodeStream(inputStream);
-//                ProfileThread profileThread = new ProfileThread(profile);
-//                profileThread.start();
-//            }
-//        });
+
 
         tvPurchaseAllNum.bringToFront();
         tvPurchaseDeliveringNum.bringToFront();
@@ -289,6 +278,7 @@ public class MyPage extends Fragment {
         public void handleMessage(@NonNull Message msg) {
             imgProfile.setImageBitmap(profile);
             tvNickname.setText(nick);
+            tvCart.setText(cart);
         }
     };
 
@@ -296,10 +286,12 @@ public class MyPage extends Fragment {
 
         Bitmap mProfile;
         String nick;
+        String cart;
 
-        public ProfileThread(Bitmap profile, String nick) {
+        public ProfileThread(Bitmap profile, String nick, String cart) {
             mProfile = profile;
             this.nick = nick;
+            this.cart = cart;
         }
 
         @Override

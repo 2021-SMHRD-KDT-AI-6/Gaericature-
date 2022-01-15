@@ -8,6 +8,8 @@ public class CartVO {
     private String tvItemName;
     private int tvItemPrice;
     private int tvItemCnt;
+    private int cartSeq;
+    private String itemSeq;
 
     public Bitmap getImgCartThumb() {
         return imgCartThumb;
@@ -39,5 +41,21 @@ public class CartVO {
 
     public void setTvItemCnt(int tvItemCnt) {
         this.tvItemCnt = tvItemCnt;
+    }
+
+    public int getCartSeq() {
+        return cartSeq;
+    }
+
+    public void setCartSeq(int cartSeq) {
+        this.cartSeq = cartSeq;
+    }
+
+    public String getItemSeq() {
+        return itemSeq;
+    }
+
+    public void setItemSeq(String itemSeq) {
+        this.itemSeq = itemSeq;
     }
 }

@@ -79,6 +79,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/guideline8"
                 app:srcCompat="@drawable/img2" />
@@ -96,10 +97,74 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline9">
+
+        <View
+            android:id="@+id/view8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnCart"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnPurPlus"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:paddingLeft="0dp"
+            android:paddingTop="0dp"
+            android:paddingRight="0dp"
+            android:paddingBottom="0dp"
+            android:text="@string/tvPlus"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:iconPadding="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvPurCnt"
+            app:layout_constraintStart_toEndOf="@+id/tvPurCnt"
+            app:layout_constraintTop_toTopOf="@+id/tvPurCnt" />
+
+        <Button
+            android:id="@+id/btnPurMinus"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:paddingLeft="0dp"
+            android:paddingTop="0dp"
+            android:paddingRight="0dp"
+            android:paddingBottom="0dp"
+            android:text="@string/tvMinus"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:iconPadding="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvPurCnt"
+            app:layout_constraintEnd_toStartOf="@+id/tvPurCnt"
+            app:layout_constraintTop_toTopOf="@+id/tvPurCnt" />
+
+        <TextView
+            android:id="@+id/tvPurCnt"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/edge"
+            android:gravity="center"
+            android:text="1"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/view8"
+            app:layout_constraintStart_toStartOf="@+id/view8"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/btnPurchase"
@@ -112,9 +177,9 @@
             android:text="@string/btnPurchase"
             app:cornerRadius="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnCart"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnCart"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="DuplicateClickableBoundsCheck,SpeakableTextPresentCheck" />
 
@@ -129,11 +194,11 @@
             android:insetBottom="0dp"
             android:text="@string/btnCart"
             app:cornerRadius="0dp"
-            app:layout_constraintBottom_toBottomOf="@+id/btnPurchase"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnPurchase"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btnPurchase"
-            app:layout_constraintTop_toTopOf="@+id/btnPurchase"
+            app:layout_constraintStart_toEndOf="@+id/view8"
+            app:layout_constraintTop_toTopOf="parent"
             tools:ignore="TextContrastCheck" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

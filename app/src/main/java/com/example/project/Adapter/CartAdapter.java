@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.util.Base64;
 import android.view.LayoutInflater;
@@ -78,10 +79,10 @@ public class CartAdapter extends BaseAdapter {
         TextView tvItemName = view.findViewById(R.id.tvItemName);
         TextView tvItemPrice = view.findViewById(R.id.tvItemPrice);
         TextView tvItemCnt = view.findViewById(R.id.tvItemCnt);
-        Button btnCartPlus = view.findViewById(R.id.btnCartPlus);
-        Button btnCartMinus = view.findViewById(R.id.btnCartMinus);
-        Button btnCartDelete = view.findViewById(R.id.btnCartDelete);
-        
+        TextView btnCartPlus = view.findViewById(R.id.btnCartPlus);
+        TextView btnCartMinus = view.findViewById(R.id.btnCartMinus);
+        TextView btnCartDelete = view.findViewById(R.id.btnCartDelete);
+
         int price = cart.get(i).getTvItemCnt() * cart.get(i).getTvItemPrice();
 
         imgCartThumb.setImageBitmap(cart.get(i).getImgCartThumb());
@@ -89,13 +90,17 @@ public class CartAdapter extends BaseAdapter {
         tvItemPrice.setText(String.valueOf(price));
         tvItemCnt.setText(String.valueOf(cart.get(i).getTvItemCnt()));
 
+        String item_seq = String.valueOf(cart.get(i).getItemSeq());
+
         btnCartPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 OkHttpClient client = new OkHttpClient();
 
                 RequestBody body = new FormBody.Builder()
                         .add("user_id", user_id)
+                        .add("item_seq", item_seq)
                         .build();
                 String url = "http://172.30.1.12:5000/cartplus";
                 Request request = new Request.Builder().url(url).addHeader("Connection", "close").post(body).build();
@@ -129,6 +134,7 @@ public class CartAdapter extends BaseAdapter {
 
                     RequestBody body = new FormBody.Builder()
                             .add("user_id", user_id)
+                            .add("item_seq", item_seq)
                             .build();
                     String url = "http://172.30.1.12:5000/cartminus";
                     Request request = new Request.Builder().url(url).addHeader("Connection", "close").post(body).build();
@@ -156,12 +162,15 @@ public class CartAdapter extends BaseAdapter {
         btnCartDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                int cart_seq = cart.get(i).getCartSeq();
+
                 OkHttpClient client = new OkHttpClient();
 
                 RequestBody body = new FormBody.Builder()
-                        .add("user_id", user_id)
+                        .add("cart_seq", String.valueOf(cart_seq))
                         .build();
-                String url = "http://172.30.1.12:5000/cartplus";
+                String url = "http://172.30.1.12:5000/cartdelete";
                 Request request = new Request.Builder().url(url).addHeader("Connection", "close").post(body).build();
 
                 client.newCall(request).enqueue(new Callback() {
@@ -174,16 +183,20 @@ public class CartAdapter extends BaseAdapter {
                     public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                         String result = response.body().string();
                         if (result.equals("1")){
-                            int count = Integer.parseInt(tvItemCnt.getText().toString());
-                            count = count + 1;
-                            tvItemCnt.setText(String.valueOf(count));
+                            cart.remove(i);
+                            Handler handler = new Handler(Looper.getMainLooper());
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    notifyDataSetChanged();
+                                }
+                            }, 0);
                         }
                     }
                 });
             }
         });
-
-        notifyDataSetChanged();
         return view;
     }
 }
+
