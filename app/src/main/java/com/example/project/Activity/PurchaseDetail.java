@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.renderscript.ScriptGroup;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -34,6 +35,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 public class PurchaseDetail extends AppCompatActivity {
 
@@ -43,6 +45,9 @@ public class PurchaseDetail extends AppCompatActivity {
     itemVO item = new itemVO();
     Bitmap img1,img2;
     int seq;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -216,6 +221,8 @@ public class PurchaseDetail extends AppCompatActivity {
             this.tvPrice = tvPrice;
             this.img1=img1;
             this.img2=img2;
+
+
         }
 
         @Override
@@ -223,5 +230,6 @@ public class PurchaseDetail extends AppCompatActivity {
             Message message = new Message();
             handler.sendMessage(message);
         }
+
     }
 }

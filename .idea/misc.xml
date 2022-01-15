@@ -18,21 +18,26 @@
         <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/layout/gaericaturelist.xml" value="0.20572916666666666" />
         <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/layout/purchaselist.xml" value="0.20572916666666666" />
         <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/menu/nav_item.xml" value="0.1" />
+        <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/drawable/edge.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/activity_begin.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/activity_cart.xml" value="0.14351851851851852" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/activity_deep_image.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/activity_main.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/activity_main2.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/activity_my_gaericature_full.xml" value="0.1" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/activity_my_page_purchase_complete_history.xml" value="0.1" />
+        <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/activity_popup.xml" value="0.33" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/activity_purchase.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/activity_purchase_all_history.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/activity_purchase_detail.xml" value="0.32486136783733827" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/activity_purchase_history.xml" value="0.1" />
+        <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/delivery.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/fragment_gallery.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/fragment_home.xml" value="0.2604166666666667" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/fragment_mypage.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/fragment_purchase.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/gaericaturelist.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/mypurchaselist.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/purchaselist.xml" value="0.5" />
       </map>
     </option>
