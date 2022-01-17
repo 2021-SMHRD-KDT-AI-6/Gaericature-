@@ -10,13 +10,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.project.Adapter.CartAdapter;
 import com.example.project.ExpandableHeightGridView;
-import com.example.project.Fragment.Purchase;
 import com.example.project.R;
 import com.example.project.RbPreference;
 import com.example.project.VO.CartVO;
@@ -50,13 +51,8 @@ public class CartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
 
-        tvCartAll = findViewById(R.id.tvCartAll);
         gridViewCart = findViewById(R.id.gridViewCart);
         btnCartPurchase = findViewById(R.id.btnPurchase);
-
-        Intent intent = getIntent();
-        String cnt = intent.getStringExtra("cnt");
-        tvCartAll.setText(cnt.toString()+"개");
 
         RbPreference pref = new RbPreference(this);
         String user_id = pref.getValue("user_id", null);
@@ -100,7 +96,7 @@ public class CartActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                cartAdapter = new CartAdapter(getApplicationContext(), R.layout.gaericaturelist, data);
+                cartAdapter = new CartAdapter(getApplicationContext(), R.layout.cartlist, data);
 
                 CartThread cartThread = new CartThread(cartAdapter);
                 cartThread.start();
@@ -115,6 +111,14 @@ public class CartActivity extends AppCompatActivity {
             }
         });
 
+        gridViewCart.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getApplicationContext(), PurchaseDetail.class);
+                intent.putExtra("seq", Integer.parseInt(data.get(i).getItemSeq()));
+                startActivity(intent);
+            }
+        });
     }
 
     Handler handler = new Handler(){

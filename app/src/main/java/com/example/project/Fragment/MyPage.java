@@ -103,7 +103,6 @@ public class MyPage extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity().getApplicationContext(), CartActivity.class);
-                intent.putExtra("cnt", tvCart.getText());
                 startActivity(intent);
             }
         });
@@ -112,7 +111,6 @@ public class MyPage extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity().getApplicationContext(), CartActivity.class);
-                intent.putExtra("cnt", tvCart.getText());
                 startActivity(intent);
             }
         });
@@ -184,7 +182,7 @@ public class MyPage extends Fragment {
 
                 try {
                     JSONArray jsonArray = jsonObject.getJSONArray("cart_count");
-                    tvCart.setText(jsonArray.get(0).toString());
+//                    tvCart.setText(jsonArray.get(0).toString());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

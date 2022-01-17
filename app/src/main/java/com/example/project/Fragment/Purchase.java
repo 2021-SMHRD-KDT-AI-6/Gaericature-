@@ -112,7 +112,7 @@ public class Purchase extends Fragment {
             public void onItemClick(AdapterView<?> a_parent, View a_view, int a_position, long a_id) {
 
                 Intent intent = new Intent(getActivity(), PurchaseDetail.class);
-                intent.putExtra("seq", a_position);
+                intent.putExtra("seq", a_position + 1);
                 startActivity(intent);
             }
         });

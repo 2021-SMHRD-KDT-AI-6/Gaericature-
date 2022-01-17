@@ -59,7 +59,7 @@ public class PurchaseActivity extends AppCompatActivity {
                 .add("user_id",user_id)
                 .build();
 
-        String url = "http://192.168.0.115:5000/delivery";
+        String url = "http://172.30.1.12:5000/delivery";
         Request request = new Request.Builder().url(url).addHeader("Connection","close").post(body).build();
 
         client.newCall(request).enqueue(new Callback() {
@@ -84,8 +84,6 @@ public class PurchaseActivity extends AppCompatActivity {
                         vo.setTvAddr((String) jsonArray.getJSONArray(i).get(2));
                         vo.setTvPhone((String) jsonArray.getJSONArray(i).get(1));
                         vo.setDeli_seq(String.valueOf(jsonArray.getJSONArray(i).get(3)) );
-
-
 
                         Log.i("name :: ",vo.getTvDname());
                         Log.i("addr :: ",vo.getTvAddr());

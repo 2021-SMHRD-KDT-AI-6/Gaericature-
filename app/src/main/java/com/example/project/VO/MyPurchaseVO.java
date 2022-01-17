@@ -10,14 +10,6 @@ public class MyPurchaseVO {
     private String deli_yn;
     private Bitmap item_pic1;
 
-    public MyPurchaseVO(String item_name, String item_price, String item_cnt, String deli_yn, Bitmap item_pic1) {
-        this.item_name = item_name;
-        this.item_price = item_price;
-        this.item_cnt = item_cnt;
-        this.deli_yn = deli_yn;
-        this.item_pic1 = item_pic1;
-    }
-
     public String getDeli_yn() {
         return deli_yn;
     }

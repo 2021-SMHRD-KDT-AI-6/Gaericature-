@@ -62,11 +62,11 @@ public class PurchaseDetail extends AppCompatActivity {
         imgDetail=findViewById(R.id.imgDetail);
         tvPurCnt = findViewById(R.id.tvPurCnt);
 
+        tvPurCnt.bringToFront();
         // intent로 상품번호 가져오기
         Intent intent = getIntent();
 
         seq = intent.getIntExtra("seq", 0);
-        seq+=1;
 
         OkHttpClient client = new OkHttpClient.Builder().build();
 
@@ -168,6 +168,7 @@ public class PurchaseDetail extends AppCompatActivity {
                         String result = response.body().string();
                         if (result.equals("1")){
                             Intent intent = new Intent(getApplicationContext(), CartActivity.class);
+                            intent.putExtra("cnt", PurCnt);
                             startActivity(intent);
                         }
                     }

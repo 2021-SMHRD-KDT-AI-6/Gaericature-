@@ -85,18 +85,24 @@ public class MyPagePurchaseAllHistory extends AppCompatActivity {
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
 
                 data = new ArrayList<>();
-
                 try {
                     JSONObject jsonObject = new JSONObject(response.body().string());
                     jsonArray1 = jsonObject.getJSONArray("purchase_list");
                     jsonArray2 = jsonObject.getJSONArray("purchase_pic");
 
-                    byte[] b = Base64.decode(jsonArray2.getString(0), Base64.DEFAULT);
-                    Bitmap img = BitmapFactory.decodeByteArray(b, 0, b.length);
+                    for (int i = 0; i < jsonArray1.length(); i++){
+                        MyPurchaseVO vo = new MyPurchaseVO();
+                        byte[] b = Base64.decode(jsonArray2.getString(i), Base64.DEFAULT);
+                        Bitmap img = BitmapFactory.decodeByteArray(b, 0, b.length);
+                        vo.setItem_name(jsonArray1.getJSONArray(i).getString(0));
+                        vo.setItem_price(jsonArray1.getJSONArray(i).getString(1));
+                        vo.setItem_cnt(jsonArray1.getJSONArray(i).getString(3));
+                        vo.setDeli_yn(jsonArray1.getJSONArray(i).getString(4));
+                        vo.setItem_pic1(img);
+                        data.add(vo);
+                    }
 
-                    data.add(new MyPurchaseVO(jsonArray1.getJSONArray(0).getString(0), jsonArray1.getJSONArray(0).getString(1),
-                            jsonArray1.getJSONArray(0).getString(3), jsonArray1.getJSONArray(0).getString(4), img));
-                    Log.d("data", data.get(0).getItem_cnt());
+                    Log.d("data", String.valueOf(data));
 
                     adapter = new MyPurchaseAdapter(getApplicationContext(), R.layout.mypurchaselist, data);
                     MyPurThread myPurThread = new MyPurThread(adapter);
@@ -114,8 +120,7 @@ public class MyPagePurchaseAllHistory extends AppCompatActivity {
     Handler handler = new Handler(){
         @Override
         public void handleMessage(@NonNull Message msg) {
-//            gridView.setExpanded(true);
-            MyPurchaseAdapter adapter = (MyPurchaseAdapter) msg.obj;
+            gridView.setExpanded(true);
             gridView.setAdapter(adapter);
         }
     };
@@ -129,7 +134,6 @@ public class MyPagePurchaseAllHistory extends AppCompatActivity {
         @Override
         public void run() {
             Message message = new Message();
-            message.obj = adapter;
             handler.sendMessage(message);
         }
     }
