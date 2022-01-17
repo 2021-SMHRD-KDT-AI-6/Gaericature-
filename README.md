@@ -10,7 +10,7 @@
   <li>반려동물관련 새로운 플랫폼 및 문화 형성 - 타깃층을 중심으로 한 새로운 문화 및 시장 형성 가능</li>
 </ul>
 
-<h3> ✅ It's made of this. </h3>
+<h3> ✅  the Tools that refered or used </h3>
 <ul>
   <li>GAN = Google Colab - Cartoon GAN & Original git source = 'https://github.com/mnmjh1215/diya-CartoonGAN'</li>
   <li>Android =  Android Studio</li>
