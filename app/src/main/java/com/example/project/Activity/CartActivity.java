@@ -55,7 +55,7 @@ public class CartActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String cnt = intent.getStringExtra("cnt");
-        tvCartAll.setText(cnt.toString()+"개");
+        tvCartAll.setText(cnt+"개");
 
         RbPreference pref = new RbPreference(this);
         String user_id = pref.getValue("user_id", null);
@@ -110,6 +110,7 @@ public class CartActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), PurchaseActivity.class);
+                intent.putExtra("purchase","2");
                 startActivity(intent);
             }
         });
