@@ -85,7 +85,7 @@ public class PurchaseActivity extends AppCompatActivity {
                 .add("cnt", String.valueOf(cnt))
                 .build();
 
-
+        String url = "http://192.168.0.115:5000/delivery";
         Request request = new Request.Builder().url(url).addHeader("Connection","close").post(body).build();
 
         client.newCall(request).enqueue(new Callback() {

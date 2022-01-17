@@ -10,7 +10,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -99,7 +101,7 @@ public class CartActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                cartAdapter = new CartAdapter(getApplicationContext(), R.layout.gaericaturelist, data);
+                cartAdapter = new CartAdapter(getApplicationContext(), R.layout.cartlist, data);
 
                 CartThread cartThread = new CartThread(cartAdapter);
                 cartThread.start();
@@ -115,6 +117,14 @@ public class CartActivity extends AppCompatActivity {
             }
         });
 
+        gridViewCart.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getApplicationContext(), PurchaseDetail.class);
+                intent.putExtra("seq", Integer.parseInt(data.get(i).getItemSeq()));
+                startActivity(intent);
+            }
+        });
     }
 
     Handler handler = new Handler(){

@@ -35,11 +35,11 @@
         android:id="@+id/tvMyPurItemPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:text="5,000원"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/tvMyPurItemName"
-        app:layout_constraintStart_toEndOf="@+id/tvMyPurItemName"
+        app:layout_constraintEnd_toStartOf="@+id/tvMyPurItemCnt"
         app:layout_constraintTop_toTopOf="@+id/tvMyPurItemName" />
 
     <TextView
@@ -57,10 +57,10 @@
         android:id="@+id/tvMyPurItemCnt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
         android:text="3개"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/tvMyPurItemPrice"
         app:layout_constraintEnd_toStartOf="@+id/tvMyPurItemState"
-        app:layout_constraintStart_toEndOf="@+id/tvMyPurItemPrice"
         app:layout_constraintTop_toTopOf="@+id/tvMyPurItemPrice" />
 </androidx.constraintlayout.widget.ConstraintLayout>
