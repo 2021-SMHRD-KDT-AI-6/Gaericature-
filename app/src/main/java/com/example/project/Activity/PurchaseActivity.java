@@ -115,8 +115,6 @@ public class PurchaseActivity extends AppCompatActivity {
                         vo.setTvPhone((String) jsonArray.getJSONArray(i).get(1));
                         vo.setDeli_seq(String.valueOf(jsonArray.getJSONArray(i).get(3)) );
 
-
-
                         Log.i("name :: ",vo.getTvDname());
                         Log.i("addr :: ",vo.getTvAddr());
                         Log.i("phone :: ",vo.getTvPhone());

@@ -62,9 +62,10 @@ public class MyPage extends Fragment {
     ExpandableHeightGridView myPageGridView;
     MyGaericatureAdapter adapter;
     ArrayList<MyGaericatureVO> data = new ArrayList<>();
+    int deli, com = 0;
     View viewPurchaseAll, viewPurchaseDelivering, viewPurchaseComplete;
     Bitmap profile;
-    String nick, cart;
+    String nick, cart, allNum, ingNum, comNum;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -173,28 +174,19 @@ public class MyPage extends Fragment {
                     nick = jsonArray.get(0).toString();
                     cart = jsonArray2.get(0).toString();
 
+                    JSONArray jsonArray3 = jsonObject.getJSONArray("pur_count");
+                    allNum = jsonArray3.get(0).toString();
+                    ingNum = jsonArray3.get(1).toString();
+                    comNum = jsonArray3.get(2).toString();
+
                     ProfileThread profileThread = new ProfileThread(profile, nick, cart);
                     profileThread.start();
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
-                try {
-                    JSONArray jsonArray = jsonObject.getJSONArray("cart_count");
-//                    tvCart.setText(jsonArray.get(0).toString());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
             }
         });
-
-
-
-        tvPurchaseAllNum.bringToFront();
-        tvPurchaseDeliveringNum.bringToFront();
-        tvPurchaseCompleteNum.bringToFront();
 
         viewPurchaseAll.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -277,6 +269,9 @@ public class MyPage extends Fragment {
             imgProfile.setImageBitmap(profile);
             tvNickname.setText(nick);
             tvCart.setText(cart);
+            tvPurchaseAllNum.setText(allNum);
+            tvPurchaseDeliveringNum.setText(ingNum);
+            tvPurchaseCompleteNum.setText(comNum);
         }
     };
 

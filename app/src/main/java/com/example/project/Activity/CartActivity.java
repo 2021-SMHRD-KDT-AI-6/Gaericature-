@@ -39,7 +39,6 @@ import okhttp3.Response;
 
 public class CartActivity extends AppCompatActivity {
 
-    TextView tvCartAll;
     Button btnCartPurchase;
     ExpandableHeightGridView gridViewCart;
     ArrayList<CartVO> data = new ArrayList<>();
@@ -51,13 +50,8 @@ public class CartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
 
-        tvCartAll = findViewById(R.id.tvCartAll);
         gridViewCart = findViewById(R.id.gridViewCart);
         btnCartPurchase = findViewById(R.id.btnPurchase);
-
-        Intent intent = getIntent();
-        String cnt = intent.getStringExtra("cnt");
-        tvCartAll.setText(cnt+"개");
 
         RbPreference pref = new RbPreference(this);
         String user_id = pref.getValue("user_id", null);

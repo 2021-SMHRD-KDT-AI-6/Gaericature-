@@ -6,33 +6,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Base64;
 import android.util.Log;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.project.Adapter.MyGaericatureAdapter;
 import com.example.project.Adapter.MyPurchaseAdapter;
 import com.example.project.ExpandableHeightGridView;
 import com.example.project.R;
 import com.example.project.RbPreference;
-import com.example.project.VO.MyGaericatureVO;
 import com.example.project.VO.MyPurchaseVO;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.lang.reflect.Array;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 
 import okhttp3.Call;
@@ -97,7 +88,11 @@ public class MyPagePurchaseAllHistory extends AppCompatActivity {
                         vo.setItem_name(jsonArray1.getJSONArray(i).getString(0));
                         vo.setItem_price(jsonArray1.getJSONArray(i).getString(1));
                         vo.setItem_cnt(jsonArray1.getJSONArray(i).getString(3));
-                        vo.setDeli_yn(jsonArray1.getJSONArray(i).getString(4));
+                        if (jsonArray1.getJSONArray(i).getString(4).equals("N")) {
+                            vo.setDeli_yn("배송중");
+                        }else {
+                            vo.setDeli_yn("배송 완료");
+                        }
                         vo.setItem_pic1(img);
                         data.add(vo);
                     }
@@ -111,12 +106,10 @@ public class MyPagePurchaseAllHistory extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
-
             }
         });
-
     }
+
     Handler handler = new Handler(){
         @Override
         public void handleMessage(@NonNull Message msg) {
