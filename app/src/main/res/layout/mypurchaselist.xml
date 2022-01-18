@@ -29,38 +29,37 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imgMyPurThumb"
         app:layout_constraintStart_toEndOf="@+id/imgMyPurThumb"
-        app:layout_constraintTop_toTopOf="@+id/imgMyPurThumb" />
+        app:layout_constraintTop_toTopOf="@+id/imgMyPurThumb"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/tvMyPurItemPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         android:text="5,000원"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvMyPurItemName"
-        app:layout_constraintEnd_toStartOf="@+id/tvMyPurItemCnt"
-        app:layout_constraintTop_toTopOf="@+id/tvMyPurItemName" />
+        app:layout_constraintBottom_toBottomOf="@+id/imgMyPurThumb"
+        app:layout_constraintStart_toStartOf="@+id/tvMyPurItemName" />
 
     <TextView
         android:id="@+id/tvMyPurItemState"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:text="배송중"
+        android:layout_marginStart="90dp"
+        android:text="배송완료"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/tvMyPurItemCnt"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvMyPurItemCnt"
         app:layout_constraintTop_toTopOf="@+id/tvMyPurItemCnt" />
 
     <TextView
         android:id="@+id/tvMyPurItemCnt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="25dp"
         android:text="3개"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/tvMyPurItemPrice"
-        app:layout_constraintEnd_toStartOf="@+id/tvMyPurItemState"
+        app:layout_constraintStart_toEndOf="@+id/tvMyPurItemPrice"
         app:layout_constraintTop_toTopOf="@+id/tvMyPurItemPrice" />
 </androidx.constraintlayout.widget.ConstraintLayout>

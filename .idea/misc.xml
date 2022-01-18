@@ -12,8 +12,8 @@
         <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/layout/fragment_purchase.xml" value="0.33" />
         <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/menu/nav_item.xml" value="0.1" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/drawable/edge.xml" value="0.38229166666666664" />
-        <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/activity_begin.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/activity_cart.xml" value="0.14351851851851852" />
+        <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/activity_begin.xml" value="0.33" />
+        <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/activity_cart.xml" value="0.33" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/activity_deep_image.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/activity_main.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/activity_main2.xml" value="0.36614583333333334" />
@@ -35,6 +35,9 @@
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/gaericaturelist.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/mypurchaselist.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/purchaselist.xml" value="0.5" />
+        <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/toolbar.xml" value="0.67" />
+        <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/menu/nav_item.xml" value="0.1" />
+        <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/menu/toolbar_item.xml" value="0.1" />
       </map>
     </option>
   </component>

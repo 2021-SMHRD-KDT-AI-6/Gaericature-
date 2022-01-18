@@ -4,33 +4,72 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.Gallery">
+    tools:context=".Fragment.Home">
+
+    <!-- TODO: Update blank fragment layout -->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/mainTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
-            android:text="@string/mainTitle"
-            android:textSize="34sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/imgGallery"
+            android:layout_width="245dp"
+            android:layout_height="450dp"
+            android:layout_marginTop="10dp"
+            app:srcCompat="@drawable/dog"
+            app:layout_constraintEnd_toEndOf="@+id/tvGallery"
+            app:layout_constraintStart_toStartOf="@+id/tvGallery"
+            app:layout_constraintTop_toBottomOf="@+id/tvGallery" />
+
+        <Button
+            android:id="@+id/btnGallery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:scaleType="centerCrop"
-            android:src="@drawable/dog"
+            android:text="@string/btnGallery"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnCamera"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgGallery"
+            app:layout_constraintVertical_bias="0.478" />
+
+        <Button
+            android:id="@+id/btnCamera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btnCamera"
+            app:layout_constraintBottom_toBottomOf="@+id/btnGallery"
+            app:layout_constraintEnd_toStartOf="@+id/btnChange"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnGallery"
+            app:layout_constraintTop_toTopOf="@+id/btnGallery"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/tvGallery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/tvGallery"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/imgGallery"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnChange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btnChange"
+            app:layout_constraintBottom_toBottomOf="@+id/btnCamera"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnCamera"
+            app:layout_constraintTop_toTopOf="@+id/btnCamera"
+            app:layout_constraintVertical_bias="0.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </FrameLayout>

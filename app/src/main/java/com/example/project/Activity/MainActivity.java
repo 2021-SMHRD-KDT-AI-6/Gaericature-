@@ -4,16 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
-import com.example.project.Fragment.Gallery;
+import com.example.project.Fragment.Cart;
 import com.example.project.Fragment.Home;
 import com.example.project.Fragment.MyPage;
 import com.example.project.Fragment.Purchase;
 import com.example.project.R;
-import com.example.project.RbPreference;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView imgGallery;
 
     BottomNavigationView navView;
-    Gallery gallery;
+    Cart cart;
     Home home;
     Purchase purchase;
     MyPage myPage;
@@ -37,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         imgGallery = findViewById(R.id.imgGallery);
 
         navView = findViewById(R.id.navView);
-        gallery = new Gallery();
+        cart = new Cart();
         home = new Home();
         purchase = new Purchase();
         myPage = new MyPage();
@@ -48,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
-                    case R.id.ItemGallery:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.frame, gallery).commit();
+                    case R.id.ItemCart:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.frame, cart).commit();
                         break;
                     case R.id.ItemHome:
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame, home).commit();
