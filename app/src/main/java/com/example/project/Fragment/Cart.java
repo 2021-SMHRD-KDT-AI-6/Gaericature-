@@ -1,21 +1,24 @@
-package com.example.project.Activity;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.project.Fragment;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
 import android.os.Handler;
 import android.os.Message;
 import android.util.Base64;
-import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.TextView;
 
+import com.example.project.Activity.PurchaseActivity;
+import com.example.project.Activity.PurchaseDetail;
 import com.example.project.Adapter.CartAdapter;
 import com.example.project.ExpandableHeightGridView;
 import com.example.project.R;
@@ -37,7 +40,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class CartActivity extends AppCompatActivity {
+public class Cart extends Fragment {
 
     Button btnCartPurchase;
     ExpandableHeightGridView gridViewCart;
@@ -46,16 +49,14 @@ public class CartActivity extends AppCompatActivity {
     CartAdapter cartAdapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cart);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        gridViewCart = findViewById(R.id.gridViewCart);
-        btnCartPurchase = findViewById(R.id.btnPurchase);
+        View fragment = inflater.inflate(R.layout.fragment_cart, container, false);
 
-        Intent intent = getIntent();
+        gridViewCart = fragment.findViewById(R.id.gridViewCart);
+        btnCartPurchase = fragment.findViewById(R.id.btnPurchase);
 
-        RbPreference pref = new RbPreference(this);
+        RbPreference pref = new RbPreference(getActivity().getApplicationContext());
         String user_id = pref.getValue("user_id", null);
 
         OkHttpClient client = new OkHttpClient();
@@ -97,7 +98,7 @@ public class CartActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                cartAdapter = new CartAdapter(getApplicationContext(), R.layout.cartlist, data);
+                cartAdapter = new CartAdapter(getActivity().getApplicationContext(), R.layout.cartlist, data);
 
                 CartThread cartThread = new CartThread(cartAdapter);
                 cartThread.start();
@@ -107,7 +108,7 @@ public class CartActivity extends AppCompatActivity {
         btnCartPurchase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), PurchaseActivity.class);
+                Intent intent = new Intent(getActivity().getApplicationContext(), PurchaseActivity.class);
                 intent.putExtra("purchase","2");
                 startActivity(intent);
             }
@@ -116,12 +117,15 @@ public class CartActivity extends AppCompatActivity {
         gridViewCart.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getApplicationContext(), PurchaseDetail.class);
+                Intent intent = new Intent(getActivity().getApplicationContext(), PurchaseDetail.class);
                 intent.putExtra("seq", Integer.parseInt(data.get(i).getItemSeq()));
                 startActivity(intent);
             }
         });
+
+        return fragment;
     }
+
 
     Handler handler = new Handler(){
         @Override
@@ -144,4 +148,6 @@ public class CartActivity extends AppCompatActivity {
             handler.sendMessage(message);
         }
     }
+
+
 }

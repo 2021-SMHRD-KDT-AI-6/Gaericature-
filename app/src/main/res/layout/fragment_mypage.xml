@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.Gallery">
+    tools:context=".Fragment.Cart">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -24,7 +24,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/dog"
+                app:srcCompat="@drawable/dog"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

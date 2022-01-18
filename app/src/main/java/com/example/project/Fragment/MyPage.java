@@ -3,7 +3,6 @@ package com.example.project.Fragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.os.Bundle;
@@ -15,14 +14,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.project.Activity.CartActivity;
 import com.example.project.Activity.MyGaericatureFull;
 import com.example.project.Activity.MyPagePurchaseAllHistory;
 import com.example.project.Activity.MyPagePurchaseCompleteHistory;
@@ -32,7 +29,6 @@ import com.example.project.ExpandableHeightGridView;
 import com.example.project.R;
 import com.example.project.RbPreference;
 import com.example.project.VO.MyGaericatureVO;
-import com.example.project.VO.itemVO;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,7 +36,6 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 import okhttp3.Call;
@@ -100,21 +95,7 @@ public class MyPage extends Fragment {
 
         myPageGridView = fragment.findViewById(R.id.myPageGrid);
 
-        tvCart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity().getApplicationContext(), CartActivity.class);
-                startActivity(intent);
-            }
-        });
 
-        tvCartT.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity().getApplicationContext(), CartActivity.class);
-                startActivity(intent);
-            }
-        });
 
 //        세션에서 아이디 가져오기
         RbPreference pref = new RbPreference(getActivity().getApplicationContext());

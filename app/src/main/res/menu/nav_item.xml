@@ -6,11 +6,11 @@
         android:id="@+id/ItemHome"
         android:icon="@android:drawable/btn_star" />
     <item
-        android:id="@+id/ItemGallery"
-        android:icon="@android:drawable/ic_menu_gallery" />
-    <item
         android:id="@+id/itemPurchase"
         android:icon="@android:drawable/ic_menu_search" />
+    <item
+        android:id="@+id/ItemCart"
+        android:icon="@android:drawable/ic_menu_gallery" />
     <item
         android:id="@+id/ItemMyPage"
         android:icon="@android:drawable/ic_menu_myplaces" />

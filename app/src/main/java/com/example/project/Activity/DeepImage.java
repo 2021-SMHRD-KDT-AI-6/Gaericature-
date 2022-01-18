@@ -2,6 +2,7 @@ package com.example.project.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.content.Context;
 import android.content.ContextWrapper;
@@ -16,8 +17,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.project.BitmapConverter;
+import com.example.project.Fragment.MyPage;
 import com.example.project.R;
 
 import java.io.File;
@@ -57,7 +60,12 @@ public class DeepImage extends AppCompatActivity {
         Bitmap img = BitmapFactory.decodeByteArray(b,0,b.length);
 
         imgDeep.setImageBitmap(img);
-
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,7 +87,7 @@ public class DeepImage extends AppCompatActivity {
                             .setType(MultipartBody.FORM)
                             .addFormDataPart("file",tempSelectFile.getName(),RequestBody.create(MultipartBody.FORM, tempSelectFile))
                             .build();
-                    Request request = new Request.Builder().url("http://172.30.1.12:5000/saveimage").post(requestBody).build();
+                    Request request = new Request.Builder().url("http://192.168.0.115:5000/saveimage").post(requestBody).build();
 
                     OkHttpClient client = new OkHttpClient();
                     client.newCall(request).enqueue(new Callback() {
@@ -90,6 +98,9 @@ public class DeepImage extends AppCompatActivity {
 
                         @Override
                         public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(intent);
+
 
                         }
                     });
@@ -100,5 +111,10 @@ public class DeepImage extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }
