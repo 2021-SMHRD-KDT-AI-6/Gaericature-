@@ -128,7 +128,7 @@ public class MyPage extends Fragment {
 
         RequestBody body = new FormBody.Builder()
                 .add("user_id", user_id).build();
-        String url = "http://192.168.0.115:5000/mygaericature";
+        String url = "http://172.30.1.12:5000/mygaericature";
         Request request = new Request.Builder().url(url)
                                                .addHeader("Connection","close")
                                                .post(body).build();
@@ -169,6 +169,18 @@ public class MyPage extends Fragment {
                     JSONArray jsonArray2 = jsonObject.getJSONArray("cart_count");
                     byte[] b = Base64.decode(jsonArray.get(0).toString(), Base64.DEFAULT);
                     profile = BitmapFactory.decodeByteArray(b, 0, b.length);
+
+                    BitmapFactory.Options options = new BitmapFactory.Options();
+                    options.inJustDecodeBounds = true;
+                    BitmapFactory.decodeResource(getResources(), R.id.imgProfile, options);
+
+                    options.inSampleSize = calculateInSampleSize(options, 100, 100);
+
+                    int imageHeight = options.outHeight;
+                    int imageWidth = options.outWidth;
+                    String imageType = options.outMimeType;
+
+
 
                     jsonArray = jsonObject.getJSONArray("nick");
                     nick = jsonArray.get(0).toString();
@@ -293,4 +305,28 @@ public class MyPage extends Fragment {
             handler2.sendMessage(message);
         }
     }
+
+    public static int calculateInSampleSize(
+            BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        // Raw height and width of image
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+
+        if (height > reqHeight || width > reqWidth) {
+
+            final int halfHeight = height / 2;
+            final int halfWidth = width / 2;
+
+            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
+            // height and width larger than the requested height and width.
+            while ((halfHeight / inSampleSize) >= reqHeight
+                    && (halfWidth / inSampleSize) >= reqWidth) {
+                inSampleSize *= 2;
+            }
+        }
+
+        return inSampleSize;
+    }
+
 }

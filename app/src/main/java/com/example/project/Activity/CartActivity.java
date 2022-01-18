@@ -53,8 +53,6 @@ public class CartActivity extends AppCompatActivity {
         gridViewCart = findViewById(R.id.gridViewCart);
         btnCartPurchase = findViewById(R.id.btnPurchase);
 
-        Intent intent = getIntent();
-
         RbPreference pref = new RbPreference(this);
         String user_id = pref.getValue("user_id", null);
 
