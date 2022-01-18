@@ -7,7 +7,7 @@
     tools:context=".Activity.MyPagePurchaseAllHistory">
 
     <ScrollView
-        android:id="@+id/scrollView3"
+        android:id="@+id/scrollView5"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,7 +22,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/textView11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -41,9 +41,9 @@
                 android:text="개수"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/textView3"
-                app:layout_constraintStart_toEndOf="@+id/textView3"
-                app:layout_constraintTop_toTopOf="@+id/textView3" />
+                app:layout_constraintBottom_toBottomOf="@+id/textView11"
+                app:layout_constraintStart_toEndOf="@+id/textView11"
+                app:layout_constraintTop_toTopOf="@+id/textView11" />
 
             <View
                 android:id="@+id/view3"
@@ -53,7 +53,7 @@
                 android:background="#000000"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
             <com.example.project.ExpandableHeightGridView
                 android:id="@+id/gridView"
