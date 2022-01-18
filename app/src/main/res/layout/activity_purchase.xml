@@ -114,7 +114,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline6">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnBuy"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:text="구매하기"

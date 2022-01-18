@@ -48,9 +48,11 @@ public class PurchaseActivity extends AppCompatActivity {
     DeliveryAdapter adapter;
     CartAdapter cartAdapter;
     Cart2Adapter cart2Adapter;
-    Button btnDelivery;
+    Button btnDelivery, btnBuy;
 
     String url;
+
+    OkHttpClient client = new OkHttpClient();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +62,7 @@ public class PurchaseActivity extends AppCompatActivity {
         gridViewPurchase = findViewById(R.id.gridViewPurchase);
         gridViewItem = findViewById(R.id.gridViewItem);
         btnDelivery = findViewById(R.id.btnDelivery);
+        btnBuy = findViewById(R.id.btnBuy);
 
         gridViewPurchase.setSelector(R.drawable.edge);
 
@@ -76,16 +79,12 @@ public class PurchaseActivity extends AppCompatActivity {
             url = "http://192.168.0.115:5000/deliverycart";
         }
 
-
-        OkHttpClient client = new OkHttpClient();
-
         RequestBody body = new FormBody.Builder()
                 .add("user_id", user_id)
                 .add("seq", String.valueOf(seq))
                 .add("cnt", String.valueOf(cnt))
                 .build();
 
-        String url = "http://192.168.0.115:5000/delivery";
         Request request = new Request.Builder().url(url).addHeader("Connection","close").post(body).build();
 
         client.newCall(request).enqueue(new Callback() {
@@ -186,6 +185,34 @@ public class PurchaseActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), PopupActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        btnBuy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                RequestBody body = new FormBody.Builder()
+                        .add("user_id", user_id)
+                        .add("check", String.valueOf(check))
+                        .add("seq", String.valueOf(seq))
+                        .add("cnt", String.valueOf(cnt))
+                        .build();
+
+                Request request = new Request.Builder().url("http://192.168.0.115:5000/buy").addHeader("Connection","close").post(body).build();
+
+                client.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                        Intent intent = new Intent(getApplicationContext(), MyPagePurchaseAllHistory.class);
+                        intent.putExtra("PurchaseAllNum", response.body().string());
+                        startActivity(intent);
+                    }
+                });
             }
         });
 
