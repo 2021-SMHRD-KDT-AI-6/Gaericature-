@@ -30,6 +30,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -114,11 +115,17 @@ public class Home extends Fragment {
                             .setType(MultipartBody.FORM)
                             .addFormDataPart("files",tempSelectFile.getName(),RequestBody.create(MultipartBody.FORM, tempSelectFile))
                             .build();
-                    Request request = new Request.Builder().url("http://192.168.0.115:5000/image").post(requestBody).build();
+                    Request request = new Request.Builder().url("http://192.168.0.115:5000/image")
+                            .addHeader("Connection","close")
+                            .post(requestBody).build();
 
 
 
-                    OkHttpClient client = new OkHttpClient();
+                    OkHttpClient client = new OkHttpClient.Builder()
+                            .connectTimeout(100, TimeUnit.SECONDS)
+                            .readTimeout(100, TimeUnit.SECONDS)
+                            .writeTimeout(100, TimeUnit.SECONDS)
+                            .build();
                     client.newCall(request).enqueue(new Callback() {
                         @Override
                         public void onFailure(@NonNull Call call, @NonNull IOException e) {

@@ -4,8 +4,13 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#FFAC07"
+    android:background="@color/white"
     android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+    <ImageView
+        android:layout_width="400dp"
+        android:layout_height="50dp"
+        app:srcCompat="@drawable/logo"/>
 
 </androidx.appcompat.widget.Toolbar>
