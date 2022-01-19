@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         imgGallery = findViewById(R.id.imgGallery);
 
         navView = findViewById(R.id.navView);
+
         cart = new Cart();
         home = new Home();
         purchase = new Purchase();

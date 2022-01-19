@@ -172,7 +172,7 @@ public class PurchaseDetail extends AppCompatActivity {
                     public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                         String result = response.body().string();
                         if (result.equals("1")){
-                            Intent intent = new Intent(getApplicationContext(), CartActivity.class);
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             intent.putExtra("cnt", PurCnt);
                             startActivity(intent);
                         }
