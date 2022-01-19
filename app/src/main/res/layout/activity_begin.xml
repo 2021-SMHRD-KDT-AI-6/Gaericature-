@@ -8,8 +8,10 @@
 
 
     <include
+        android:id="@+id/toolbar"
         layout="@layout/toolbar"
-        android:id="@+id/toolbar" />
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="170dp" />
 
     <Button
         android:id="@+id/btnLogin"
@@ -38,7 +40,6 @@
         android:hint="@string/edId"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

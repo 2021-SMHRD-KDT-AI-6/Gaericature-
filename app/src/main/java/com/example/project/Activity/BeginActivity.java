@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -44,6 +45,7 @@ public class BeginActivity extends AppCompatActivity {
 
         Toolbar tb = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(tb);
+        getSupportActionBar().setDisplayShowTitleEnabled(false); // 타이틀 이름 안보이게
 
 
 
@@ -57,6 +59,8 @@ public class BeginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                Log.i("test : ", "버튼 클릭");
+
                 OkHttpClient client = new OkHttpClient();
 
                 RequestBody body = new FormBody.Builder()
@@ -69,6 +73,7 @@ public class BeginActivity extends AppCompatActivity {
                 client.newCall(request).enqueue(new Callback() {
                     @Override
                     public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                        Log.i("test : ","연결 실패");
                         e.printStackTrace();
                     }
 

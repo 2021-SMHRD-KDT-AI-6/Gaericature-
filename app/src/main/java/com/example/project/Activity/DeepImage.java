@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.example.project.BitmapConverter;
 import com.example.project.Fragment.MyPage;
 import com.example.project.R;
+import com.example.project.RbPreference;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -53,6 +54,9 @@ public class DeepImage extends AppCompatActivity {
         btnCancel = findViewById(R.id.btnCancel);
         btnSave = findViewById(R.id.btnSave);
         imgDeep = findViewById(R.id.imgDeep);
+
+        RbPreference pref = new RbPreference(this);
+        String user_id = pref.getValue("user_id", null);
 
         Intent intent = getIntent();
 
@@ -86,6 +90,7 @@ public class DeepImage extends AppCompatActivity {
                     RequestBody requestBody = new MultipartBody.Builder()
                             .setType(MultipartBody.FORM)
                             .addFormDataPart("file",tempSelectFile.getName(),RequestBody.create(MultipartBody.FORM, tempSelectFile))
+                            .addFormDataPart("user_id",user_id)
                             .build();
                     Request request = new Request.Builder().url("http://192.168.0.115:5000/saveimage").post(requestBody).build();
 
