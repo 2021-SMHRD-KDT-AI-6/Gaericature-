@@ -3,7 +3,9 @@ package com.example.project.Fragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -26,6 +28,7 @@ import com.example.project.Adapter.PurchaseAdapter;
 import com.example.project.BitmapConverter;
 import com.example.project.ExpandableHeightGridView;
 import com.example.project.FileUploadUtils;
+import com.example.project.Loading2;
 import com.example.project.R;
 import com.example.project.VO.itemVO;
 import com.google.gson.Gson;
@@ -57,6 +60,7 @@ public class Purchase extends Fragment {
     ExpandableHeightGridView gridView;
     ArrayList<itemVO> data = new ArrayList<>();
     PurchaseAdapter adapter;
+    Loading2 loading2;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,10 +71,15 @@ public class Purchase extends Fragment {
         tv = fragment.findViewById(R.id.tv);
         gridView = fragment.findViewById(R.id.purchaseGrid);
 
+        loading2 = new Loading2(fragment.getContext());
+        loading2.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        loading2.setCancelable(false);
+        loading2.show();
+
 
         OkHttpClient client = new OkHttpClient.Builder().build();
         RequestBody body = new FormBody.Builder().build();
-        Request request = new Request.Builder().url("http://192.168.0.115:5000/itemlist")
+        Request request = new Request.Builder().url("http://172.30.1.12:5000/itemlist")
                 .addHeader("Connection","close").post(body).build();
         client.newCall(request).enqueue(new Callback() {
             @Override
@@ -104,6 +113,7 @@ public class Purchase extends Fragment {
 
                 MyThread myThread = new MyThread(adapter);
                 myThread.start();
+                loading2.dismiss();
             }
         });
 

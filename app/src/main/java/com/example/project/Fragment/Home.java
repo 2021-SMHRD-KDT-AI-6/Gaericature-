@@ -6,8 +6,6 @@ import android.content.ContextWrapper;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -20,10 +18,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import com.example.project.Activity.DeepImage;
+import com.example.project.Activity.MainActivity;
+import com.example.project.Loading;
 import com.example.project.R;
 
 import java.io.ByteArrayOutputStream;
@@ -51,6 +50,7 @@ public class Home extends Fragment {
     private static final int PICK_CAMERA = 1;
     File tempSelectFile;
     Bitmap deepImage, bitmap;
+    Loading loading;
     TextView tvGallery;
 
     @Override
@@ -72,6 +72,9 @@ public class Home extends Fragment {
         btnCamera.bringToFront();
         imgGallery.bringToFront();
 
+        loading = new Loading(fragment.getContext());
+        loading.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        loading.setCancelable(false);
 
         btnGallery.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,6 +98,8 @@ public class Home extends Fragment {
 
             @Override
             public void onClick(View view) {
+
+                loading.show();
 
 //                tempSelectFile = new File(Environment.getExternalStorageDirectory(), "temp.jpeg");
                 ContextWrapper cw = new ContextWrapper(getActivity().getApplicationContext());
@@ -130,8 +135,6 @@ public class Home extends Fragment {
                             .addHeader("Connection","close")
                             .post(requestBody).build();
 
-
-
                     OkHttpClient client = new OkHttpClient.Builder()
                             .connectTimeout(100, TimeUnit.SECONDS)
                             .readTimeout(100, TimeUnit.SECONDS)
@@ -159,10 +162,10 @@ public class Home extends Fragment {
                             Log.i("byte test :: ", b.toString());
                             Log.i("bytelength test :: ", String.valueOf(b.length));
 
-
                             Intent intent = new Intent(getActivity(), DeepImage.class);
                             intent.putExtra("img", b);
                             startActivity(intent);
+                            loading.dismiss();
                         }
                     });
                 } catch (FileNotFoundException e) {

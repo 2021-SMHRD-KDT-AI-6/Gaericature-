@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 
 import com.example.project.Adapter.MyPurchaseAdapter;
 import com.example.project.ExpandableHeightGridView;
+import com.example.project.Loading2;
 import com.example.project.R;
 import com.example.project.RbPreference;
 import com.example.project.VO.MyPurchaseVO;
@@ -41,6 +44,7 @@ public class MyPagePurchaseCompleteHistory extends AppCompatActivity {
     JSONArray jsonArray1, jsonArray2;
     MyPurchaseAdapter adapter;
     ExpandableHeightGridView gridView;
+    Loading2 loading2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +52,11 @@ public class MyPagePurchaseCompleteHistory extends AppCompatActivity {
         setContentView(R.layout.activity_my_page_purchase_complete_history);
 
         gridView = findViewById(R.id.gridView3);
+
+        loading2 = new Loading2(this);
+        loading2.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        loading2.setCancelable(false);
+        loading2.show();
 
         Intent intent = getIntent();
         String PurchaseCompleteNum = intent.getExtras().getString("PurchaseCompleteNum");
@@ -63,7 +72,7 @@ public class MyPagePurchaseCompleteHistory extends AppCompatActivity {
         RequestBody body = new FormBody.Builder()
                 .add("user_id", user_id)
                 .build();
-        String url = "http://192.168.0.115:5000/purchasecom";
+        String url = "http://172.30.1.12:5000/purchasecom";
         Request request = new Request.Builder().url(url).addHeader("Connection", "close").post(body).build();
 
         client.newCall(request).enqueue(new Callback() {
@@ -102,6 +111,7 @@ public class MyPagePurchaseCompleteHistory extends AppCompatActivity {
                     adapter = new MyPurchaseAdapter(getApplicationContext(), R.layout.mypurchaselist, data);
                     MyPurThread myPurThread = new MyPurThread(adapter);
                     myPurThread.start();
+                    loading2.dismiss();
 
                 } catch (JSONException e) {
                     e.printStackTrace();

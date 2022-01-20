@@ -99,7 +99,7 @@ public class SignUpActivity extends AppCompatActivity {
                 BitmapDrawable img = (BitmapDrawable) imgSignUp.getDrawable();
                 Bitmap bitmap = img.getBitmap();
 
-                String url = "http://192.168.0.115:5000/signup";
+                String url = "http://172.30.1.12:5000/signup";
 
                 File tempSelectFile = new File(Environment.getExternalStorageDirectory(), "temp.jpeg");
                 OutputStream out = null;

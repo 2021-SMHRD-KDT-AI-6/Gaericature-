@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 
 import com.example.project.Adapter.MyPurchaseAdapter;
 import com.example.project.ExpandableHeightGridView;
+import com.example.project.Loading2;
 import com.example.project.R;
 import com.example.project.RbPreference;
 import com.example.project.VO.MyPurchaseVO;
@@ -41,6 +44,8 @@ public class MyPagePurchaseDeliveringHistory extends AppCompatActivity {
     JSONArray jsonArray1, jsonArray2;
     MyPurchaseAdapter adapter;
     ExpandableHeightGridView gridView;
+    Loading2 loading2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +53,11 @@ public class MyPagePurchaseDeliveringHistory extends AppCompatActivity {
         setContentView(R.layout.activity_purchase_all_history);
 
         gridView = findViewById(R.id.gridView);
+
+        loading2 = new Loading2(this);
+        loading2.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        loading2.setCancelable(false);
+        loading2.show();
 
         Intent intent = getIntent();
         String PurchaseDeliveringNum = intent.getExtras().getString("PurchaseDeliveringNum");
@@ -63,7 +73,7 @@ public class MyPagePurchaseDeliveringHistory extends AppCompatActivity {
         RequestBody body = new FormBody.Builder()
                 .add("user_id", user_id)
                 .build();
-        String url = "http://192.168.0.115:5000/purchasedeli";
+        String url = "http://172.30.1.12:5000/purchasedeli";
         Request request = new Request.Builder().url(url).addHeader("Connection", "close").post(body).build();
 
         client.newCall(request).enqueue(new Callback() {
@@ -102,6 +112,7 @@ public class MyPagePurchaseDeliveringHistory extends AppCompatActivity {
                     adapter = new MyPurchaseAdapter(getApplicationContext(), R.layout.mypurchaselist, data);
                     MyPurThread myPurThread = new MyPurThread(adapter);
                     myPurThread.start();
+                    loading2.dismiss();
 
                 } catch (JSONException e) {
                     e.printStackTrace();

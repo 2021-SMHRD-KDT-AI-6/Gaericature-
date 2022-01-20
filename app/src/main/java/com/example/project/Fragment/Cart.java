@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -25,6 +27,7 @@ import com.example.project.Activity.PurchaseActivity;
 import com.example.project.Activity.PurchaseDetail;
 import com.example.project.Adapter.CartAdapter;
 import com.example.project.ExpandableHeightGridView;
+import com.example.project.Loading2;
 import com.example.project.R;
 import com.example.project.RbPreference;
 import com.example.project.VO.CartVO;
@@ -49,8 +52,9 @@ public class Cart extends Fragment {
     Button btnCartPurchase;
     ExpandableHeightGridView gridViewCart;
     ArrayList<CartVO> data = new ArrayList<>();
-
     CartAdapter cartAdapter;
+
+    Loading2 loading2;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -60,6 +64,11 @@ public class Cart extends Fragment {
         gridViewCart = fragment.findViewById(R.id.gridViewCart);
         btnCartPurchase = fragment.findViewById(R.id.btnPurchase);
 
+        loading2 = new Loading2(fragment.getContext());
+        loading2.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        loading2.setCancelable(false);
+        loading2.show();
+
         RbPreference pref = new RbPreference(getActivity().getApplicationContext());
         String user_id = pref.getValue("user_id", null);
 
@@ -68,7 +77,7 @@ public class Cart extends Fragment {
         RequestBody body = new FormBody.Builder()
                 .add("user_id", user_id)
                 .build();
-        String url = "http://192.168.0.115:5000/cart";
+        String url = "http://172.30.1.12:5000/cart";
         Request request = new Request.Builder().url(url).addHeader("Connection", "close").post(body).build();
 
         client.newCall(request).enqueue(new Callback() {
@@ -106,6 +115,7 @@ public class Cart extends Fragment {
 
                 CartThread cartThread = new CartThread(cartAdapter);
                 cartThread.start();
+                loading2.dismiss();
             }
         });
 

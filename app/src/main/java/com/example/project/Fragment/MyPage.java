@@ -3,6 +3,8 @@ package com.example.project.Fragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.os.Bundle;
@@ -26,6 +28,8 @@ import com.example.project.Activity.MyPagePurchaseCompleteHistory;
 import com.example.project.Activity.MyPagePurchaseDeliveringHistory;
 import com.example.project.Adapter.MyGaericatureAdapter;
 import com.example.project.ExpandableHeightGridView;
+import com.example.project.Loading;
+import com.example.project.Loading2;
 import com.example.project.R;
 import com.example.project.RbPreference;
 import com.example.project.VO.MyGaericatureVO;
@@ -61,6 +65,7 @@ public class MyPage extends Fragment {
     View viewPurchaseAll, viewPurchaseDelivering, viewPurchaseComplete;
     Bitmap profile;
     String nick, cart, allNum, ingNum, comNum;
+    Loading2 loading2;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -95,7 +100,10 @@ public class MyPage extends Fragment {
 
         myPageGridView = fragment.findViewById(R.id.myPageGrid);
 
-
+        loading2 = new Loading2(fragment.getContext());
+        loading2.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        loading2.setCancelable(false);
+        loading2.show();
 
 //        세션에서 아이디 가져오기
         RbPreference pref = new RbPreference(getActivity().getApplicationContext());
@@ -174,6 +182,7 @@ public class MyPage extends Fragment {
 
                     ProfileThread profileThread = new ProfileThread(profile, nick, cart);
                     profileThread.start();
+                    loading2.dismiss();
 
                 } catch (JSONException e) {
                     e.printStackTrace();
