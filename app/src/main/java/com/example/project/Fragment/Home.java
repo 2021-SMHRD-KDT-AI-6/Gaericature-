@@ -6,6 +6,8 @@ import android.content.ContextWrapper;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -18,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import com.example.project.Activity.DeepImage;
@@ -48,6 +51,7 @@ public class Home extends Fragment {
     private static final int PICK_CAMERA = 1;
     File tempSelectFile;
     Bitmap deepImage, bitmap;
+    TextView tvGallery;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,11 +59,18 @@ public class Home extends Fragment {
 
         View fragment = inflater.inflate(R.layout.fragment_home, container, false);
 
+
         btnGallery = fragment.findViewById(R.id.btnGallery);
         btnCamera = fragment.findViewById(R.id.btnCamera);
         btnChange = fragment.findViewById(R.id.btnChange);
         imgGallery = fragment.findViewById(R.id.imgGallery);
+        tvGallery = fragment.findViewById(R.id.tvGallery);
+        btnChange.setVisibility(View.GONE);
 
+        btnGallery.bringToFront();
+        btnChange.bringToFront();
+        btnCamera.bringToFront();
+        imgGallery.bringToFront();
 
 
         btnGallery.setOnClickListener(new View.OnClickListener() {
@@ -184,6 +195,11 @@ public class Home extends Fragment {
             // 이미지뷰에 Bitmap으로 이미지를 입력
             imgGallery.setImageBitmap(bitmap);
         }
+
+        btnGallery.setVisibility(View.GONE);
+        btnCamera.setVisibility(View.GONE);
+        btnChange.setVisibility(View.VISIBLE);
+        tvGallery.setText("변환 버튼을 눌러주세요.");
     }
 
 }

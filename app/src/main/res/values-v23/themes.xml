@@ -12,6 +12,12 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/white</item>
         <item name="android:windowLightStatusBar">true</item>
-        <!-- Customize your theme here. -->
+
+        <item name="android:textViewStyle">@style/customTextView</item>
+        <item name="android:buttonStyle">@style/customTextView</item>
+    </style>
+    <!-- Customize your theme here. -->
+    <style name="customTextView" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/ft</item>
     </style>
 </resources>
