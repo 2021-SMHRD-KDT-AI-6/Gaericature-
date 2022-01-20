@@ -8,8 +8,9 @@
         <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/drawable/ic_launcher_background.xml" value="0.11944444444444445" />
         <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/drawable/loading_bg.xml" value="0.1" />
         <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/drawable/loading_image.xml" value="0.1" />
+        <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/drawable/menu_selector_color.xml" value="0.1" />
         <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/drawable/nav_bar_color_selector.xml" value="0.1" />
-        <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/layout/activity_begin.xml" value="0.22" />
+        <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/layout/activity_begin.xml" value="0.33" />
         <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/layout/activity_cart.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/layout/activity_deep_image.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/layout/activity_loading.xml" value="0.25" />
@@ -23,7 +24,7 @@
         <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/layout/activity_purchase_detail.xml" value="0.32998324958123953" />
         <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/layout/activity_sign_up.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/layout/activity_test.xml" value="0.2046875" />
-        <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/layout/cart2list.xml" value="0.1" />
+        <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/layout/cart2list.xml" value="0.33" />
         <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/layout/cartlist.xml" value="0.5" />
         <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/layout/delivery.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/layout/fragment_camera.xml" value="0.25" />
