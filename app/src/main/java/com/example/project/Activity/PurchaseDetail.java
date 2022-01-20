@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -16,6 +18,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.project.Loading2;
 import com.example.project.R;
 import com.example.project.RbPreference;
 import com.example.project.VO.itemVO;
@@ -42,6 +45,7 @@ public class PurchaseDetail extends AppCompatActivity {
     itemVO item = new itemVO();
     Bitmap img1,img2;
     int seq;
+    Loading2 loading2;
 
 
 
@@ -63,6 +67,12 @@ public class PurchaseDetail extends AppCompatActivity {
         tvPurCnt = findViewById(R.id.tvPurCnt);
 
         tvPurCnt.bringToFront();
+
+        loading2 = new Loading2(this);
+        loading2.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        loading2.setCancelable(false);
+        loading2.show();
+
         // intent로 상품번호 가져오기
         Intent intent = getIntent();
 
@@ -75,7 +85,7 @@ public class PurchaseDetail extends AppCompatActivity {
                 .add("seq",String.valueOf(seq))
                 .build();
 
-        Request request = new Request.Builder().url("http://192.168.0.115:5000/itemdetail")
+        Request request = new Request.Builder().url("http://172.30.1.12:5000/itemdetail")
                 .addHeader("Connection","close").post(body).build();
 
         client.newCall(request).enqueue(new Callback() {
@@ -120,6 +130,7 @@ public class PurchaseDetail extends AppCompatActivity {
 
                     MyThread myThread = new MyThread(tvName, tvPrice,tvContent,img1,img2);
                     myThread.start();
+                    loading2.dismiss();
 
 
                 } catch (JSONException e){
@@ -159,7 +170,7 @@ public class PurchaseDetail extends AppCompatActivity {
                         .add("user_id", user_id)
                         .build();
 
-                Request request = new Request.Builder().url("http://192.168.0.115:5000/cartadd")
+                Request request = new Request.Builder().url("http://172.30.1.12:5000/cartadd")
                         .addHeader("Connection","close").post(body).build();
 
                 client.newCall(request).enqueue(new Callback() {
@@ -175,6 +186,7 @@ public class PurchaseDetail extends AppCompatActivity {
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             intent.putExtra("cnt", PurCnt);
                             startActivity(intent);
+                            finish();
                         }
                     }
                 });

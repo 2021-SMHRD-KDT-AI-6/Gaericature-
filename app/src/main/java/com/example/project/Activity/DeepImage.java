@@ -92,7 +92,7 @@ public class DeepImage extends AppCompatActivity {
                             .addFormDataPart("file",tempSelectFile.getName(),RequestBody.create(MultipartBody.FORM, tempSelectFile))
                             .addFormDataPart("user_id",user_id)
                             .build();
-                    Request request = new Request.Builder().url("http://192.168.0.115:5000/saveimage").post(requestBody).build();
+                    Request request = new Request.Builder().url("http://172.30.1.12:5000/saveimage").post(requestBody).build();
 
                     OkHttpClient client = new OkHttpClient();
                     client.newCall(request).enqueue(new Callback() {

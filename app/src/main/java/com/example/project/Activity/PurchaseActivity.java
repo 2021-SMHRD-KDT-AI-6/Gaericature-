@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -19,6 +21,7 @@ import com.example.project.Adapter.CartAdapter;
 import com.example.project.Adapter.DeliveryAdapter;
 import com.example.project.Adapter.PurchaseAdapter;
 import com.example.project.ExpandableHeightGridView;
+import com.example.project.Loading2;
 import com.example.project.R;
 import com.example.project.RbPreference;
 import com.example.project.VO.CartVO;
@@ -49,10 +52,10 @@ public class PurchaseActivity extends AppCompatActivity {
     CartAdapter cartAdapter;
     Cart2Adapter cart2Adapter;
     Button btnDelivery, btnBuy;
+    Loading2 loading2;
 
     String url;
 
-    OkHttpClient client = new OkHttpClient();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +69,11 @@ public class PurchaseActivity extends AppCompatActivity {
 
         gridViewPurchase.setSelector(R.drawable.edge);
 
+        loading2 = new Loading2(this);
+        loading2.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        loading2.setCancelable(false);
+        loading2.show();
+
         RbPreference pref = new RbPreference(this);
         String user_id = pref.getValue("user_id", null);
 
@@ -74,10 +82,12 @@ public class PurchaseActivity extends AppCompatActivity {
         int check = Integer.parseInt(get.getStringExtra("purchase"));
         int cnt = get.getIntExtra("cnt",0);
         if (check == 1){
-            url = "http://192.168.0.115:5000/delivery";
+            url = "http://172.30.1.12:5000/delivery";
         }else if (check == 2){
-            url = "http://192.168.0.115:5000/deliverycart";
+            url = "http://172.30.1.12:5000/deliverycart";
         }
+
+        OkHttpClient client = new OkHttpClient();
 
         RequestBody body = new FormBody.Builder()
                 .add("user_id", user_id)
@@ -165,10 +175,7 @@ public class PurchaseActivity extends AppCompatActivity {
                     adapter = new DeliveryAdapter(getApplicationContext(), R.layout.delivery, DeliList);
                     DeliveryThread deliveryThread = new DeliveryThread(adapter);
                     deliveryThread.start();
-
-
-
-
+                    loading2.dismiss();
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -209,6 +216,7 @@ public class PurchaseActivity extends AppCompatActivity {
                         Intent intent = new Intent(getApplicationContext(), MyPagePurchaseAllHistory.class);
                         intent.putExtra("PurchaseAllNum", response.body().string());
                         startActivity(intent);
+                        finish();
                     }
                 });
             }

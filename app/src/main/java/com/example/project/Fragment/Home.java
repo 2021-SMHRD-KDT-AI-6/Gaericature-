@@ -6,6 +6,8 @@ import android.content.ContextWrapper;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -21,6 +23,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.project.Activity.DeepImage;
+import com.example.project.Activity.MainActivity;
+import com.example.project.Loading;
 import com.example.project.R;
 
 import java.io.ByteArrayOutputStream;
@@ -48,6 +52,7 @@ public class Home extends Fragment {
     private static final int PICK_CAMERA = 1;
     File tempSelectFile;
     Bitmap deepImage, bitmap;
+    Loading loading;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,7 +65,9 @@ public class Home extends Fragment {
         btnChange = fragment.findViewById(R.id.btnChange);
         imgGallery = fragment.findViewById(R.id.imgGallery);
 
-
+        loading = new Loading(fragment.getContext());
+        loading.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        loading.setCancelable(false);
 
         btnGallery.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,6 +92,8 @@ public class Home extends Fragment {
             @Override
             public void onClick(View view) {
 
+                loading.show();
+
 //                tempSelectFile = new File(Environment.getExternalStorageDirectory(), "temp.jpeg");
                 ContextWrapper cw = new ContextWrapper(getActivity().getApplicationContext());
                 File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
@@ -103,11 +112,6 @@ public class Home extends Fragment {
                     Bitmap resize = Bitmap.createScaledBitmap(bitmap,672,896,true);
                     bitmap.compress(Bitmap.CompressFormat.JPEG,100,out);
 
-
-
-
-
-
 //                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
                     Log.i("컴프레스", "컴프레스");
 
@@ -115,11 +119,9 @@ public class Home extends Fragment {
                             .setType(MultipartBody.FORM)
                             .addFormDataPart("files",tempSelectFile.getName(),RequestBody.create(MultipartBody.FORM, tempSelectFile))
                             .build();
-                    Request request = new Request.Builder().url("http://192.168.0.115:5000/image")
+                    Request request = new Request.Builder().url("http://172.30.1.12:5000/image")
                             .addHeader("Connection","close")
                             .post(requestBody).build();
-
-
 
                     OkHttpClient client = new OkHttpClient.Builder()
                             .connectTimeout(100, TimeUnit.SECONDS)
@@ -148,10 +150,10 @@ public class Home extends Fragment {
                             Log.i("byte test :: ", b.toString());
                             Log.i("bytelength test :: ", String.valueOf(b.length));
 
-
                             Intent intent = new Intent(getActivity(), DeepImage.class);
                             intent.putExtra("img", b);
                             startActivity(intent);
+                            loading.dismiss();
                         }
                     });
                 } catch (FileNotFoundException e) {
