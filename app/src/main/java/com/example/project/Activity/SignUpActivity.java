@@ -51,7 +51,8 @@ public class SignUpActivity extends AppCompatActivity {
 
     ImageView imgSignUp;
     EditText edSignUpId, edSignUpPw, edSignUpNick;
-    Button btnSignUpGallery, btnSignUpBack, btnSignUpComplete;
+    Button btnSignUpBack, btnSignUpComplete;
+    ImageView btnSignUpGallery;
 
     int PICK_IMAGE = 0;
 

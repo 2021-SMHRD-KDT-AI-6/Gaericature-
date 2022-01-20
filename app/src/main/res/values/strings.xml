@@ -7,7 +7,7 @@
     <!--  fragment_gallery.xml  -->
     <string name="btnGallery">갤러리</string>
     <string name="btnCamera">카메라</string>
-    <string name="tvGallery">사진을 올려주세요.</string>
+    <string name="tvGallery">변환할 사진을 올려주세요.</string>
     <string name="btnChange">변환</string>
 
     <!--  fragment_mypage.xml  -->
@@ -25,9 +25,9 @@
     <string name="btnCart">장바구니 담기</string>
 
     <!--  activity_begin.xml  -->
-    <string name="edId">ID</string>
-    <string name="edPw">PW</string>
-    <string name="edNick">Nickname</string>
+    <string name="edId">아이디</string>
+    <string name="edPw">비밀번호</string>
+    <string name="edNick">닉네임</string>
     <string name="btnLogin">로그인</string>
     <string name="btnSignUp">회원가입</string>
     <string name="btnBack">뒤로가기</string>

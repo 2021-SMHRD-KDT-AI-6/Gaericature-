@@ -35,7 +35,7 @@ public class BeginActivity extends AppCompatActivity {
 
     EditText edId, edPw;
     Button btnLogin, btnSignUp;
-    String url = "http://172.30.1.12:5000/login";
+    String url = "http://192.168.0.115:5000/login";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +43,9 @@ public class BeginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_begin);
 
 
-        Toolbar tb = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(tb);
-        getSupportActionBar().setDisplayShowTitleEnabled(false); // 타이틀 이름 안보이게
+//        Toolbar tb = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(tb);
+//        getSupportActionBar().setDisplayShowTitleEnabled(false); // 타이틀 이름 안보이게
 
 
 
@@ -54,6 +54,9 @@ public class BeginActivity extends AppCompatActivity {
         edPw = findViewById(R.id.edPw);
         btnLogin = findViewById(R.id.btnLogin);
         btnSignUp = findViewById(R.id.btnSignUp);
+
+//        edId.bringToFront();
+//        edPw.bringToFront();
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override

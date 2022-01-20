@@ -6,8 +6,6 @@ import android.content.ContextWrapper;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -53,6 +51,7 @@ public class Home extends Fragment {
     File tempSelectFile;
     Bitmap deepImage, bitmap;
     Loading loading;
+    TextView tvGallery;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,10 +59,18 @@ public class Home extends Fragment {
 
         View fragment = inflater.inflate(R.layout.fragment_home, container, false);
 
+
         btnGallery = fragment.findViewById(R.id.btnGallery);
         btnCamera = fragment.findViewById(R.id.btnCamera);
         btnChange = fragment.findViewById(R.id.btnChange);
         imgGallery = fragment.findViewById(R.id.imgGallery);
+        tvGallery = fragment.findViewById(R.id.tvGallery);
+        btnChange.setVisibility(View.GONE);
+
+        btnGallery.bringToFront();
+        btnChange.bringToFront();
+        btnCamera.bringToFront();
+        imgGallery.bringToFront();
 
         loading = new Loading(fragment.getContext());
         loading.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -112,6 +119,11 @@ public class Home extends Fragment {
                     Bitmap resize = Bitmap.createScaledBitmap(bitmap,672,896,true);
                     bitmap.compress(Bitmap.CompressFormat.JPEG,100,out);
 
+
+
+
+
+
 //                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
                     Log.i("컴프레스", "컴프레스");
 
@@ -119,7 +131,7 @@ public class Home extends Fragment {
                             .setType(MultipartBody.FORM)
                             .addFormDataPart("files",tempSelectFile.getName(),RequestBody.create(MultipartBody.FORM, tempSelectFile))
                             .build();
-                    Request request = new Request.Builder().url("http://172.30.1.12:5000/image")
+                    Request request = new Request.Builder().url("http://192.168.0.115:5000/image")
                             .addHeader("Connection","close")
                             .post(requestBody).build();
 
@@ -186,6 +198,11 @@ public class Home extends Fragment {
             // 이미지뷰에 Bitmap으로 이미지를 입력
             imgGallery.setImageBitmap(bitmap);
         }
+
+        btnGallery.setVisibility(View.GONE);
+        btnCamera.setVisibility(View.GONE);
+        btnChange.setVisibility(View.VISIBLE);
+        tvGallery.setText("변환 버튼을 눌러주세요.");
     }
 
 }
