@@ -2,8 +2,11 @@ package com.example.project.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.renderscript.ScriptGroup;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
@@ -41,8 +44,14 @@ public class MainActivity extends AppCompatActivity {
         purchase = new Purchase();
         myPage = new MyPage();
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame, home).commit();
+        int ck = getIntent().getIntExtra("ck",0);
+        if(ck == 1){
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame, cart).commit();
+            navView.findViewById(R.id.ItemCart).performClick();
+        }else{
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame, home).commit();
 
+        }
         navView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

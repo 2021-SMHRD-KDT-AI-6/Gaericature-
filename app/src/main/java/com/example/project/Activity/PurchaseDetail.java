@@ -85,7 +85,7 @@ public class PurchaseDetail extends AppCompatActivity {
                 .add("seq",String.valueOf(seq))
                 .build();
 
-        Request request = new Request.Builder().url("http://172.30.1.12:5000/itemdetail")
+        Request request = new Request.Builder().url("http://192.168.0.115:5000/itemdetail")
                 .addHeader("Connection","close").post(body).build();
 
         client.newCall(request).enqueue(new Callback() {
@@ -170,7 +170,7 @@ public class PurchaseDetail extends AppCompatActivity {
                         .add("user_id", user_id)
                         .build();
 
-                Request request = new Request.Builder().url("http://172.30.1.12:5000/cartadd")
+                Request request = new Request.Builder().url("http://192.168.0.115:5000/cartadd")
                         .addHeader("Connection","close").post(body).build();
 
                 client.newCall(request).enqueue(new Callback() {
@@ -184,7 +184,7 @@ public class PurchaseDetail extends AppCompatActivity {
                         String result = response.body().string();
                         if (result.equals("1")){
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                            intent.putExtra("cnt", PurCnt);
+                            intent.putExtra("ck", 1);
                             startActivity(intent);
                             finish();
                         }
@@ -219,7 +219,7 @@ public class PurchaseDetail extends AppCompatActivity {
         public void handleMessage(@NonNull Message msg) {
             tvName.setText(item.getItem_name());
             tvContent.setText(item.getItem_content());
-            tvPrice.setText(String.valueOf(item.getItem_price()));
+            tvPrice.setText(String.valueOf(item.getItem_price())+"원");
             imgPurchase.setImageBitmap(img1);
             imgDetail.setImageBitmap(img2);
 
