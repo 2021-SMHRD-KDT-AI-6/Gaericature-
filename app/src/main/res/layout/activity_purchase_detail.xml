@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".Activity.PurchaseDetail">
 
 
@@ -28,16 +28,32 @@
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="170dp" />
 
-            <ImageView
+            <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/imgPurchase"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
+                android:layout_height="300dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar"
-                app:srcCompat="@drawable/img1" />
+                app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+            <View
+                android:id="@+id/viewFadingEdge"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="@drawable/bg_fading_edge"
+                app:layout_constraintBottom_toBottomOf="@id/imgPurchase" />
+
+            <LinearLayout
+                android:id="@+id/layoutIndicators"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="@id/viewFadingEdge"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/tvName"

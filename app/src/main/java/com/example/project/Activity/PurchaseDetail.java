@@ -2,6 +2,8 @@ package com.example.project.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -10,14 +12,18 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.project.Adapter.ImageSliderAdapter;
 import com.example.project.Loading2;
 import com.example.project.R;
 import com.example.project.RbPreference;
@@ -46,6 +52,10 @@ public class PurchaseDetail extends AppCompatActivity {
     Bitmap img1,img2;
     int seq;
     Loading2 loading2;
+    ViewPager2 sliderViewPager;
+    LinearLayout layoutIndicator;
+    Bitmap[] images;
+
 
 
 
@@ -62,9 +72,12 @@ public class PurchaseDetail extends AppCompatActivity {
         btnCart=findViewById(R.id.btnCart);
         btnPurPlus=findViewById(R.id.btnPurPlus);
         btnPurMinus=findViewById(R.id.btnPurMinus);
-        imgPurchase=findViewById(R.id.imgPurchase);
+//        imgPurchase=findViewById(R.id.imgPurchase);
         imgDetail=findViewById(R.id.imgDetail);
         tvPurCnt = findViewById(R.id.tvPurCnt);
+
+        sliderViewPager = findViewById(R.id.imgPurchase);
+        layoutIndicator = findViewById(R.id.layoutIndicators);
 
         tvPurCnt.bringToFront();
 
@@ -85,7 +98,7 @@ public class PurchaseDetail extends AppCompatActivity {
                 .add("seq",String.valueOf(seq))
                 .build();
 
-        Request request = new Request.Builder().url("http://192.168.0.115:5000/itemdetail")
+        Request request = new Request.Builder().url("http://172.30.1.12:5000/itemdetail")
                 .addHeader("Connection","close").post(body).build();
 
         client.newCall(request).enqueue(new Callback() {
@@ -109,6 +122,34 @@ public class PurchaseDetail extends AppCompatActivity {
 
                     byte[] b = Base64.decode(jsonArray2.get(0).toString(), Base64.DEFAULT);
                     img1 = BitmapFactory.decodeByteArray(b,0,b.length);
+
+                    images = new Bitmap[5];
+
+                    images[0] = img1;
+                    images[1] = img1;
+                    images[2] = img1;
+                    images[3] = img1;
+                    images[4] = img1;
+
+                    Handler handler = new Handler(Looper.getMainLooper());
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            sliderViewPager.setOffscreenPageLimit(1);
+                            sliderViewPager.setAdapter(new ImageSliderAdapter(getApplicationContext(), images));
+
+                            sliderViewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+                                @Override
+                                public void onPageSelected(int position) {
+                                    super.onPageSelected(position);
+                                    setCurrentIndicator(position);
+                                }
+                            });
+                            setupIndicators(images.length);
+                        }
+                    }, 0);
+
+
 
                     byte[] b1 = Base64.decode(jsonArray2.get(1).toString(), Base64.DEFAULT);
                     img2 = BitmapFactory.decodeByteArray(b1,0,b.length);
@@ -220,7 +261,7 @@ public class PurchaseDetail extends AppCompatActivity {
             tvName.setText(item.getItem_name());
             tvContent.setText(item.getItem_content());
             tvPrice.setText(String.valueOf(item.getItem_price())+"원");
-            imgPurchase.setImageBitmap(img1);
+//            imgPurchase.setImageBitmap(img1);
             imgDetail.setImageBitmap(img2);
 
         }
@@ -242,6 +283,40 @@ public class PurchaseDetail extends AppCompatActivity {
         public void run() {
             Message message = new Message();
             handler.sendMessage(message);
+        }
+    }
+    private void setupIndicators(int count) {
+        ImageView[] indicators = new ImageView[count];
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        params.setMargins(16, 8, 16, 8);
+
+        for (int i = 0; i < indicators.length; i++) {
+            indicators[i] = new ImageView(this);
+            indicators[i].setImageDrawable(ContextCompat.getDrawable(this,
+                    R.drawable.bg_indicator_inactive));
+            indicators[i].setLayoutParams(params);
+            layoutIndicator.addView(indicators[i]);
+        }
+        setCurrentIndicator(0);
+    }
+
+    private void setCurrentIndicator(int position) {
+        int childCount = layoutIndicator.getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            ImageView imageView = (ImageView) layoutIndicator.getChildAt(i);
+            if (i == position) {
+                imageView.setImageDrawable(ContextCompat.getDrawable(
+                        this,
+                        R.drawable.bg_indicator_active
+                ));
+            } else {
+                imageView.setImageDrawable(ContextCompat.getDrawable(
+                        this,
+                        R.drawable.bg_indicator_inactive
+                ));
+            }
         }
     }
 }
