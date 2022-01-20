@@ -82,9 +82,9 @@ public class PurchaseActivity extends AppCompatActivity {
         int check = Integer.parseInt(get.getStringExtra("purchase"));
         int cnt = get.getIntExtra("cnt",0);
         if (check == 1){
-            url = "http://172.30.1.12:5000/delivery";
+            url = "http://192.168.0.115:5000/delivery";
         }else if (check == 2){
-            url = "http://172.30.1.12:5000/deliverycart";
+            url = "http://192.168.0.115:5000/deliverycart";
         }
 
         OkHttpClient client = new OkHttpClient();

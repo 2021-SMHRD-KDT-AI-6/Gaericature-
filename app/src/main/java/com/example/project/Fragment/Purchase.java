@@ -79,7 +79,7 @@ public class Purchase extends Fragment {
 
         OkHttpClient client = new OkHttpClient.Builder().build();
         RequestBody body = new FormBody.Builder().build();
-        Request request = new Request.Builder().url("http://172.30.1.12:5000/itemlist")
+        Request request = new Request.Builder().url("http://192.168.0.115:5000/itemlist")
                 .addHeader("Connection","close").post(body).build();
         client.newCall(request).enqueue(new Callback() {
             @Override

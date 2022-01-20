@@ -19,67 +19,94 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/toolbar"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="170dp" />
 
             <ImageView
                 android:id="@+id/imgPurchase"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toTopOf="@+id/guideline7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar"
                 app:srcCompat="@drawable/img1" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_begin="241dp" />
 
             <TextView
                 android:id="@+id/tvName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:text="TextView"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:text="상품 이름"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/guideline7" />
+                app:layout_constraintTop_toBottomOf="@+id/imgPurchase" />
 
             <TextView
                 android:id="@+id/tvPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:layout_marginTop="10dp"
+                android:text="00000원"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/tvName"
                 app:layout_constraintTop_toBottomOf="@+id/tvName" />
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="match_parent"
+                android:layout_height="2px"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="10dp"
+                android:background="#59AAAAAA"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvPrice" />
 
             <TextView
                 android:id="@+id/tvContent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:layout_marginTop="15dp"
+                android:text="상세 설명 상세 설명 상세 설명 상세 설명"
+                android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="@+id/tvPrice"
-                app:layout_constraintTop_toBottomOf="@+id/tvPrice" />
+                app:layout_constraintTop_toBottomOf="@+id/view2" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_begin="361dp" />
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="20px"
+                android:layout_marginTop="15dp"
+                android:background="#59AAAAAA"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvContent" />
 
             <ImageView
                 android:id="@+id/imgDetail"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/guideline8"
+                app:layout_constraintTop_toBottomOf="@+id/view"
                 app:srcCompat="@drawable/img2" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -95,7 +122,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#FFFFFF"
+        android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -104,8 +131,7 @@
         <View
             android:id="@+id/view8"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="#FFFFFF"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btnCart"
             app:layout_constraintHorizontal_bias="0.5"
@@ -116,6 +142,7 @@
             android:id="@+id/btnPurPlus"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:background="@drawable/btn1"
             android:gravity="center"
             android:insetTop="0dp"
             android:insetBottom="0dp"
@@ -124,6 +151,7 @@
             android:paddingRight="0dp"
             android:paddingBottom="0dp"
             android:text="@string/tvPlus"
+            android:textColor="@color/orange"
             android:textSize="16sp"
             android:textStyle="bold"
             app:iconPadding="0dp"
@@ -135,6 +163,7 @@
             android:id="@+id/btnPurMinus"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:background="@drawable/btn1"
             android:gravity="center"
             android:insetTop="0dp"
             android:insetBottom="0dp"
@@ -143,6 +172,7 @@
             android:paddingRight="0dp"
             android:paddingBottom="0dp"
             android:text="@string/tvMinus"
+            android:textColor="@color/orange"
             android:textSize="16sp"
             android:textStyle="bold"
             app:iconPadding="0dp"
@@ -154,7 +184,7 @@
             android:id="@+id/tvPurCnt"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:background="@drawable/edge"
+            android:background="@null"
             android:gravity="center"
             android:text="1"
             android:textColor="#000000"
@@ -169,35 +199,42 @@
             android:id="@+id/btnPurchase"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@color/orange"
+            android:gravity="center"
             android:insetLeft="0dp"
             android:insetTop="0dp"
             android:insetRight="0dp"
             android:insetBottom="0dp"
             android:text="@string/btnPurchase"
+            android:textColor="@color/white"
+            android:textSize="17dp"
             app:cornerRadius="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/btnCart"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btnCart"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btnCart"
             tools:ignore="DuplicateClickableBoundsCheck,SpeakableTextPresentCheck" />
 
         <Button
             android:id="@+id/btnCart"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:backgroundTint="#2196F3"
+            android:background="#95FFAC07"
+            android:gravity="center"
             android:insetLeft="0dp"
             android:insetTop="0dp"
             android:insetRight="0dp"
             android:insetBottom="0dp"
             android:text="@string/btnCart"
+            android:textColor="@color/white"
+            android:textSize="17dp"
             app:cornerRadius="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/view8"
             app:layout_constraintEnd_toStartOf="@+id/btnPurchase"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/view8"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/view8"
             tools:ignore="TextContrastCheck" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
