@@ -1,6 +1,8 @@
 package com.example.project.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
@@ -13,11 +15,14 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.example.project.Activity.MainActivity;
+import com.example.project.Activity.PurchaseActivity;
 import com.example.project.R;
 import com.example.project.RbPreference;
 import com.example.project.VO.CartVO;
@@ -102,7 +107,7 @@ public class CartAdapter extends BaseAdapter {
                         .add("user_id", user_id)
                         .add("item_seq", item_seq)
                         .build();
-                String url = "http://192.168.0.115:5000/cartplus";
+                String url = "http://172.30.1.12:5000/cartplus";
                 Request request = new Request.Builder().url(url).addHeader("Connection", "close").post(body).build();
 
                 client.newCall(request).enqueue(new Callback() {
@@ -136,7 +141,7 @@ public class CartAdapter extends BaseAdapter {
                             .add("user_id", user_id)
                             .add("item_seq", item_seq)
                             .build();
-                    String url = "http://192.168.0.115:5000/cartminus";
+                    String url = "http://172.30.1.12:5000/cartminus";
                     Request request = new Request.Builder().url(url).addHeader("Connection", "close").post(body).build();
 
 
@@ -170,7 +175,7 @@ public class CartAdapter extends BaseAdapter {
                 RequestBody body = new FormBody.Builder()
                         .add("cart_seq", String.valueOf(cart_seq))
                         .build();
-                String url = "http://192.168.0.115:5000/cartdelete";
+                String url = "http://172.30.1.12:5000/cartdelete";
                 Request request = new Request.Builder().url(url).addHeader("Connection", "close").post(body).build();
 
                 client.newCall(request).enqueue(new Callback() {

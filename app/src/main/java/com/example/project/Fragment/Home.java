@@ -120,20 +120,14 @@ public class Home extends Fragment {
                     int image_h = (int) (bitmap.getHeight() * scale);
                     Bitmap resize = Bitmap.createScaledBitmap(bitmap,672,896,true);
                     bitmap.compress(Bitmap.CompressFormat.JPEG,100,out);
-
-
-
-
-
-
-//                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
                     Log.i("컴프레스", "컴프레스");
 
                     RequestBody requestBody = new MultipartBody.Builder()
                             .setType(MultipartBody.FORM)
                             .addFormDataPart("files",tempSelectFile.getName(),RequestBody.create(MultipartBody.FORM, tempSelectFile))
                             .build();
-                    Request request = new Request.Builder().url("http://192.168.0.115:5000/image")
+
+                    Request request = new Request.Builder().url("http://172.30.1.12:5000/image")
                             .addHeader("Connection","close")
                             .post(requestBody).build();
 
@@ -142,6 +136,7 @@ public class Home extends Fragment {
                             .readTimeout(100, TimeUnit.SECONDS)
                             .writeTimeout(100, TimeUnit.SECONDS)
                             .build();
+
                     client.newCall(request).enqueue(new Callback() {
                         @Override
                         public void onFailure(@NonNull Call call, @NonNull IOException e) {

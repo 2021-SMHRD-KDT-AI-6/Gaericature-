@@ -74,6 +74,7 @@ public class PurchaseDetail extends AppCompatActivity {
         btnPurMinus=findViewById(R.id.btnPurMinus);
 //        imgPurchase=findViewById(R.id.imgPurchase);
         imgDetail=findViewById(R.id.imgDetail);
+
         tvPurCnt = findViewById(R.id.tvPurCnt);
 
         sliderViewPager = findViewById(R.id.imgPurchase);
@@ -150,10 +151,8 @@ public class PurchaseDetail extends AppCompatActivity {
                     }, 0);
 
 
-
                     byte[] b1 = Base64.decode(jsonArray2.get(1).toString(), Base64.DEFAULT);
-                    img2 = BitmapFactory.decodeByteArray(b1,0,b.length);
-
+                    img2 = BitmapFactory.decodeByteArray(b1,0,b1.length);
 
                     item.setItem_price((int)jsonArray1.get(1));
                     item.setItem_name((String)jsonArray1.get(0));
@@ -260,9 +259,12 @@ public class PurchaseDetail extends AppCompatActivity {
         public void handleMessage(@NonNull Message msg) {
             tvName.setText(item.getItem_name());
             tvContent.setText(item.getItem_content());
-            tvPrice.setText(String.valueOf(item.getItem_price())+"원");
+            tvPrice.setText(item.getItem_price()+"원");
 //            imgPurchase.setImageBitmap(img1);
             imgDetail.setImageBitmap(img2);
+//            imgDetail2.setImageBitmap(img2);
+//            imgDetail3.setImageBitmap(img2);
+//            imgDetail4.setImageBitmap(img2);
 
         }
     };
@@ -319,4 +321,5 @@ public class PurchaseDetail extends AppCompatActivity {
             }
         }
     }
+
 }

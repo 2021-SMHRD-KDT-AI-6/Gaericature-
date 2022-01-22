@@ -4,9 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.net.Uri;
@@ -53,6 +57,7 @@ public class SignUpActivity extends AppCompatActivity {
     EditText edSignUpId, edSignUpPw, edSignUpNick;
     Button btnSignUpBack, btnSignUpComplete;
     ImageView btnSignUpGallery;
+    File tempSelectFile;
 
     int PICK_IMAGE = 0;
 
@@ -101,7 +106,10 @@ public class SignUpActivity extends AppCompatActivity {
 
                 String url = "http://172.30.1.12:5000/signup";
 
-                File tempSelectFile = new File(Environment.getExternalStorageDirectory(), "temp.jpeg");
+                ContextWrapper cw = new ContextWrapper(getApplicationContext());
+                File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
+                File tempSelectFile = new File(directory, "temp" + ".jpg");
+
                 OutputStream out = null;
                 try {
                     out = new FileOutputStream(tempSelectFile);
