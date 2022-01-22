@@ -82,11 +82,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:layout_marginEnd="15dp"
                     android:text="00000원"
                     android:textColor="@color/black"
                     android:textSize="20dp"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@+id/tvName"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvName" />
 
                 <View
@@ -108,8 +109,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:text="상세 설명 상세 설명 상세 설명 상세 설명"
-                    android:textColor="@color/black"
-                    app:layout_constraintStart_toStartOf="@+id/tvPrice"
+                    app:layout_constraintStart_toStartOf="@+id/tvName"
                     app:layout_constraintTop_toBottomOf="@+id/view2" />
 
                 <View
@@ -232,7 +232,7 @@
             android:insetRight="0dp"
             android:insetBottom="0dp"
             android:text="@string/btnPurchase"
-            android:textColor="#0D47A1"
+            android:textColor="@color/white"
             android:textSize="17dp"
             app:cornerRadius="0dp"
             app:layout_constraintBottom_toBottomOf="@+id/btnCart"
@@ -240,7 +240,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btnCart"
             app:layout_constraintTop_toTopOf="@+id/btnCart"
-            tools:ignore="DuplicateClickableBoundsCheck,SpeakableTextPresentCheck" />
+            tools:ignore="DuplicateClickableBoundsCheck,SpeakableTextPresentCheck,TextContrastCheck" />
 
         <Button
             android:id="@+id/btnCart"
