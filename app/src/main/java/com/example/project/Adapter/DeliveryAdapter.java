@@ -1,6 +1,8 @@
 package com.example.project.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.LayoutInflater;
@@ -12,7 +14,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
+import com.example.project.Activity.CartChangeActivity;
+import com.example.project.Activity.PurchaseActivity;
 import com.example.project.R;
 import com.example.project.VO.DeliveryVO;
 
@@ -98,19 +103,14 @@ public class DeliveryAdapter extends BaseAdapter {
 
                         String result = response.body().string();
                         if(result.equals("1")){
-                            vo.remove(i);
-                            Handler handler = new Handler(Looper.getMainLooper());
-                            handler.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    notifyDataSetChanged();
-                                }
-                            }, 0);
+                            Intent intent = new Intent(view.getContext() , CartChangeActivity.class);
+                            intent.putExtra("ck",1);
 
 
-
-
-
+                            int purchaseType = ((PurchaseActivity)PurchaseActivity.mContext).purchaseType;
+                            intent.putExtra("purchase", purchaseType);
+                            intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK);
+                            view.getContext().startActivity(intent);
                         }
                     }
                 });

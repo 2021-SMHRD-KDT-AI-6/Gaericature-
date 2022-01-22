@@ -98,7 +98,7 @@ public class PurchaseDetail extends AppCompatActivity {
                 .add("seq",String.valueOf(seq))
                 .build();
 
-        Request request = new Request.Builder().url("http://172.30.1.12:5000/itemdetail")
+        Request request = new Request.Builder().url("http://192.168.0.115:5000/itemdetail")
                 .addHeader("Connection","close").post(body).build();
 
         client.newCall(request).enqueue(new Callback() {

@@ -187,6 +187,11 @@ public class Home extends Fragment {
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uri);
                 imgGallery.setImageBitmap(bitmap);
+
+                btnGallery.setVisibility(View.GONE);
+                btnCamera.setVisibility(View.GONE);
+                btnChange.setVisibility(View.VISIBLE);
+                tvGallery.setText("변환 버튼을 눌러주세요.");
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -199,12 +204,14 @@ public class Home extends Fragment {
             bitmap = (Bitmap) extras.get("data");
             // 이미지뷰에 Bitmap으로 이미지를 입력
             imgGallery.setImageBitmap(bitmap);
+
+            btnGallery.setVisibility(View.GONE);
+            btnCamera.setVisibility(View.GONE);
+            btnChange.setVisibility(View.VISIBLE);
+            tvGallery.setText("변환 버튼을 눌러주세요.");
         }
 
-        btnGallery.setVisibility(View.GONE);
-        btnCamera.setVisibility(View.GONE);
-        btnChange.setVisibility(View.VISIBLE);
-        tvGallery.setText("변환 버튼을 눌러주세요.");
+
     }
 
 }

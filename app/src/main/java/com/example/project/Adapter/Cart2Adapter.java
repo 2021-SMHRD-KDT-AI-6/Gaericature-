@@ -84,8 +84,8 @@ public class Cart2Adapter extends BaseAdapter {
 
         imgCartThumb.setImageBitmap(cart.get(i).getImgCartThumb());
         tvItemName.setText(cart.get(i).getTvItemName());
-        tvItemPrice.setText(String.valueOf(price));
-        tvItemCnt.setText(String.valueOf(cart.get(i).getTvItemCnt()));
+        tvItemPrice.setText(price+"원");
+        tvItemCnt.setText(cart.get(i).getTvItemCnt()+"개");
 
         String item_seq = String.valueOf(cart.get(i).getItemSeq());
 

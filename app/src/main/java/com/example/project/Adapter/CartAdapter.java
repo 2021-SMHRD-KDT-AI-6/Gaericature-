@@ -1,30 +1,23 @@
 package com.example.project.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
-import android.os.Message;
-import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.example.project.Activity.CartChangeActivity;
 import com.example.project.R;
 import com.example.project.RbPreference;
 import com.example.project.VO.CartVO;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -115,9 +108,10 @@ public class CartAdapter extends BaseAdapter {
                     public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                         String result = response.body().string();
                         if (result.equals("1")){
-                            int count = Integer.parseInt(tvItemCnt.getText().toString());
-                            count = count + 1;
-                            tvItemCnt.setText(String.valueOf(count));
+                            Intent intent = new Intent(view.getContext() , CartChangeActivity.class);
+                            intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK);
+                            view.getContext().startActivity(intent);
+
                         }
                     }
                 });
@@ -150,8 +144,9 @@ public class CartAdapter extends BaseAdapter {
                         public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                             String result = response.body().string();
                             if (result.equals("1")) {
-                                count[0] = count[0] - 1;
-                                tvItemCnt.setText(String.valueOf(count[0]));
+                                Intent intent = new Intent(view.getContext() , CartChangeActivity.class);
+                                intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK);
+                                view.getContext().startActivity(intent);
                             }
                         }
                     });
@@ -183,14 +178,10 @@ public class CartAdapter extends BaseAdapter {
                     public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                         String result = response.body().string();
                         if (result.equals("1")){
-                            cart.remove(i);
-                            Handler handler = new Handler(Looper.getMainLooper());
-                            handler.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    notifyDataSetChanged();
-                                }
-                            }, 0);
+                            Intent intent = new Intent(view.getContext() , CartChangeActivity.class);
+                            intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK);
+                            view.getContext().startActivity(intent);
+
                         }
                     }
                 });
