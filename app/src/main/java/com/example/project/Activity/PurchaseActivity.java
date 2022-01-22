@@ -98,9 +98,9 @@ public class PurchaseActivity extends AppCompatActivity {
         // Cart에서 왔으면 2 , PurchaseDetail에서 왔으면 1
         purchaseType = Integer.parseInt(get.getStringExtra("purchaseType"));
         if (purchaseType == 1){
-            url = "http://192.168.0.115:5000/delivery";
+            url = "http://172.30.1.12:5000/delivery";
         }else if (purchaseType == 2){
-            url = "http://192.168.0.115:5000/deliverycart";
+            url = "http://172.30.1.12:5000/deliverycart";
         }
 
         // PurchaseDetail에서 넘어온 경우, 아이템 갯수를 받아와준다.

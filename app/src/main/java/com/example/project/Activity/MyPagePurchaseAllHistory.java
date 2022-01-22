@@ -73,7 +73,7 @@ public class MyPagePurchaseAllHistory extends AppCompatActivity {
         RequestBody body = new FormBody.Builder()
                                        .add("user_id", user_id)
                                        .build();
-        String url = "http://192.168.0.115:5000/purchaseall";
+        String url = "http://172.30.1.12:5000/purchaseall";
         Request request = new Request.Builder().url(url).addHeader("Connection", "close").post(body).build();
 
         client.newCall(request).enqueue(new Callback() {

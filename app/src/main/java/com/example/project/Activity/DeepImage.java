@@ -48,16 +48,10 @@ public class DeepImage extends AppCompatActivity {
     Button btnCancel, btnSave;
     ImageView imgDeep;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deep_image);
-
-
-
-
-
 
         btnCancel = findViewById(R.id.btnCancel);
         btnSave = findViewById(R.id.btnSave);
@@ -102,7 +96,7 @@ public class DeepImage extends AppCompatActivity {
                             .addFormDataPart("file",tempSelectFile.getName(),RequestBody.create(MultipartBody.FORM, tempSelectFile))
                             .addFormDataPart("user_id",user_id)
                             .build();
-                    Request request = new Request.Builder().url("http://192.168.0.115:5000/saveimage").post(requestBody).build();
+                    Request request = new Request.Builder().url("http://172.30.1.12:5000/saveimage").post(requestBody).build();
 
                     OkHttpClient client = new OkHttpClient();
                     client.newCall(request).enqueue(new Callback() {
@@ -115,15 +109,12 @@ public class DeepImage extends AppCompatActivity {
                         public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             startActivity(intent);
-
-
                         }
                     });
 
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
-
             }
         });
     }

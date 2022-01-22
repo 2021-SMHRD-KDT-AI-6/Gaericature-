@@ -84,9 +84,9 @@ public class MyPage extends Fragment {
         tvCart = fragment.findViewById(R.id.tvCart);
         tvCartT = fragment.findViewById(R.id.tvCartT);
 
-        viewPurchaseAll = fragment.findViewById(R.id.viewPurchaseAll);
-        viewPurchaseDelivering = fragment.findViewById(R.id.viewPurchaseDelivering);
-        viewPurchaseComplete = fragment.findViewById(R.id.viewPurchaseComplete);
+//        viewPurchaseAll = fragment.findViewById(R.id.viewPurchaseAll);
+//        viewPurchaseDelivering = fragment.findViewById(R.id.viewPurchaseDelivering);
+//        viewPurchaseComplete = fragment.findViewById(R.id.viewPurchaseComplete);
 
         imgProfile.setBackground(new ShapeDrawable(new OvalShape()));
         imgProfile.setClipToOutline(true);
@@ -117,7 +117,7 @@ public class MyPage extends Fragment {
 
         RequestBody body = new FormBody.Builder()
                 .add("user_id", user_id).build();
-        String url = "http://192.168.0.115:5000/mygaericature";
+        String url = "http://172.30.1.12:5000/mygaericature";
         Request request = new Request.Builder().url(url)
                                                .addHeader("Connection","close")
                                                .post(body).build();

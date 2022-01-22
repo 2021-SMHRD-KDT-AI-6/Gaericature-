@@ -35,7 +35,7 @@ public class BeginActivity extends AppCompatActivity {
 
     EditText edId, edPw;
     Button btnLogin, btnSignUp;
-    String url = "http://192.168.0.115:5000/login";
+    String url = "http://172.30.1.12:5000/login";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,6 +127,10 @@ public class BeginActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         return true;
-
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        overridePendingTransition(0,0);
     }
 }

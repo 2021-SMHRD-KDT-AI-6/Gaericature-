@@ -99,7 +99,7 @@ public class PurchaseDetail extends AppCompatActivity {
                 .add("seq",String.valueOf(seq))
                 .build();
 
-        Request request = new Request.Builder().url("http://192.168.0.115:5000/itemdetail")
+        Request request = new Request.Builder().url("http://172.30.1.12:5000/itemdetail")
                 .addHeader("Connection","close").post(body).build();
 
         client.newCall(request).enqueue(new Callback() {
@@ -188,7 +188,7 @@ public class PurchaseDetail extends AppCompatActivity {
 
                 Intent intent = new Intent(getApplicationContext(), PurchaseActivity.class);
                 intent.putExtra("seq",seq);
-                intent.putExtra("purchase","1");
+                intent.putExtra("purchaseType","1");
                 intent.putExtra("cnt", cnt);
                 startActivity(intent);
             }
@@ -210,7 +210,7 @@ public class PurchaseDetail extends AppCompatActivity {
                         .add("user_id", user_id)
                         .build();
 
-                Request request = new Request.Builder().url("http://192.168.0.115:5000/cartadd")
+                Request request = new Request.Builder().url("http://172.30.1.12:5000/cartadd")
                         .addHeader("Connection","close").post(body).build();
 
                 client.newCall(request).enqueue(new Callback() {

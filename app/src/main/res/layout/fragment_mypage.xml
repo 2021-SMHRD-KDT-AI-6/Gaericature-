@@ -14,8 +14,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/imgProfile"
@@ -24,9 +23,9 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:scaleType="centerCrop"
-                app:srcCompat="@drawable/dog"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/dog" />
 
             <TextView
                 android:id="@+id/tvNickname"
@@ -34,6 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:text="개리커쳐"
+                android:textColor="@color/black"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/imgProfile"
@@ -65,12 +65,12 @@
                 android:id="@+id/view6"
                 android:layout_width="match_parent"
                 android:layout_height="4px"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="16dp"
                 android:background="#808080"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/viewPurchaseAll" />
+                app:layout_constraintTop_toBottomOf="@+id/tvPurchaseDeliveringNum" />
 
             <TextView
                 android:id="@+id/tvLevel"
@@ -79,6 +79,7 @@
                 android:layout_marginStart="48dp"
                 android:layout_marginTop="16dp"
                 android:text="일반"
+                android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -90,6 +91,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/tvLevel"
+                android:textColor="@color/orange"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="@+id/tvLevel"
                 app:layout_constraintHorizontal_bias="0.384"
@@ -103,6 +105,7 @@
                 android:layout_marginStart="50dp"
                 android:layout_marginEnd="50dp"
                 android:text="0P"
+                android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/tvLevel"
@@ -116,6 +119,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tvPoint"
+                android:textColor="@color/orange"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/tvLevelT"
                 app:layout_constraintEnd_toEndOf="@+id/tvPoint"
@@ -128,6 +132,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="64dp"
                 android:text="0"
+                android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/tvPoint"
@@ -139,6 +144,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tvCart"
+                android:textColor="@color/orange"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/tvPointT"
                 app:layout_constraintEnd_toEndOf="@+id/tvCart"
@@ -153,6 +159,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/tvPurchaseHistory"
+                android:textColor="@color/orange"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -160,39 +167,42 @@
 
             <TextView
                 android:id="@+id/tvPurchaseAll"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:gravity="center"
                 android:text="@string/tvPurchaseAll"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/viewPurchaseAll"
-                app:layout_constraintEnd_toEndOf="@+id/viewPurchaseAll"
-                app:layout_constraintStart_toStartOf="@+id/viewPurchaseAll"
-                app:layout_constraintTop_toTopOf="@+id/viewPurchaseAll"
-                app:layout_constraintVertical_bias="0.3" />
+                android:textSize="14sp"
+                app:layout_constraintEnd_toStartOf="@+id/tvPurchaseDelivering"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
             <TextView
                 android:id="@+id/tvPurchaseDelivering"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="@string/tvPurchaseDelivering"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/viewPurchaseDelivering"
-                app:layout_constraintEnd_toEndOf="@+id/viewPurchaseDelivering"
-                app:layout_constraintStart_toStartOf="@+id/viewPurchaseDelivering"
-                app:layout_constraintTop_toTopOf="@+id/viewPurchaseDelivering"
-                app:layout_constraintVertical_bias="0.3" />
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tvPurchaseAll"
+                app:layout_constraintEnd_toStartOf="@+id/tvPurchaseComplete"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tvPurchaseAll"
+                app:layout_constraintTop_toTopOf="@+id/tvPurchaseAll" />
 
             <TextView
                 android:id="@+id/tvPurchaseComplete"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="@string/tvPurchaseComplete"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/viewPurchaseComplete"
-                app:layout_constraintEnd_toEndOf="@+id/viewPurchaseComplete"
-                app:layout_constraintStart_toStartOf="@+id/viewPurchaseComplete"
-                app:layout_constraintTop_toTopOf="@+id/viewPurchaseComplete"
-                app:layout_constraintVertical_bias="0.3" />
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tvPurchaseDelivering"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tvPurchaseDelivering"
+                app:layout_constraintTop_toTopOf="@+id/tvPurchaseDelivering" />
 
             <TextView
                 android:id="@+id/tvPurchaseAllNum"
@@ -228,36 +238,6 @@
                 app:layout_constraintStart_toStartOf="@+id/tvPurchaseComplete"
                 app:layout_constraintTop_toBottomOf="@+id/tvPurchaseComplete" />
 
-            <View
-                android:id="@+id/viewPurchaseAll"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
-                android:background="#FFEB3B"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvPurchase" />
-
-            <View
-                android:id="@+id/viewPurchaseDelivering"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:background="#FFEB3B"
-                app:layout_constraintBottom_toBottomOf="@+id/viewPurchaseAll"
-                app:layout_constraintEnd_toStartOf="@+id/viewPurchaseComplete"
-                app:layout_constraintStart_toEndOf="@+id/viewPurchaseAll"
-                app:layout_constraintTop_toTopOf="@+id/viewPurchaseAll" />
-
-            <View
-                android:id="@+id/viewPurchaseComplete"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:layout_marginEnd="24dp"
-                android:background="#FFEB3B"
-                app:layout_constraintBottom_toBottomOf="@+id/viewPurchaseDelivering"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/viewPurchaseDelivering" />
-
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
@@ -265,6 +245,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/tvMyGaericapture"
+                android:textColor="@color/orange"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -280,6 +261,16 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/delivery"
+                app:layout_constraintEnd_toEndOf="@+id/tvPurchaseAll"
+                app:layout_constraintStart_toStartOf="@+id/tvPurchaseAll"
+                app:layout_constraintTop_toBottomOf="@+id/tvPurchase" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
