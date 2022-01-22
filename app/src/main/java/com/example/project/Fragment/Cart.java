@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.util.Base64;
 import android.view.LayoutInflater;
@@ -23,6 +24,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.project.Activity.MainActivity;
 import com.example.project.Activity.PurchaseActivity;
 import com.example.project.Activity.PurchaseDetail;
 import com.example.project.Adapter.CartAdapter;
@@ -50,10 +52,11 @@ import okhttp3.Response;
 public class Cart extends Fragment {
 
     Button btnCartPurchase;
+    TextView tvNull;
     ExpandableHeightGridView gridViewCart;
-    ArrayList<CartVO> data = new ArrayList<>();
+    ArrayList<CartVO> data;
     CartAdapter cartAdapter;
-
+    Boolean cartYn = true;
     Loading2 loading2;
 
     @Override
@@ -63,11 +66,16 @@ public class Cart extends Fragment {
 
         gridViewCart = fragment.findViewById(R.id.gridViewCart);
         btnCartPurchase = fragment.findViewById(R.id.btnPurchase);
+        tvNull = fragment.findViewById(R.id.tvNull);
+
+        tvNull.setVisibility(View.GONE);
 
         loading2 = new Loading2(fragment.getContext());
         loading2.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         loading2.setCancelable(false);
         loading2.show();
+
+        data = new ArrayList<>();
 
         RbPreference pref = new RbPreference(getActivity().getApplicationContext());
         String user_id = pref.getValue("user_id", null);
@@ -93,6 +101,19 @@ public class Cart extends Fragment {
                     jsonObject = new JSONObject(response.body().string());
                     JSONArray jsonArray1 = jsonObject.getJSONArray("cart_pic");
                     JSONArray jsonArray2 = jsonObject.getJSONArray("cart_list");
+                    if(jsonArray1.length() == 0 ){
+                        Handler handler = new Handler(Looper.getMainLooper());
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                // 장바구니에 담긴 아이템이 없을 시 false를 준다.
+                                cartYn =false;
+                                btnCartPurchase.setText("쇼핑 계속하기");
+                                tvNull.setVisibility(View.VISIBLE);
+                            }
+                        }, 0);
+                    }
                     for(int i = 0; i < jsonArray1.length(); i++) {
                         CartVO cartVO = new CartVO();
                         byte[] b;
@@ -122,9 +143,17 @@ public class Cart extends Fragment {
         btnCartPurchase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity().getApplicationContext(), PurchaseActivity.class);
-                intent.putExtra("purchase","2");
-                startActivity(intent);
+
+                // cartYn 이 true (장바구니에 상품이 있음) 인 경우 PurchaseActivity로 이동, false일 경우 Purchase로 이동
+                if(cartYn) {
+                    Intent intent = new Intent(getActivity().getApplicationContext(), PurchaseActivity.class);
+                    intent.putExtra("purchaseType", "2");
+                    startActivity(intent);
+                }else{
+                    Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
+                    intent.putExtra("ck", 2);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -144,6 +173,7 @@ public class Cart extends Fragment {
     Handler handler = new Handler(){
         @Override
         public void handleMessage(@NonNull Message msg) {
+            gridViewCart.setExpanded(true);
             gridViewCart.setAdapter(cartAdapter);
         }
     };

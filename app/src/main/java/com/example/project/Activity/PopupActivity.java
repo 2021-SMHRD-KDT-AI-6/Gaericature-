@@ -3,10 +3,16 @@ package com.example.project.Activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -30,16 +36,22 @@ public class PopupActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_popup);
 
-        Intent intent = getIntent();
+        Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+        int width = (int) (display.getWidth()*0.9);
+        getWindow().getAttributes().width=width;
+        getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         btnAdd = findViewById(R.id.btnAdd);
         edtDname = findViewById(R.id.edtDname);
         edtAddr = findViewById(R.id.edtAddr);
         edtPhone = findViewById(R.id.edtPhone);
         edtTag = findViewById(R.id.edtTag);
+
+        String check = getIntent().getStringExtra("purchase");
 
         RbPreference pref = new RbPreference(this);
         String user_id = pref.getValue("user_id", null);
@@ -70,6 +82,8 @@ public class PopupActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                         Intent intent = new Intent(getApplicationContext(), PurchaseActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.putExtra("purchase", check);
                         startActivity(intent);
                         finish();
                     }
@@ -80,9 +94,16 @@ public class PopupActivity extends AppCompatActivity {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-            if ( event.getAction() == MotionEvent.ACTION_OUTSIDE){
-                return false;
-            }
-            return true;
+        if ( event.getAction() == MotionEvent.ACTION_OUTSIDE){
+            return false;
         }
+        return true;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        overridePendingTransition(0,0);
+    }
 }

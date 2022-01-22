@@ -16,11 +16,14 @@
         android:theme="@style/Theme.Project"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Activity.CartChangeActivity"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity
             android:name=".Activity.PurchaseActivity"
             android:exported="false" />
         <activity
             android:name=".Activity.PopupActivity"
-            android:theme="@style/Theme.AppCompat.Dialog" />
+            android:theme="@style/Theme.Project" />
         <activity
             android:name=".Activity.DeepImage"
             android:exported="false" />

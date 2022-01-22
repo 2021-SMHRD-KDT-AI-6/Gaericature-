@@ -44,13 +44,17 @@ public class MainActivity extends AppCompatActivity {
         purchase = new Purchase();
         myPage = new MyPage();
 
+        // 어떤 Fragment로 띄울 지 결정하는 ck 값을 받아온다.
         int ck = getIntent().getIntExtra("ck",0);
-        if(ck == 1){
+
+        if(ck == 0){
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame, home).commit();
+        }else if(ck == 1){
             getSupportFragmentManager().beginTransaction().replace(R.id.frame, cart).commit();
             navView.findViewById(R.id.ItemCart).performClick();
-        }else{
-            getSupportFragmentManager().beginTransaction().replace(R.id.frame, home).commit();
-
+        }else if(ck == 2){
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame, purchase).commit();
+            navView.findViewById(R.id.itemPurchase).performClick();
         }
         navView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -72,10 +76,12 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
         // 세션에서 아이디 가져오기
 //        RbPreference pref = new RbPreference(this);
 //        String user_id = pref.getValue("user_id", null);
 //
 //        Log.d("session", user_id);
+
     }
 }
