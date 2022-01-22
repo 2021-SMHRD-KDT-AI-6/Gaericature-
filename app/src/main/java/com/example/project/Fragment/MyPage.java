@@ -56,8 +56,7 @@ public class MyPage extends Fragment {
     TextView tvNickname,
             tvPurchaseAll, tvPurchaseAllNum,
             tvPurchaseDelivering, tvPurchaseDeliveringNum,
-            tvPurchaseComplete, tvPurchaseCompleteNum,
-            tvCart, tvCartT;
+            tvPurchaseComplete, tvPurchaseCompleteNum;
     ExpandableHeightGridView myPageGridView;
     MyGaericatureAdapter adapter;
     ArrayList<MyGaericatureVO> data = new ArrayList<>();
@@ -81,12 +80,7 @@ public class MyPage extends Fragment {
         tvPurchaseDeliveringNum = fragment.findViewById(R.id.tvPurchaseDeliveringNum);
         tvPurchaseComplete = fragment.findViewById(R.id.tvPurchaseComplete);
         tvPurchaseCompleteNum = fragment.findViewById(R.id.tvPurchaseCompleteNum);
-        tvCart = fragment.findViewById(R.id.tvCart);
-        tvCartT = fragment.findViewById(R.id.tvCartT);
 
-//        viewPurchaseAll = fragment.findViewById(R.id.viewPurchaseAll);
-//        viewPurchaseDelivering = fragment.findViewById(R.id.viewPurchaseDelivering);
-//        viewPurchaseComplete = fragment.findViewById(R.id.viewPurchaseComplete);
 
         imgProfile.setBackground(new ShapeDrawable(new OvalShape()));
         imgProfile.setClipToOutline(true);
@@ -190,7 +184,7 @@ public class MyPage extends Fragment {
             }
         });
 
-        viewPurchaseAll.setOnClickListener(new View.OnClickListener() {
+        tvPurchaseAllNum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -200,7 +194,7 @@ public class MyPage extends Fragment {
             }
         });
 
-        viewPurchaseDelivering.setOnClickListener(new View.OnClickListener() {
+        tvPurchaseDeliveringNum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), MyPagePurchaseDeliveringHistory.class);
@@ -209,7 +203,7 @@ public class MyPage extends Fragment {
             }
         });
 
-        viewPurchaseComplete.setOnClickListener(new View.OnClickListener() {
+        tvPurchaseCompleteNum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), MyPagePurchaseCompleteHistory.class);
@@ -270,7 +264,6 @@ public class MyPage extends Fragment {
         public void handleMessage(@NonNull Message msg) {
             imgProfile.setImageBitmap(profile);
             tvNickname.setText(nick);
-            tvCart.setText(cart);
             tvPurchaseAllNum.setText(allNum);
             tvPurchaseDeliveringNum.setText(ingNum);
             tvPurchaseCompleteNum.setText(comNum);

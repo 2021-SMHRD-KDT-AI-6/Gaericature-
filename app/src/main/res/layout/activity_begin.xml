@@ -17,26 +17,28 @@
         android:id="@+id/btnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/btn1"
         android:gravity="center"
         android:text="@string/btnLogin"
         android:textColor="@color/orange"
-        app:layout_constraintBottom_toTopOf="@+id/btnSignUp"
         app:layout_constraintEnd_toEndOf="@+id/edPw"
-        app:layout_constraintStart_toStartOf="@+id/edPw" />
+        app:layout_constraintStart_toStartOf="@+id/edPw"
+        app:layout_constraintTop_toBottomOf="@+id/edPw" />
 
     <Button
         android:id="@+id/btnSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:background="@drawable/btn1"
         android:gravity="center"
         android:text="@string/btnSignUp"
         android:textColor="@color/orange"
-        app:layout_constraintBottom_toTopOf="@+id/guideline5"
         app:layout_constraintEnd_toEndOf="@+id/btnLogin"
-        app:layout_constraintStart_toStartOf="@+id/btnLogin" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/btnLogin"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
 
     <EditText
         android:id="@+id/edId"

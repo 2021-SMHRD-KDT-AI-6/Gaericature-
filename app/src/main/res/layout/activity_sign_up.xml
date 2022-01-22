@@ -77,6 +77,7 @@
         android:background="@drawable/btn1"
         android:gravity="center"
         android:text="@string/btnBack"
+        android:textColor="@color/orange"
         app:layout_constraintEnd_toEndOf="@+id/btnSignUpComplete"
         app:layout_constraintStart_toStartOf="@+id/btnSignUpComplete"
         app:layout_constraintTop_toBottomOf="@+id/btnSignUpComplete" />
@@ -89,6 +90,7 @@
         android:background="@drawable/btn1"
         android:gravity="center"
         android:text="@string/btnSignUp"
+        android:textColor="@color/orange"
         app:layout_constraintEnd_toEndOf="@+id/edSignUpNick"
         app:layout_constraintStart_toStartOf="@+id/imgSignUp"
         app:layout_constraintTop_toBottomOf="@+id/imgSignUp" />

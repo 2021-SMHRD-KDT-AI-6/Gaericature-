@@ -27,7 +27,6 @@
         android:layout_marginTop="15dp"
         android:fontFamily="@font/twayair"
         android:text="아이템 이름"
-        android:textColor="@color/black"
         android:textSize="20dp"
         app:layout_constraintStart_toEndOf="@+id/imgCartThumb"
         app:layout_constraintTop_toTopOf="@+id/imgCartThumb" />
@@ -38,7 +37,6 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/twayair"
         android:text="5,000원"
-        android:textColor="@color/black"
         android:textSize="17dp"
         app:layout_constraintBottom_toBottomOf="@+id/tvItemCnt"
         app:layout_constraintEnd_toEndOf="@+id/btnCartDelete" />

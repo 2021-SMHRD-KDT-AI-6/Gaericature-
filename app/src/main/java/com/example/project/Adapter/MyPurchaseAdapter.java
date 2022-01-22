@@ -57,7 +57,7 @@ public class MyPurchaseAdapter extends BaseAdapter {
         tvMyPurItemState.setText(myPurchase.get(i).getDeli_yn());
         tvMyPurItemName.setText(myPurchase.get(i).getItem_name());
         tvMyPurItemPrice.setText(myPurchase.get(i).getItem_price()+"원");
-        tvMyPurItemCnt.setText(myPurchase.get(i).getItem_cnt());
+        tvMyPurItemCnt.setText(myPurchase.get(i).getItem_cnt()+"개");
         imgMyPurThumb.setImageBitmap(myPurchase.get(i).getItem_pic1());
 
         return view;
