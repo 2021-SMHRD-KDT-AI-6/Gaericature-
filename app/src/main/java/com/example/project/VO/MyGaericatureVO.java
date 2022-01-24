@@ -4,9 +4,14 @@ import android.graphics.Bitmap;
 
 public class MyGaericatureVO {
     private Bitmap img;
+    private String charNick;
 
-    public MyGaericatureVO(Bitmap img) {
-        this.img = img;
+    public String getCharNick() {
+        return charNick;
+    }
+
+    public void setCharNick(String charNick) {
+        this.charNick = charNick;
     }
 
     public Bitmap getImg() {

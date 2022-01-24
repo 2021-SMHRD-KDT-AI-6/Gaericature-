@@ -51,7 +51,7 @@ public class PopupActivity extends AppCompatActivity {
         edtPhone = findViewById(R.id.edtPhone);
         edtTag = findViewById(R.id.edtTag);
 
-        String check = getIntent().getStringExtra("purchase");
+        String check = getIntent().getStringExtra("purchaseType");
 
         RbPreference pref = new RbPreference(this);
         String user_id = pref.getValue("user_id", null);
@@ -83,7 +83,7 @@ public class PopupActivity extends AppCompatActivity {
                     public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                         Intent intent = new Intent(getApplicationContext(), PurchaseActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        intent.putExtra("purchase", check);
+                        intent.putExtra("purchaseType", check);
                         startActivity(intent);
                         finish();
                     }
@@ -103,7 +103,6 @@ public class PopupActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-
         overridePendingTransition(0,0);
     }
 }

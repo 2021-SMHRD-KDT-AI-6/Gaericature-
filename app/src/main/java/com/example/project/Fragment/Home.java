@@ -127,7 +127,7 @@ public class Home extends Fragment {
                             .addFormDataPart("files",tempSelectFile.getName(),RequestBody.create(MultipartBody.FORM, tempSelectFile))
                             .build();
 
-                    Request request = new Request.Builder().url("http://172.30.1.12:5000/image")
+                    Request request = new Request.Builder().url("http://192.168.0.115:5000/image")
                             .addHeader("Connection","close")
                             .post(requestBody).build();
 

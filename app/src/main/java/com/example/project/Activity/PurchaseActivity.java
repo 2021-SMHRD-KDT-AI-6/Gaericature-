@@ -16,11 +16,14 @@ import android.os.Message;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.TextView;
 
 import com.example.project.Adapter.Cart2Adapter;
 import com.example.project.Adapter.CartAdapter;
+import com.example.project.Adapter.CharAdapter;
 import com.example.project.Adapter.DeliveryAdapter;
 import com.example.project.ExpandableHeightGridView;
 import com.example.project.Loading2;
@@ -28,11 +31,13 @@ import com.example.project.R;
 import com.example.project.RbPreference;
 import com.example.project.VO.CartVO;
 import com.example.project.VO.DeliveryVO;
+import com.example.project.VO.MyGaericatureVO;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -46,12 +51,14 @@ import okhttp3.Response;
 
 public class PurchaseActivity extends AppCompatActivity {
 
-    ExpandableHeightGridView gridViewPurchase, gridViewItem;
+    ExpandableHeightGridView gridViewPurchase, gridViewItem, gridViewCharacter;
     ArrayList<DeliveryVO> DeliList = new ArrayList<>();
     ArrayList<CartVO> CartList = new ArrayList<>();
+    ArrayList<MyGaericatureVO> CharList = new ArrayList<>();
 
     DeliveryAdapter adapter;
     Cart2Adapter cart2Adapter;
+    CharAdapter charAdapter;
     Button btnDelivery, btnBuy;
     Loading2 loading2;
 
@@ -64,6 +71,7 @@ public class PurchaseActivity extends AppCompatActivity {
     int price = 0;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +81,7 @@ public class PurchaseActivity extends AppCompatActivity {
 
         gridViewPurchase = findViewById(R.id.gridViewPurchase);
         gridViewItem = findViewById(R.id.gridViewItem);
+        gridViewCharacter = findViewById(R.id.gridViewCharacter);
         btnDelivery = findViewById(R.id.btnDelivery);
         btnBuy = findViewById(R.id.btnBuy);
 
@@ -98,9 +107,9 @@ public class PurchaseActivity extends AppCompatActivity {
         // Cart에서 왔으면 2 , PurchaseDetail에서 왔으면 1
         purchaseType = Integer.parseInt(get.getStringExtra("purchaseType"));
         if (purchaseType == 1){
-            url = "http://172.30.1.12:5000/delivery";
+            url = "http://192.168.0.115:5000/delivery";
         }else if (purchaseType == 2){
-            url = "http://172.30.1.12:5000/deliverycart";
+            url = "http://192.168.0.115:5000/deliverycart";
         }
 
         // PurchaseDetail에서 넘어온 경우, 아이템 갯수를 받아와준다.
@@ -126,7 +135,9 @@ public class PurchaseActivity extends AppCompatActivity {
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
 
                 DeliList = new ArrayList<>();
-                CartList= new ArrayList<>();
+                CartList = new ArrayList<>();
+                CharList = new ArrayList<>();
+
 
                 JSONObject jsonObject = null;
                 try {
@@ -134,6 +145,9 @@ public class PurchaseActivity extends AppCompatActivity {
                     JSONArray jsonArray = jsonObject.getJSONArray("delivery_list");
                     JSONArray cartPicArray = jsonObject.getJSONArray("cart_pic");
                     JSONArray cartArray = jsonObject.getJSONArray("cart_list");
+                    JSONArray charPicArray = jsonObject.getJSONArray("char_pic");
+                    JSONArray charArray = jsonObject.getJSONArray("char_list");
+
 
 
                     if(jsonArray.length() == 0){
@@ -199,6 +213,17 @@ public class PurchaseActivity extends AppCompatActivity {
 
                     }
 
+                    for (int i = 0 ; i < charPicArray.length(); i++) {
+                        MyGaericatureVO vo  = new MyGaericatureVO();
+                        byte[] b = Base64.decode(charPicArray.get(i).toString(), Base64.DEFAULT);
+                        Bitmap img = BitmapFactory.decodeByteArray(b, 0, b.length);
+                        vo.setImg(img);
+
+                        vo.setCharNick((String) charArray.getJSONArray(i).get(1));
+
+                        CharList.add(vo);
+                    }
+
                     cart2Adapter = new Cart2Adapter(getApplicationContext(), R.layout.cart2list, CartList);
                     Cart2Thread cart2Thread = new Cart2Thread(cart2Adapter);
                     cart2Thread.start();
@@ -206,6 +231,11 @@ public class PurchaseActivity extends AppCompatActivity {
                     adapter = new DeliveryAdapter(getApplicationContext(), R.layout.delivery, DeliList);
                     DeliveryThread deliveryThread = new DeliveryThread(adapter);
                     deliveryThread.start();
+
+                    charAdapter = new CharAdapter(getApplicationContext(), R.layout.characterlist, CharList);
+                    CharThread charThread = new CharThread(charAdapter);
+                    charThread.start();
+
                     loading2.dismiss();
 
                 } catch (JSONException e) {
@@ -220,8 +250,30 @@ public class PurchaseActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), PopupActivity.class);
-                intent.putExtra("purchase", String.valueOf(purchaseType));
+                intent.putExtra("purchaseType", String.valueOf(purchaseType));
+                intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
+            }
+        });
+
+        gridViewPurchase.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                for (int j = 0; j < DeliList.size(); j++){
+                    gridViewPurchase.getChildAt(j).setBackgroundResource(R.drawable.noedge);
+                }
+                gridViewPurchase.getChildAt(i).setBackgroundResource(R.drawable.edge);
+            }
+        });
+
+        gridViewCharacter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                for (int j = 0; j < CharList.size(); j++){
+                    gridViewCharacter.getChildAt(j).setBackgroundResource(R.drawable.noedge);
+                }
+                gridViewCharacter.getChildAt(i).setBackgroundResource(R.drawable.edge);
             }
         });
 
@@ -253,8 +305,6 @@ public class PurchaseActivity extends AppCompatActivity {
                 });
             }
         });
-
-
     }
 
     Handler handler = new Handler(){
@@ -277,6 +327,29 @@ public class PurchaseActivity extends AppCompatActivity {
         public void run() {
             Message message = new Message();
             handler.sendMessage(message);
+        }
+    }
+
+    Handler handler2 = new Handler(){
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            gridViewCharacter.setExpanded(true);
+            gridViewCharacter.setAdapter(charAdapter);
+        }
+    };
+
+    class CharThread extends Thread{
+
+        CharAdapter charAdapter;
+
+        public CharThread(CharAdapter charAdapter) {
+            this.charAdapter = charAdapter;
+        }
+
+        @Override
+        public void run() {
+            Message message = new Message();
+            handler2.sendMessage(message);
         }
     }
 

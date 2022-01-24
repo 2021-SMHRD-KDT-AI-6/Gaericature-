@@ -23,7 +23,7 @@
             android:exported="false" />
         <activity
             android:name=".Activity.PopupActivity"
-            android:theme="@style/Theme.Project" />
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
         <activity
             android:name=".Activity.DeepImage"
             android:exported="false" />

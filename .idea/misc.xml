@@ -18,6 +18,7 @@
         <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/layout/fragment_purchase.xml" value="0.33" />
         <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/menu/nav_item.xml" value="0.1" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.38229166666666664" />
+        <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/drawable/bg_fading_edge.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/drawable/bg_indicator_active.xml" value="0.10277777777777777" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/drawable/bg_indicator_inactive.xml" value="0.10277777777777777" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/drawable/btn1.xml" value="0.1" />
@@ -26,9 +27,13 @@
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/drawable/edge.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/drawable/edt1.xml" value="0.1685185185185185" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/drawable/ic_launcher_background.xml" value="0.38229166666666664" />
+        <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/drawable/list_selector.xml" value="0.1" />
+        <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/drawable/loading_bg.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/drawable/menu_selector_color.xml" value="0.1" />
+        <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/drawable/noedge.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/drawable/radius.xml" value="0.10277777777777777" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/drawable/rounded_corner_border.xml" value="0.38229166666666664" />
+        <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/drawable/selector_background.xml" value="0.3764102564102564" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/font/ft.xml" value="0.3963541666666667" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/activity_begin.xml" value="0.33" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/activity_cart.xml" value="0.33" />
@@ -47,6 +52,7 @@
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/activity_sign_up.xml" value="0.33" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/cart2list.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/cartlist.xml" value="0.35833333333333334" />
+        <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/characterlist.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/delivery.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/fragment_cart.xml" value="0.33" />
         <entry key="..\:/Users/smhrd/AndroidStudy/gaericature/app/src/main/res/layout/fragment_gallery.xml" value="0.36614583333333334" />

@@ -89,7 +89,7 @@ public class DeliveryAdapter extends BaseAdapter {
                 RequestBody body = new FormBody.Builder()
                         .add("deli_seq", deli_seq)
                         .build();
-                String url = "http://172.30.1.12:5000/delidel";
+                String url = "http://192.168.0.115:5000/delidel";
                 Request request = new Request.Builder().url(url).addHeader("Connection", "close").post(body).build();
 
                 client.newCall(request).enqueue(new Callback() {
@@ -117,7 +117,8 @@ public class DeliveryAdapter extends BaseAdapter {
             }
         });
 
-
         return view;
     }
+
+
 }

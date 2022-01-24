@@ -104,7 +104,7 @@ public class CartAdapter extends BaseAdapter {
                         .add("user_id", user_id)
                         .add("item_seq", item_seq)
                         .build();
-                String url = "http://172.30.1.12:5000/cartplus";
+                String url = "http://192.168.0.115:5000/cartplus";
                 Request request = new Request.Builder().url(url).addHeader("Connection", "close").post(body).build();
 
                 client.newCall(request).enqueue(new Callback() {
@@ -139,7 +139,7 @@ public class CartAdapter extends BaseAdapter {
                             .add("user_id", user_id)
                             .add("item_seq", item_seq)
                             .build();
-                    String url = "http://172.30.1.12:5000/cartminus";
+                    String url = "http://192.168.0.115:5000/cartminus";
                     Request request = new Request.Builder().url(url).addHeader("Connection", "close").post(body).build();
 
 
@@ -174,7 +174,7 @@ public class CartAdapter extends BaseAdapter {
                 RequestBody body = new FormBody.Builder()
                         .add("cart_seq", String.valueOf(cart_seq))
                         .build();
-                String url = "http://172.30.1.12:5000/cartdelete";
+                String url = "http://192.168.0.115:5000/cartdelete";
                 Request request = new Request.Builder().url(url).addHeader("Connection", "close").post(body).build();
 
                 client.newCall(request).enqueue(new Callback() {

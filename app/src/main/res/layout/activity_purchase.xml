@@ -143,6 +143,40 @@
                 app:layout_constraintTop_toBottomOf="@+id/gridViewItem" />
 
             <TextView
+                android:id="@+id/textView45"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:paddingLeft="15dp"
+                android:text="적용시킬 캐릭터"
+                android:textColor="@color/orange"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view11"
+                tools:ignore="TextContrastCheck" />
+
+            <com.example.project.ExpandableHeightGridView
+                android:id="@+id/gridViewCharacter"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:numColumns="4"
+                app:layout_constraintTop_toBottomOf="@+id/textView45" />
+
+            <View
+                android:id="@+id/view13"
+                android:layout_width="match_parent"
+                android:layout_height="15px"
+                android:background="#59AAAAAA"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/gridViewCharacter" />
+
+            <TextView
                 android:id="@+id/textView15"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
@@ -155,7 +189,7 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view11"
+                app:layout_constraintTop_toBottomOf="@+id/view13"
                 tools:ignore="TextContrastCheck" />
 
             <TextView

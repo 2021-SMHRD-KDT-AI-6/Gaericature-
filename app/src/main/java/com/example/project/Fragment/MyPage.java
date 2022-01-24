@@ -60,8 +60,6 @@ public class MyPage extends Fragment {
     ExpandableHeightGridView myPageGridView;
     MyGaericatureAdapter adapter;
     ArrayList<MyGaericatureVO> data = new ArrayList<>();
-    int deli, com = 0;
-    View viewPurchaseAll, viewPurchaseDelivering, viewPurchaseComplete;
     Bitmap profile;
     String nick, cart, allNum, ingNum, comNum;
     Loading2 loading2;
@@ -85,13 +83,6 @@ public class MyPage extends Fragment {
         imgProfile.setBackground(new ShapeDrawable(new OvalShape()));
         imgProfile.setClipToOutline(true);
 
-        tvPurchaseAll.bringToFront();
-        tvPurchaseAllNum.bringToFront();
-        tvPurchaseDelivering.bringToFront();
-        tvPurchaseDeliveringNum.bringToFront();
-        tvPurchaseComplete.bringToFront();
-        tvPurchaseCompleteNum.bringToFront();
-
         myPageGridView = fragment.findViewById(R.id.myPageGrid);
 
         loading2 = new Loading2(fragment.getContext());
@@ -111,7 +102,7 @@ public class MyPage extends Fragment {
 
         RequestBody body = new FormBody.Builder()
                 .add("user_id", user_id).build();
-        String url = "http://172.30.1.12:5000/mygaericature";
+        String url = "http://192.168.0.115:5000/mygaericature";
         Request request = new Request.Builder().url(url)
                                                .addHeader("Connection","close")
                                                .post(body).build();
@@ -128,6 +119,7 @@ public class MyPage extends Fragment {
                 try {
                     jsonObject = new JSONObject(response.body().string());
                     JSONArray jsonArray = jsonObject.getJSONArray("gaericature");
+                    JSONArray jsonArray2 = jsonObject.getJSONArray("charlist");
                     data = new ArrayList<>();
                     for(int i = 0; i < jsonArray.length(); i++) {
 
@@ -138,7 +130,10 @@ public class MyPage extends Fragment {
                             e.printStackTrace();
                         }
                         Bitmap img = BitmapFactory.decodeByteArray(b, 0, b.length);
-                        data.add(new MyGaericatureVO(img));
+                        MyGaericatureVO vo = new MyGaericatureVO();
+                        vo.setCharNick((String) jsonArray2.getJSONArray(i).get(1));
+                        vo.setImg(img);
+                        data.add(vo);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

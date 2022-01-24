@@ -1,9 +1,7 @@
 package com.example.project.Activity;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -35,7 +33,7 @@ public class BeginActivity extends AppCompatActivity {
 
     EditText edId, edPw;
     Button btnLogin, btnSignUp;
-    String url = "http://172.30.1.12:5000/login";
+    String url = "http://192.168.0.115:5000/login";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +48,7 @@ public class BeginActivity extends AppCompatActivity {
 
 
 
-        edId = findViewById(R.id.edId);
+        edId = findViewById(R.id.edtImgNick);
         edPw = findViewById(R.id.edPw);
         btnLogin = findViewById(R.id.btnLogin);
         btnSignUp = findViewById(R.id.btnSignUp);

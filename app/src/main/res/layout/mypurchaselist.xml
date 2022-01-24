@@ -7,7 +7,7 @@
     android:background="@color/white">
 
     <ImageView
-        android:id="@+id/imgMyPurThumb"
+        android:id="@+id/imgMyChar"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_marginStart="15dp"
@@ -21,46 +21,57 @@
         app:srcCompat="@drawable/dog" />
 
     <TextView
-        android:id="@+id/tvMyPurItemName"
+        android:id="@+id/tvCharNick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
+        android:fontFamily="@font/twayair"
         android:text="머그컵"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/imgMyPurThumb"
-        app:layout_constraintStart_toEndOf="@+id/imgMyPurThumb"
-        app:layout_constraintTop_toTopOf="@+id/imgMyPurThumb"
+        android:textSize="17dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imgMyChar"
+        app:layout_constraintStart_toEndOf="@+id/imgMyChar"
+        app:layout_constraintTop_toTopOf="@+id/imgMyChar"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/tvMyPurItemPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/twayair"
         android:text="5,000원"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imgMyPurThumb"
-        app:layout_constraintStart_toStartOf="@+id/tvMyPurItemName" />
+        android:textSize="17dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imgMyChar"
+        app:layout_constraintStart_toStartOf="@+id/tvCharNick" />
 
     <TextView
         android:id="@+id/tvMyPurItemState"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="90dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/twayair"
         android:text="배송완료"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvMyPurItemCnt"
-        app:layout_constraintStart_toEndOf="@+id/tvMyPurItemCnt"
-        app:layout_constraintTop_toTopOf="@+id/tvMyPurItemCnt" />
+        android:textSize="17dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvMyPurItemPrice"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvMyPurItemPrice" />
 
     <TextView
         android:id="@+id/tvMyPurItemCnt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/twayair"
         android:text="3개"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvMyPurItemPrice"
-        app:layout_constraintStart_toEndOf="@+id/tvMyPurItemPrice"
-        app:layout_constraintTop_toTopOf="@+id/tvMyPurItemPrice" />
+        android:textSize="15dp"
+        app:layout_constraintStart_toStartOf="@+id/tvCharNick"
+        app:layout_constraintTop_toBottomOf="@+id/tvCharNick" />
+
+    <View
+        android:id="@+id/view4"
+        android:layout_width="wrap_content"
+        android:layout_height="1px"
+        android:background="#59AAAAAA"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

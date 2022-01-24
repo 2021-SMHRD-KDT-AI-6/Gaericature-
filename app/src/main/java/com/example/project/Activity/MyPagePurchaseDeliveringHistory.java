@@ -50,9 +50,9 @@ public class MyPagePurchaseDeliveringHistory extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_purchase_all_history);
+        setContentView(R.layout.activity_my_page_purchase_delivering_history);
 
-        gridView = findViewById(R.id.gridView);
+        gridView = findViewById(R.id.gridView2);
 
         loading2 = new Loading2(this);
         loading2.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -61,7 +61,9 @@ public class MyPagePurchaseDeliveringHistory extends AppCompatActivity {
 
         Intent intent = getIntent();
         String PurchaseDeliveringNum = intent.getExtras().getString("PurchaseDeliveringNum");
-        TextView tvAll = findViewById(R.id.tvAll);
+
+        Log.i("test :: ", "왔냐왔냐왔냐왔냐왔냐왔냐왔냐왔냐왔냐왔냐왔냐왔냐왔냐왔냐왔냐왔냐왔냐");
+        TextView tvAll = findViewById(R.id.tvAll2);
         tvAll.setText(PurchaseDeliveringNum+"개");
 
         // 세션에서 아이디 가져오기
@@ -73,7 +75,7 @@ public class MyPagePurchaseDeliveringHistory extends AppCompatActivity {
         RequestBody body = new FormBody.Builder()
                 .add("user_id", user_id)
                 .build();
-        String url = "http://172.30.1.12:5000/purchasedeli";
+        String url = "http://192.168.0.115:5000/purchasedeli";
         Request request = new Request.Builder().url(url).addHeader("Connection", "close").post(body).build();
 
         client.newCall(request).enqueue(new Callback() {

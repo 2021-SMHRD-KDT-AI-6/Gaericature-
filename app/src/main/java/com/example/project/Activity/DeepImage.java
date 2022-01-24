@@ -19,6 +19,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -47,6 +48,7 @@ public class DeepImage extends AppCompatActivity {
 
     Button btnCancel, btnSave;
     ImageView imgDeep;
+    EditText edtImgNick;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +58,7 @@ public class DeepImage extends AppCompatActivity {
         btnCancel = findViewById(R.id.btnCancel);
         btnSave = findViewById(R.id.btnSave);
         imgDeep = findViewById(R.id.imgDeep);
+        edtImgNick = findViewById(R.id.edtImgNick);
 
         RbPreference pref = new RbPreference(this);
         String user_id = pref.getValue("user_id", null);
@@ -85,35 +88,41 @@ public class DeepImage extends AppCompatActivity {
 
                 OutputStream out = null;
 
-                try {
-                    out = new FileOutputStream(tempSelectFile);
-                    Log.i("아웃스트림", "아웃스트림");
-                    img.compress(Bitmap.CompressFormat.JPEG, 100, out);
-                    Log.i("컴프레스", "컴프레스");
+                if(edtImgNick.getText().equals("")){
+                    Toast.makeText(getApplicationContext(), "닉네임을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                }else {
 
-                    RequestBody requestBody = new MultipartBody.Builder()
-                            .setType(MultipartBody.FORM)
-                            .addFormDataPart("file",tempSelectFile.getName(),RequestBody.create(MultipartBody.FORM, tempSelectFile))
-                            .addFormDataPart("user_id",user_id)
-                            .build();
-                    Request request = new Request.Builder().url("http://172.30.1.12:5000/saveimage").post(requestBody).build();
+                    try {
+                        out = new FileOutputStream(tempSelectFile);
+                        Log.i("아웃스트림", "아웃스트림");
+                        img.compress(Bitmap.CompressFormat.JPEG, 100, out);
+                        Log.i("컴프레스", "컴프레스");
 
-                    OkHttpClient client = new OkHttpClient();
-                    client.newCall(request).enqueue(new Callback() {
-                        @Override
-                        public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                            e.printStackTrace();
-                        }
+                        RequestBody requestBody = new MultipartBody.Builder()
+                                .setType(MultipartBody.FORM)
+                                .addFormDataPart("file", tempSelectFile.getName(), RequestBody.create(MultipartBody.FORM, tempSelectFile))
+                                .addFormDataPart("user_id", user_id)
+                                .addFormDataPart("img_nick", String.valueOf(edtImgNick.getText()))
+                                .build();
+                        Request request = new Request.Builder().url("http://192.168.0.115:5000/saveimage").post(requestBody).build();
 
-                        @Override
-                        public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                            startActivity(intent);
-                        }
-                    });
+                        OkHttpClient client = new OkHttpClient();
+                        client.newCall(request).enqueue(new Callback() {
+                            @Override
+                            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                                e.printStackTrace();
+                            }
 
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
+                            @Override
+                            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                startActivity(intent);
+                            }
+                        });
+
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });

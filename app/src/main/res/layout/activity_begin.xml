@@ -41,7 +41,7 @@
         app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
 
     <EditText
-        android:id="@+id/edId"
+        android:id="@+id/edtImgNick"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:background="@drawable/edt1"
@@ -66,10 +66,10 @@
         android:inputType="textPassword"
         android:paddingLeft="10dp"
         android:textSize="13dp"
-        app:layout_constraintEnd_toEndOf="@+id/edId"
+        app:layout_constraintEnd_toEndOf="@+id/edtImgNick"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/edId"
-        app:layout_constraintTop_toBottomOf="@+id/edId" />
+        app:layout_constraintStart_toStartOf="@+id/edtImgNick"
+        app:layout_constraintTop_toBottomOf="@+id/edtImgNick" />
 
     <ImageView
         android:id="@+id/imageView"
