@@ -55,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
         }else if(ck == 2){
             getSupportFragmentManager().beginTransaction().replace(R.id.frame, purchase).commit();
             navView.findViewById(R.id.itemPurchase).performClick();
+        }else if(ck == 3){
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame, myPage).commit();
+            navView.findViewById(R.id.ItemMyPage).performClick();
         }
         navView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

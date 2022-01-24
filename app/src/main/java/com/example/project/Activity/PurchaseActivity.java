@@ -221,6 +221,7 @@ public class PurchaseActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), PopupActivity.class);
                 intent.putExtra("purchase", String.valueOf(purchaseType));
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
             }
         });

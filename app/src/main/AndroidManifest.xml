@@ -16,6 +16,12 @@
         android:theme="@style/Theme.Project"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Activity.CharNickPopup"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity
+            android:name=".Activity.ProfilePopup"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity
             android:name=".Activity.CartChangeActivity"
             android:theme="@style/Theme.AppCompat.Light.Dialog" />
         <activity
