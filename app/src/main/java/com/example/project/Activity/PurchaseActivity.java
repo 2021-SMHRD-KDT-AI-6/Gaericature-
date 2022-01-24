@@ -16,6 +16,7 @@ import android.os.Message;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -65,6 +66,7 @@ public class PurchaseActivity extends AppCompatActivity {
     public int purchaseType;
 
     String url;
+    String url2;
     int price = 0;
 
 
@@ -86,7 +88,6 @@ public class PurchaseActivity extends AppCompatActivity {
 
         tvDeliNull.setVisibility(View.GONE);
 
-
         gridViewPurchase.setSelector(R.drawable.edge);
 
         loading2 = new Loading2(this);
@@ -96,6 +97,7 @@ public class PurchaseActivity extends AppCompatActivity {
 
         RbPreference pref = new RbPreference(this);
         String user_id = pref.getValue("user_id", null);
+        url = pref.getValueUrl("url", null);
 
         Intent get = getIntent();
         int seq = get.getIntExtra("seq",0);
@@ -103,9 +105,9 @@ public class PurchaseActivity extends AppCompatActivity {
         // Cart에서 왔으면 2 , PurchaseDetail에서 왔으면 1
         purchaseType = Integer.parseInt(get.getStringExtra("purchaseType"));
         if (purchaseType == 1){
-            url = "http://192.168.0.115:5000/delivery";
+            url2 = url + "/delivery";
         }else if (purchaseType == 2){
-            url = "http://192.168.0.115:5000/deliverycart";
+            url2 = url + "/deliverycart";
         }
 
         // PurchaseDetail에서 넘어온 경우, 아이템 갯수를 받아와준다.
@@ -119,7 +121,7 @@ public class PurchaseActivity extends AppCompatActivity {
                 .add("cnt", String.valueOf(cnt))
                 .build();
 
-        Request request = new Request.Builder().url(url).addHeader("Connection","close").post(body).build();
+        Request request = new Request.Builder().url(url2).addHeader("Connection","close").post(body).build();
 
         client.newCall(request).enqueue(new Callback() {
             @Override
@@ -283,7 +285,7 @@ public class PurchaseActivity extends AppCompatActivity {
                         .add("cnt", String.valueOf(cnt))
                         .build();
 
-                Request request = new Request.Builder().url("http://192.168.0.115:5000/buy").addHeader("Connection","close").post(body).build();
+                Request request = new Request.Builder().url(url + "/buy").addHeader("Connection","close").post(body).build();
 
                 client.newCall(request).enqueue(new Callback() {
                     @Override

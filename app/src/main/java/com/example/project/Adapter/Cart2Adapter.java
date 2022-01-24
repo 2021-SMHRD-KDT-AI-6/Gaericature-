@@ -72,9 +72,6 @@ public class Cart2Adapter extends BaseAdapter {
             view = inflater.inflate(R.layout.cart2list, null);
         }
 
-        RbPreference pref = new RbPreference(context.getApplicationContext());
-        String user_id = pref.getValue("user_id", null);
-
         ImageView imgCartThumb = view.findViewById(R.id.imgCartThumb);
         TextView tvItemName = view.findViewById(R.id.tvItemName);
         TextView tvItemPrice = view.findViewById(R.id.tvItemPrice);
@@ -86,9 +83,6 @@ public class Cart2Adapter extends BaseAdapter {
         tvItemName.setText(cart.get(i).getTvItemName());
         tvItemPrice.setText(price+"원");
         tvItemCnt.setText(cart.get(i).getTvItemCnt()+"개");
-
-        String item_seq = String.valueOf(cart.get(i).getItemSeq());
-
 
         return view;
     }

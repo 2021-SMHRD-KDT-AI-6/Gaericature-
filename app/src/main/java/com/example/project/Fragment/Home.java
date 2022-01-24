@@ -26,6 +26,7 @@ import com.example.project.Activity.DeepImage;
 import com.example.project.Activity.MainActivity;
 import com.example.project.Loading;
 import com.example.project.R;
+import com.example.project.RbPreference;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -74,6 +75,9 @@ public class Home extends Fragment {
         btnCamera.bringToFront();
         imgGallery.bringToFront();
 
+        RbPreference pref = new RbPreference(getActivity().getApplicationContext());
+        String url = pref.getValueUrl("url", null);
+
         loading = new Loading(fragment.getContext());
         loading.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         loading.setCancelable(false);
@@ -107,27 +111,23 @@ public class Home extends Fragment {
                 ContextWrapper cw = new ContextWrapper(getActivity().getApplicationContext());
                 File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
                 File tempSelectFile = new File(directory, "temp" + ".jpg");
-                Log.i("빈 파일 생성 성공", "빈파일 생성 성공");
                 OutputStream out = null;
-                Log.i("널 아웃풋스트림", "널 아웃풋스트림");
 
                 try {
                     out = new FileOutputStream(tempSelectFile);
-                    Log.i("아웃스트림", "아웃스트림");
 
                     float scale = (float) (1024/(float)bitmap.getWidth());
                     int image_w = (int) (bitmap.getWidth() * scale);
                     int image_h = (int) (bitmap.getHeight() * scale);
                     Bitmap resize = Bitmap.createScaledBitmap(bitmap,672,896,true);
                     bitmap.compress(Bitmap.CompressFormat.JPEG,100,out);
-                    Log.i("컴프레스", "컴프레스");
 
                     RequestBody requestBody = new MultipartBody.Builder()
                             .setType(MultipartBody.FORM)
                             .addFormDataPart("files",tempSelectFile.getName(),RequestBody.create(MultipartBody.FORM, tempSelectFile))
                             .build();
 
-                    Request request = new Request.Builder().url("http://192.168.0.115:5000/image")
+                    Request request = new Request.Builder().url(url + "/image")
                             .addHeader("Connection","close")
                             .post(requestBody).build();
 
@@ -156,8 +156,6 @@ public class Home extends Fragment {
                             Bitmap resize = Bitmap.createScaledBitmap(deepImage,image_w,image_h,true);
                             resize.compress(Bitmap.CompressFormat.JPEG,100,stream);
                             byte[] b = stream.toByteArray();
-                            Log.i("byte test :: ", b.toString());
-                            Log.i("bytelength test :: ", String.valueOf(b.length));
 
                             Intent intent = new Intent(getActivity(), DeepImage.class);
                             intent.putExtra("img", b);

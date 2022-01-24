@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.project.BitmapConverter;
 import com.example.project.R;
+import com.example.project.RbPreference;
 
 import java.io.IOException;
 
@@ -44,6 +45,9 @@ public class MyGaericatureFull extends AppCompatActivity {
         tvCharNickCh = findViewById(R.id.tvCharNickCh);
         btnCharDel = findViewById(R.id.btnCharDel);
 
+        RbPreference pref = new RbPreference(getApplicationContext());
+        String url = pref.getValueUrl("url", null);
+
         byte[] byteArray = getIntent().getByteArrayExtra("image");
         Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
         imgMyGaericatureFull.setImageBitmap(bitmap);
@@ -61,7 +65,6 @@ public class MyGaericatureFull extends AppCompatActivity {
                 intent.putExtra("image", byteArray);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
-                finish();
             }
         });
 
@@ -74,9 +77,7 @@ public class MyGaericatureFull extends AppCompatActivity {
                         .add("deep_seq", String.valueOf(deep_seq))
                         .build();
 
-                String url = "http://172.30.1.12:5000/deepdel";
-
-                Request request = new Request.Builder().url(url).addHeader("Connection","close").post(body).build();
+                Request request = new Request.Builder().url(url + "/deepdel").addHeader("Connection","close").post(body).build();
 
                 client.newCall(request).enqueue(new Callback() {
                     @Override

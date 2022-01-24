@@ -76,7 +76,8 @@ public class CartAdapter extends BaseAdapter {
 
         RbPreference pref = new RbPreference(context.getApplicationContext());
         String user_id = pref.getValue("user_id", null);
-        
+        String url = pref.getValueUrl("url", null);
+
         ImageView imgCartThumb = view.findViewById(R.id.imgCartThumb);
         TextView tvItemName = view.findViewById(R.id.tvItemName);
         TextView tvItemPrice = view.findViewById(R.id.tvItemPrice);
@@ -94,6 +95,7 @@ public class CartAdapter extends BaseAdapter {
 
         String item_seq = String.valueOf(cart.get(i).getItemSeq());
 
+
         btnCartPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -104,8 +106,8 @@ public class CartAdapter extends BaseAdapter {
                         .add("user_id", user_id)
                         .add("item_seq", item_seq)
                         .build();
-                String url = "http://192.168.0.115:5000/cartplus";
-                Request request = new Request.Builder().url(url).addHeader("Connection", "close").post(body).build();
+
+                Request request = new Request.Builder().url(url + "/cartplus").addHeader("Connection", "close").post(body).build();
 
                 client.newCall(request).enqueue(new Callback() {
                     @Override
@@ -139,8 +141,8 @@ public class CartAdapter extends BaseAdapter {
                             .add("user_id", user_id)
                             .add("item_seq", item_seq)
                             .build();
-                    String url = "http://192.168.0.115:5000/cartminus";
-                    Request request = new Request.Builder().url(url).addHeader("Connection", "close").post(body).build();
+
+                    Request request = new Request.Builder().url(url + "/cartminus").addHeader("Connection", "close").post(body).build();
 
 
                     client.newCall(request).enqueue(new Callback() {
@@ -174,8 +176,8 @@ public class CartAdapter extends BaseAdapter {
                 RequestBody body = new FormBody.Builder()
                         .add("cart_seq", String.valueOf(cart_seq))
                         .build();
-                String url = "http://192.168.0.115:5000/cartdelete";
-                Request request = new Request.Builder().url(url).addHeader("Connection", "close").post(body).build();
+
+                Request request = new Request.Builder().url(url + "/cartdelete").addHeader("Connection", "close").post(body).build();
 
                 client.newCall(request).enqueue(new Callback() {
                     @Override

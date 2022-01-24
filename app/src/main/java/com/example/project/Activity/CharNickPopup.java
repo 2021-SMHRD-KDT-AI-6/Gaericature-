@@ -48,6 +48,9 @@ public class CharNickPopup extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_char_nick_popup);
 
+        RbPreference pref = new RbPreference(getApplicationContext());
+        String url = pref.getValueUrl("url", null);
+
         int deep_seq = getIntent().getIntExtra("deep_seq", 0);
         byte[] byteArray = getIntent().getByteArrayExtra("image");
 
@@ -69,7 +72,7 @@ public class CharNickPopup extends AppCompatActivity {
                             .addFormDataPart("deep_seq", String.valueOf(deep_seq))
                             .build();
 
-                    Request request = new Request.Builder().url("http://172.30.1.12:5000/deepnick")
+                    Request request = new Request.Builder().url(url + "/deepnick")
                             .addHeader("Connection", "close")
                             .post(requestBody).build();
 

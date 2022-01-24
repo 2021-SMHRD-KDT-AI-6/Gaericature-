@@ -14,6 +14,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 import com.example.project.R;
+import com.example.project.RbPreference;
 
 public class CartChangeActivity extends AppCompatActivity {
 
@@ -29,6 +30,8 @@ public class CartChangeActivity extends AppCompatActivity {
         int width = (int) (display.getWidth()*0.6);
         getWindow().getAttributes().width=width;
         getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+
 
         int purchaseType = getIntent().getIntExtra("purchase",0);
 

@@ -77,6 +77,8 @@ public class MyPage extends Fragment {
 
         View fragment = inflater.inflate(R.layout.fragment_mypage, container, false);
 
+
+
         imgProfile = fragment.findViewById(R.id.imgProfile);
         imgCorr = fragment.findViewById(R.id.imgCorr);
         tvNickname = fragment.findViewById(R.id.tvNickname);
@@ -108,6 +110,7 @@ public class MyPage extends Fragment {
 
 //        세션에서 아이디 가져오기
         RbPreference pref = new RbPreference(getActivity().getApplicationContext());
+        String url = pref.getValueUrl("url", null);
         String user_id = pref.getValue("user_id", null);
 
         Log.d("session", user_id);
@@ -118,8 +121,7 @@ public class MyPage extends Fragment {
 
         RequestBody body = new FormBody.Builder()
                 .add("user_id", user_id).build();
-        String url = "http://192.168.0.115:5000/mygaericature";
-        Request request = new Request.Builder().url(url)
+        Request request = new Request.Builder().url(url + "/mygaericature")
                                                .addHeader("Connection","close")
                                                .post(body).build();
 

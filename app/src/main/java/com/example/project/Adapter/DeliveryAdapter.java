@@ -19,6 +19,7 @@ import androidx.core.content.ContextCompat;
 import com.example.project.Activity.CartChangeActivity;
 import com.example.project.Activity.PurchaseActivity;
 import com.example.project.R;
+import com.example.project.RbPreference;
 import com.example.project.VO.DeliveryVO;
 
 import org.w3c.dom.Text;
@@ -78,6 +79,9 @@ public class DeliveryAdapter extends BaseAdapter {
         tvAddr.setText(vo.get(i).getTvAddr());
         tvPhone.setText(vo.get(i).getTvPhone());
 
+        RbPreference pref = new RbPreference(context.getApplicationContext());
+        String url = pref.getValueUrl("url", null);
+
         btnDeliDel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,8 +93,8 @@ public class DeliveryAdapter extends BaseAdapter {
                 RequestBody body = new FormBody.Builder()
                         .add("deli_seq", deli_seq)
                         .build();
-                String url = "http://192.168.0.115:5000/delidel";
-                Request request = new Request.Builder().url(url).addHeader("Connection", "close").post(body).build();
+
+                Request request = new Request.Builder().url(url + "/delidel").addHeader("Connection", "close").post(body).build();
 
                 client.newCall(request).enqueue(new Callback() {
                     @Override
