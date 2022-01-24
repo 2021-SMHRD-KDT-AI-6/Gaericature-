@@ -16,9 +16,7 @@ import android.os.Message;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.GridView;
 import android.widget.TextView;
 
 import com.example.project.Adapter.Cart2Adapter;
@@ -37,7 +35,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -69,7 +66,6 @@ public class PurchaseActivity extends AppCompatActivity {
 
     String url;
     int price = 0;
-
 
 
     @Override
@@ -305,6 +301,8 @@ public class PurchaseActivity extends AppCompatActivity {
                 });
             }
         });
+
+
     }
 
     Handler handler = new Handler(){

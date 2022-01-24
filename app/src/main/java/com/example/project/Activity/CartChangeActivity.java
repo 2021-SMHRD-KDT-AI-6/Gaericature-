@@ -41,8 +41,8 @@ public class CartChangeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
                 // change가 0일 경우 Cart로, change가 1일 경우 PurchaseActivity로 다시 돌아간다.
+                // change가 2일 경우 MyPage로 이동.
                 if(change == 0 ) {
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     intent.putExtra("ck", 1);
@@ -51,6 +51,11 @@ public class CartChangeActivity extends AppCompatActivity {
                 }else if(change == 1){
                     Intent intent = new Intent(getApplicationContext(), PurchaseActivity.class);
                     intent.putExtra("purchaseType",String.valueOf(purchaseType));
+                    startActivity(intent);
+                    finish();
+                }else if(change == 2){
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    intent.putExtra("ck", 3);
                     startActivity(intent);
                     finish();
                 }

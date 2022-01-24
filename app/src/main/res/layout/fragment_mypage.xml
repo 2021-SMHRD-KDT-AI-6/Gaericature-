@@ -41,11 +41,12 @@
                 <TextView
                     android:id="@+id/tvNickname"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="15dp"
                     android:text="개리커쳐"
                     android:textColor="@color/black"
                     android:textSize="24sp"
+                    android:visibility="visible"
                     app:layout_constraintBottom_toBottomOf="@+id/imgProfile"
                     app:layout_constraintStart_toEndOf="@+id/imgProfile"
                     app:layout_constraintTop_toTopOf="@+id/imgProfile" />
@@ -194,6 +195,16 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+                <ImageView
+                    android:id="@+id/imgCorr"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="15dp"
+                    android:src="@drawable/correction"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvNickname"
+                    app:layout_constraintStart_toEndOf="@+id/tvNickname"
+                    app:layout_constraintTop_toTopOf="@+id/tvNickname" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>

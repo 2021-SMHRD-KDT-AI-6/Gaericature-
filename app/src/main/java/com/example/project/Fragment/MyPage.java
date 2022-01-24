@@ -1,5 +1,6 @@
 package com.example.project.Fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,10 +13,16 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Base64;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.view.inputmethod.InputMethod;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,9 +33,9 @@ import com.example.project.Activity.MyGaericatureFull;
 import com.example.project.Activity.MyPagePurchaseAllHistory;
 import com.example.project.Activity.MyPagePurchaseCompleteHistory;
 import com.example.project.Activity.MyPagePurchaseDeliveringHistory;
+import com.example.project.Activity.ProfilePopup;
 import com.example.project.Adapter.MyGaericatureAdapter;
 import com.example.project.ExpandableHeightGridView;
-import com.example.project.Loading;
 import com.example.project.Loading2;
 import com.example.project.R;
 import com.example.project.RbPreference;
@@ -52,7 +59,7 @@ import okhttp3.Response;
 
 public class MyPage extends Fragment {
 
-    ImageView imgProfile;
+    ImageView imgProfile, imgCorr;
     TextView tvNickname,
             tvPurchaseAll, tvPurchaseAllNum,
             tvPurchaseDelivering, tvPurchaseDeliveringNum,
@@ -71,6 +78,7 @@ public class MyPage extends Fragment {
         View fragment = inflater.inflate(R.layout.fragment_mypage, container, false);
 
         imgProfile = fragment.findViewById(R.id.imgProfile);
+        imgCorr = fragment.findViewById(R.id.imgCorr);
         tvNickname = fragment.findViewById(R.id.tvNickname);
         tvPurchaseAll = fragment.findViewById(R.id.tvPurchaseAll);
         tvPurchaseAllNum = fragment.findViewById(R.id.tvPurchaseAllNum);
@@ -84,6 +92,14 @@ public class MyPage extends Fragment {
         imgProfile.setClipToOutline(true);
 
         myPageGridView = fragment.findViewById(R.id.myPageGrid);
+
+        imgCorr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), ProfilePopup.class);
+                startActivity(intent);
+            }
+        });
 
         loading2 = new Loading2(fragment.getContext());
         loading2.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -131,6 +147,7 @@ public class MyPage extends Fragment {
                         }
                         Bitmap img = BitmapFactory.decodeByteArray(b, 0, b.length);
                         MyGaericatureVO vo = new MyGaericatureVO();
+                        vo.setDeep_seq((Integer) jsonArray2.getJSONArray(i).get(2));
                         vo.setCharNick((String) jsonArray2.getJSONArray(i).get(1));
                         vo.setImg(img);
                         data.add(vo);
@@ -153,12 +170,6 @@ public class MyPage extends Fragment {
                     BitmapFactory.decodeResource(getResources(), R.id.imgProfile, options);
 
                     options.inSampleSize = calculateInSampleSize(options, 100, 100);
-
-                    int imageHeight = options.outHeight;
-                    int imageWidth = options.outWidth;
-                    String imageType = options.outMimeType;
-
-
 
                     jsonArray = jsonObject.getJSONArray("nick");
                     nick = jsonArray.get(0).toString();
@@ -223,6 +234,8 @@ public class MyPage extends Fragment {
 
                 Intent intent = new Intent(getActivity().getApplicationContext(), MyGaericatureFull.class);
                 intent.putExtra("image", byteArray);
+                intent.putExtra("nick", data.get(i).getCharNick());
+                intent.putExtra("deep_seq", data.get(i).getDeep_seq());
                 startActivity(intent);
 
                 getActivity().overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
