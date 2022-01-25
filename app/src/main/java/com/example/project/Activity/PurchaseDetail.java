@@ -45,7 +45,8 @@ import okhttp3.Response;
 
 public class PurchaseDetail extends AppCompatActivity {
 
-    TextView tvName, tvPrice, tvContent, tvPurCnt;
+    TextView tvName, tvPrice, tvPurCnt;
+//    TextView tvContent;
     Button btnPurchase, btnCart, btnPurPlus, btnPurMinus;
     ImageView imgPurchase, imgDetail;
     itemVO item = new itemVO();
@@ -65,7 +66,7 @@ public class PurchaseDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_purchase_detail);
 
-        tvContent=findViewById(R.id.tvContent);
+//        tvContent=findViewById(R.id.tvContent);
         tvName=findViewById(R.id.tvName);
         tvPrice=findViewById(R.id.tvPrice);
         btnPurchase=findViewById(R.id.btnPurchase);
@@ -123,17 +124,13 @@ public class PurchaseDetail extends AppCompatActivity {
                     Log.i("name :: ",(String) jsonArray1.get(0));
                     Log.i("content :: ",(String) jsonArray1.get(2));
 
+                    images = new Bitmap[jsonArray2.length()-1];
+                    for(int i = 0 ; i < jsonArray2.length()-1 ; i++){
+                        byte[] b = Base64.decode(jsonArray2.get(i).toString(), Base64.DEFAULT);
+                        img1 = BitmapFactory.decodeByteArray(b,0,b.length);
+                        images[i] = img1;
 
-                    byte[] b = Base64.decode(jsonArray2.get(0).toString(), Base64.DEFAULT);
-                    img1 = BitmapFactory.decodeByteArray(b,0,b.length);
-
-                    images = new Bitmap[5];
-
-                    images[0] = img1;
-                    images[1] = img1;
-                    images[2] = img1;
-                    images[3] = img1;
-                    images[4] = img1;
+                    }
 
                     Handler handler = new Handler(Looper.getMainLooper());
                     handler.postDelayed(new Runnable() {
@@ -154,13 +151,13 @@ public class PurchaseDetail extends AppCompatActivity {
                     }, 0);
 
 
-                    byte[] b1 = Base64.decode(jsonArray2.get(1).toString(), Base64.DEFAULT);
+                    byte[] b1 = Base64.decode(jsonArray2.get(4).toString(), Base64.DEFAULT);
                     img2 = BitmapFactory.decodeByteArray(b1,0,b1.length);
 
                     item.setItem_price((int)jsonArray1.get(1));
                     item.setItem_name((String)jsonArray1.get(0));
                     item.setItem_content((String)jsonArray1.get(2));
-                    item.setItem_pic1(img1);
+                    item.setItem_pic1(images[0]);
                     item.setItem_pic2(img2);
 
                     Log.i("2price :: ",String.valueOf(item.getItem_price()));
@@ -171,7 +168,7 @@ public class PurchaseDetail extends AppCompatActivity {
 //                    tvContent.setText(item.getItem_content());
 //                    tvPrice.setText(String.valueOf(item.getItem_price()));
 
-                    MyThread myThread = new MyThread(tvName, tvPrice,tvContent,img1,img2);
+                    MyThread myThread = new MyThread(tvName, tvPrice,img1,img2);
                     myThread.start();
                     loading2.dismiss();
 
@@ -261,7 +258,7 @@ public class PurchaseDetail extends AppCompatActivity {
         @Override
         public void handleMessage(@NonNull Message msg) {
             tvName.setText(item.getItem_name());
-            tvContent.setText(item.getItem_content());
+//            tvContent.setText(item.getItem_content());
             tvPrice.setText(item.getItem_price()+"원");
 //            imgPurchase.setImageBitmap(img1);
             imgDetail.setImageBitmap(img2);
@@ -273,12 +270,11 @@ public class PurchaseDetail extends AppCompatActivity {
     };
 
     class MyThread extends Thread {
-        TextView tvName, tvPrice, tvContent;
+        TextView tvName, tvPrice;
         Bitmap img1,img2;
 
-        public MyThread(TextView tvName, TextView tvPrice, TextView tvContent, Bitmap img1, Bitmap img2){
+        public MyThread(TextView tvName, TextView tvPrice, Bitmap img1, Bitmap img2){
             this.tvName = tvName;
-            this.tvContent = tvContent;
             this.tvPrice = tvPrice;
             this.img1=img1;
             this.img2=img2;
