@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/drawable/noedge.xml" value="0.10462962962962963" />
         <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/layout/activity_my_gaericature_full.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/smhrd/AndroidStudy/Project/app/src/main/res/layout/activity_my_page_purchase_delivering_history.xml" value="0.36614583333333334" />
