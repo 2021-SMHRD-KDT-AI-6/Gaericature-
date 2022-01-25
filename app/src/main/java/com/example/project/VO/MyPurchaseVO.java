@@ -8,7 +8,16 @@ public class MyPurchaseVO {
     private String item_price;
     private String item_cnt;
     private String deli_yn;
+    private String item_nick;
     private Bitmap item_pic1;
+
+    public String getItem_nick() {
+        return item_nick;
+    }
+
+    public void setItem_nick(String item_nick) {
+        this.item_nick = item_nick;
+    }
 
     public String getDeli_yn() {
         return deli_yn;
