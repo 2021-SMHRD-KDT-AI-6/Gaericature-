@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.project.Adapter.Cart2Adapter;
 import com.example.project.Adapter.CartAdapter;
@@ -68,6 +69,9 @@ public class PurchaseActivity extends AppCompatActivity {
     String url;
     String url2;
     int price = 0;
+
+    String charNick = "";
+    String deliCk = "";
 
 
     @Override
@@ -136,7 +140,6 @@ public class PurchaseActivity extends AppCompatActivity {
                 CartList = new ArrayList<>();
                 CharList = new ArrayList<>();
 
-
                 JSONObject jsonObject = null;
                 try {
                     jsonObject = new JSONObject(response.body().string());
@@ -157,17 +160,14 @@ public class PurchaseActivity extends AppCompatActivity {
                             }
                         }, 0);
                     }
+
                     for(int i=0;i<jsonArray.length();i++){
+
                         DeliveryVO vo = new DeliveryVO();
                         vo.setTvDname((String) jsonArray.getJSONArray(i).get(0));
                         vo.setTvAddr((String) jsonArray.getJSONArray(i).get(2));
                         vo.setTvPhone((String) jsonArray.getJSONArray(i).get(1));
                         vo.setDeli_seq(String.valueOf(jsonArray.getJSONArray(i).get(3)) );
-
-                        Log.i("name :: ",vo.getTvDname());
-                        Log.i("addr :: ",vo.getTvAddr());
-                        Log.i("phone :: ",vo.getTvPhone());
-                        Log.i("seq :: ",vo.getDeli_seq());
 
                         DeliList.add(vo);
                     }
@@ -201,14 +201,13 @@ public class PurchaseActivity extends AppCompatActivity {
                             vo.setTvItemCnt(cnt);
                             vo.setItemSeq(String.valueOf(seq));
 
-                            price +=(Integer) cartArray.getJSONArray(i).get(1);
+                            price += (Integer) cartArray.getJSONArray(i).get(1);
 
                             Log.i("name : ",vo.getTvItemName());
                             Log.i("cnt : ",String.valueOf(vo.getTvItemCnt()));
 
                             CartList.add(vo);
                         }
-
                     }
 
                     for (int i = 0 ; i < charPicArray.length(); i++) {
@@ -278,32 +277,53 @@ public class PurchaseActivity extends AppCompatActivity {
         btnBuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RequestBody body = new FormBody.Builder()
-                        .add("user_id", user_id)
-                        .add("check", String.valueOf(purchaseType))
-                        .add("seq", String.valueOf(seq))
-                        .add("cnt", String.valueOf(cnt))
-                        .build();
 
-                Request request = new Request.Builder().url(url + "/buy").addHeader("Connection","close").post(body).build();
+                if (deliCk.equals("")) {
+                    Toast.makeText(getApplicationContext(), "배송지를 선택해주세요.", Toast.LENGTH_SHORT).show();
+                }else if (charNick.equals("")){
+                    Toast.makeText(getApplicationContext(), "적용할 개리커쳐를 선택해주세요.", Toast.LENGTH_SHORT).show();
+                }else{
+                    RequestBody body = new FormBody.Builder()
+                            .add("user_id", user_id)
+                            .add("check", String.valueOf(purchaseType))
+                            .add("seq", String.valueOf(seq))
+                            .add("cnt", String.valueOf(cnt))
+                            .add("charNick", charNick)
+                            .build();
 
-                client.newCall(request).enqueue(new Callback() {
-                    @Override
-                    public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                        e.printStackTrace();
-                    }
+                    Request request = new Request.Builder().url(url + "/buy").addHeader("Connection","close").post(body).build();
 
-                    @Override
-                    public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                        Intent intent = new Intent(getApplicationContext(), MyPagePurchaseAllHistory.class);
-                        intent.putExtra("PurchaseAllNum", response.body().string());
-                        startActivity(intent);
-                        finish();
-                    }
-                });
+                    client.newCall(request).enqueue(new Callback() {
+                        @Override
+                        public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                            e.printStackTrace();
+                        }
+
+                        @Override
+                        public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                            Intent intent = new Intent(getApplicationContext(), MyPagePurchaseAllHistory.class);
+                            intent.putExtra("PurchaseAllNum", response.body().string());
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
+                }
             }
         });
 
+        gridViewCharacter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                charNick = CharList.get(i).getCharNick();
+            }
+        });
+
+        gridViewPurchase.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                deliCk = "체크함";
+            }
+        });
 
     }
 
