@@ -100,6 +100,9 @@ public class MyPagePurchaseDeliveringHistory extends AppCompatActivity {
                         vo.setItem_name(jsonArray1.getJSONArray(i).getString(0));
                         vo.setItem_price(jsonArray1.getJSONArray(i).getString(1));
                         vo.setItem_cnt(jsonArray1.getJSONArray(i).getString(3));
+
+                        Log.d("json", jsonArray1.getJSONArray(i).getString(5));
+
                         if (jsonArray1.getJSONArray(i).getString(5).equals("null")){
                             vo.setItem_nick("없음");
                         }else{

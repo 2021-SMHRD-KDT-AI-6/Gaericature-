@@ -275,7 +275,7 @@ public class PurchaseActivity extends AppCompatActivity {
                 charNick = CharList.get(i).getCharNick();
             }
         });
-
+        
         btnBuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

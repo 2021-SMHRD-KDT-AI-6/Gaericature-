@@ -94,7 +94,6 @@ public class DeepImage extends AppCompatActivity {
                 if(img_nick.equals("")){
                     Toast.makeText(getApplicationContext(), "닉네임을 입력해주세요.", Toast.LENGTH_SHORT).show();
                 }else {
-
                     try {
                         out = new FileOutputStream(tempSelectFile);
                         Log.i("아웃스트림", "아웃스트림");
