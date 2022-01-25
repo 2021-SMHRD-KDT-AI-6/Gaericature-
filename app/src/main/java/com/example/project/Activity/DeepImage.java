@@ -89,7 +89,9 @@ public class DeepImage extends AppCompatActivity {
 
                 OutputStream out = null;
 
-                if(edtImgNick.getText().equals("")){
+                String img_nick = edtImgNick.getText().toString();
+
+                if(img_nick.equals("")){
                     Toast.makeText(getApplicationContext(), "닉네임을 입력해주세요.", Toast.LENGTH_SHORT).show();
                 }else {
 
@@ -103,7 +105,7 @@ public class DeepImage extends AppCompatActivity {
                                 .setType(MultipartBody.FORM)
                                 .addFormDataPart("file", tempSelectFile.getName(), RequestBody.create(MultipartBody.FORM, tempSelectFile))
                                 .addFormDataPart("user_id", user_id)
-                                .addFormDataPart("img_nick", String.valueOf(edtImgNick.getText()))
+                                .addFormDataPart("img_nick", img_nick)
                                 .build();
                         Request request = new Request.Builder().url(url + "/saveimage").post(requestBody).build();
 

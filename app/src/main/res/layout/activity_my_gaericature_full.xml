@@ -36,9 +36,9 @@
 
     <Button
         android:id="@+id/btnCharDel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/btn1"
         android:gravity="center"
         android:text="삭제하기"
@@ -49,9 +49,9 @@
 
     <ImageView
         android:id="@+id/imgCharNickCh"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="5dp"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="10dp"
         app:layout_constraintBottom_toBottomOf="@+id/tvCharNickCh"
         app:layout_constraintStart_toEndOf="@+id/tvCharNickCh"
         app:layout_constraintTop_toTopOf="@+id/tvCharNickCh"
@@ -61,7 +61,7 @@
         android:id="@+id/tvCharNickCh"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:text="개리커쳐별명"
         android:textColor="@color/black"
         android:textSize="20sp"
