@@ -50,7 +50,9 @@ public class ProfilePopup extends AppCompatActivity {
     EditText edNickChange;
     Button btnChangeCom;
     private static final int PICK_IMAGE = 0;
-    Bitmap bitmap;
+    Bitmap bitmap = null;
+    String profileImgCk = "";
+    String profileNickCk = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,48 +91,58 @@ public class ProfilePopup extends AppCompatActivity {
 
                 String nick = edNickChange.getText().toString();
 
-                if (nick.equals("")){
-                    Toast.makeText(getApplicationContext(), "닉네임을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                if (bitmap == null){
+                    profileImgCk = "변경안함";
                 }else{
-                    ContextWrapper cw = new ContextWrapper(getApplicationContext());
-                    File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
-                    File tempSelectFile = new File(directory, "temp" + ".jpg");
-                    OutputStream out = null;
+                    profileImgCk = "변경함";
+                }
 
-                    try {
-                        out = new FileOutputStream(tempSelectFile);
-                        bitmap.compress(Bitmap.CompressFormat.JPEG,100,out);
+                if (nick.equals("")){
+                    profileNickCk = "변경안함";
+                }else{
+                    profileNickCk = "변경함";
+                }
 
-                        RequestBody requestBody = new MultipartBody.Builder()
-                                .setType(MultipartBody.FORM)
-                                .addFormDataPart("files", tempSelectFile.getName(),RequestBody.create(MultipartBody.FORM, tempSelectFile))
-                                .addFormDataPart("nick", nick)
-                                .addFormDataPart("user_id", user_id)
-                                .build();
+                ContextWrapper cw = new ContextWrapper(getApplicationContext());
+                File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
+                File tempSelectFile = new File(directory, "temp" + ".jpg");
+                OutputStream out = null;
 
-                        Request request = new Request.Builder().url(url + "/profilecorr")
-                                .addHeader("Connection","close")
-                                .post(requestBody).build();
+                try {
+                    out = new FileOutputStream(tempSelectFile);
+                    bitmap.compress(Bitmap.CompressFormat.JPEG,100,out);
 
-                        OkHttpClient client = new OkHttpClient();
+                    RequestBody requestBody = new MultipartBody.Builder()
+                            .setType(MultipartBody.FORM)
+                            .addFormDataPart("files", tempSelectFile.getName(),RequestBody.create(MultipartBody.FORM, tempSelectFile))
+                            .addFormDataPart("nick", nick)
+                            .addFormDataPart("user_id", user_id)
+                            .addFormDataPart("profileImgCk", profileImgCk)
+                            .addFormDataPart("profileNickCk", profileNickCk)
+                            .build();
 
-                        client.newCall(request).enqueue(new Callback() {
-                            @Override
-                            public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                                e.printStackTrace();
-                            }
+                    Request request = new Request.Builder().url(url + "/profilecorr")
+                            .addHeader("Connection","close")
+                            .post(requestBody).build();
 
-                            @Override
-                            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                intent.putExtra("ck", 3);
-                                startActivity(intent);
-                                finish();
-                            }
-                        });
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
+                    OkHttpClient client = new OkHttpClient();
+
+                    client.newCall(request).enqueue(new Callback() {
+                        @Override
+                        public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                            e.printStackTrace();
+                        }
+
+                        @Override
+                        public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            intent.putExtra("ck", 3);
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
                 }
             }
         });
