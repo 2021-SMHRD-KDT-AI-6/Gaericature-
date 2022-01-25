@@ -261,6 +261,7 @@ public class PurchaseActivity extends AppCompatActivity {
                     gridViewPurchase.getChildAt(j).setBackgroundResource(R.drawable.noedge);
                 }
                 gridViewPurchase.getChildAt(i).setBackgroundResource(R.drawable.edge);
+                deliCk = "체크함";
             }
         });
 
@@ -271,9 +272,10 @@ public class PurchaseActivity extends AppCompatActivity {
                     gridViewCharacter.getChildAt(j).setBackgroundResource(R.drawable.noedge);
                 }
                 gridViewCharacter.getChildAt(i).setBackgroundResource(R.drawable.edge);
+                charNick = CharList.get(i).getCharNick();
             }
         });
-
+        
         btnBuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -311,19 +313,7 @@ public class PurchaseActivity extends AppCompatActivity {
             }
         });
 
-        gridViewCharacter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                charNick = CharList.get(i).getCharNick();
-            }
-        });
 
-        gridViewPurchase.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                deliCk = "체크함";
-            }
-        });
 
     }
 

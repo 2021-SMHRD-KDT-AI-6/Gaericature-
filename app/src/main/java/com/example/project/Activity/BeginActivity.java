@@ -34,7 +34,7 @@ public class BeginActivity extends AppCompatActivity {
 
     EditText edId, edPw;
     Button btnLogin, btnSignUp;
-    String url = "http://192.168.0.115:5000";
+    String url = "http://172.30.1.12:5000";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
