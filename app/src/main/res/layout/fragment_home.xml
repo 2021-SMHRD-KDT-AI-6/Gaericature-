@@ -75,13 +75,25 @@
             android:id="@+id/btnChange"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginEnd="30dp"
             android:background="@drawable/btn1"
             android:gravity="center"
             android:text="@string/btnChange"
             android:textColor="@color/orange"
+            app:layout_constraintBottom_toBottomOf="@+id/btnBack"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintTop_toTopOf="@+id/btnBack" />
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/btn1"
+            android:gravity="center"
+            android:text="다른 사진 고르기"
+            android:textColor="@color/orange"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgGallery" />
 

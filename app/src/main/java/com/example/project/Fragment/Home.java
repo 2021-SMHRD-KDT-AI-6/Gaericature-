@@ -47,7 +47,7 @@ import okhttp3.Response;
 public class Home extends Fragment {
 
     ImageView imgGallery;
-    Button btnGallery, btnCamera, btnChange;
+    Button btnGallery, btnCamera, btnChange, btnBack;
     private static final int PICK_IMAGE = 0;
     private static final int PICK_CAMERA = 1;
     File tempSelectFile;
@@ -65,9 +65,11 @@ public class Home extends Fragment {
         btnGallery = fragment.findViewById(R.id.btnGallery);
         btnCamera = fragment.findViewById(R.id.btnCamera);
         btnChange = fragment.findViewById(R.id.btnChange);
+        btnBack = fragment.findViewById(R.id.btnBack);
         imgGallery = fragment.findViewById(R.id.imgGallery);
         tvGallery = fragment.findViewById(R.id.tvGallery);
         btnChange.setVisibility(View.GONE);
+        btnBack.setVisibility(View.GONE);
 
         btnGallery.bringToFront();
         btnChange.bringToFront();
@@ -132,9 +134,9 @@ public class Home extends Fragment {
                             .post(requestBody).build();
 
                     OkHttpClient client = new OkHttpClient.Builder()
-                            .connectTimeout(100, TimeUnit.SECONDS)
-                            .readTimeout(100, TimeUnit.SECONDS)
-                            .writeTimeout(100, TimeUnit.SECONDS)
+                            .connectTimeout(100, TimeUnit.MINUTES)
+                            .readTimeout(100, TimeUnit.MINUTES)
+                            .writeTimeout(100, TimeUnit.MINUTES)
                             .build();
 
                     client.newCall(request).enqueue(new Callback() {
@@ -170,6 +172,14 @@ public class Home extends Fragment {
                 }
             }
         });
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
         return fragment;
     }
 
@@ -186,6 +196,7 @@ public class Home extends Fragment {
                 btnGallery.setVisibility(View.GONE);
                 btnCamera.setVisibility(View.GONE);
                 btnChange.setVisibility(View.VISIBLE);
+                btnBack.setVisibility(View.VISIBLE);
                 tvGallery.setText("변환 버튼을 눌러주세요.");
             } catch (Exception e) {
                 e.printStackTrace();
@@ -203,6 +214,7 @@ public class Home extends Fragment {
             btnGallery.setVisibility(View.GONE);
             btnCamera.setVisibility(View.GONE);
             btnChange.setVisibility(View.VISIBLE);
+            btnBack.setVisibility(View.VISIBLE);
             tvGallery.setText("변환 버튼을 눌러주세요.");
         }
 
