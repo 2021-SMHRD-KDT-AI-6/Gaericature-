@@ -62,6 +62,7 @@ public class DeepImage extends AppCompatActivity {
 
         RbPreference pref = new RbPreference(this);
         String user_id = pref.getValue("user_id", null);
+        String url = pref.getValueUrl("url", null);
 
         Intent intent = getIntent();
 
@@ -104,7 +105,7 @@ public class DeepImage extends AppCompatActivity {
                                 .addFormDataPart("user_id", user_id)
                                 .addFormDataPart("img_nick", String.valueOf(edtImgNick.getText()))
                                 .build();
-                        Request request = new Request.Builder().url("http://192.168.0.115:5000/saveimage").post(requestBody).build();
+                        Request request = new Request.Builder().url(url + "/saveimage").post(requestBody).build();
 
                         OkHttpClient client = new OkHttpClient();
                         client.newCall(request).enqueue(new Callback() {

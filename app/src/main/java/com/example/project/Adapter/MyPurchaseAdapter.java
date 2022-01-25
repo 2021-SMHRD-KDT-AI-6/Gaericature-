@@ -52,12 +52,14 @@ public class MyPurchaseAdapter extends BaseAdapter {
         TextView tvMyPurItemName = view.findViewById(R.id.tvCharNick);
         TextView tvMyPurItemPrice = view.findViewById(R.id.tvMyPurItemPrice);
         TextView tvMyPurItemCnt = view.findViewById(R.id.tvMyPurItemCnt);
+        TextView tvMyPurChar = view.findViewById(R.id.tvMyPurChar);
         ImageView imgMyPurThumb = view.findViewById(R.id.imgMyChar);
 
         tvMyPurItemState.setText(myPurchase.get(i).getDeli_yn());
         tvMyPurItemName.setText(myPurchase.get(i).getItem_name());
         tvMyPurItemPrice.setText(myPurchase.get(i).getItem_price()+"원");
         tvMyPurItemCnt.setText(myPurchase.get(i).getItem_cnt()+"개");
+        tvMyPurChar.setText("별명 : " + myPurchase.get(i).getItem_nick());
         imgMyPurThumb.setImageBitmap(myPurchase.get(i).getItem_pic1());
 
         return view;

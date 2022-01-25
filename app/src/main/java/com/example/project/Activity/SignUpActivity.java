@@ -23,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.project.R;
+import com.example.project.RbPreference;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -91,7 +92,8 @@ public class SignUpActivity extends AppCompatActivity {
                 BitmapDrawable img = (BitmapDrawable) imgSignUp.getDrawable();
                 Bitmap bitmap = img.getBitmap();
 
-                String url = "http://192.168.0.115:5000/signup";
+                RbPreference pref = new RbPreference(getApplicationContext());
+                String url = pref.getValueUrl("url", null);
 
                 ContextWrapper cw = new ContextWrapper(getApplicationContext());
                 File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
@@ -115,7 +117,7 @@ public class SignUpActivity extends AppCompatActivity {
                         .addFormDataPart("user_profile",tempSelectFile.getName(),RequestBody.create(MultipartBody.FORM, tempSelectFile))
                         .build();
 
-                Request request = new Request.Builder().url(url).post(body).build();
+                Request request = new Request.Builder().url(url + "/signup").post(body).build();
 
                 client.newCall(request).enqueue(new Callback() {
                     @Override

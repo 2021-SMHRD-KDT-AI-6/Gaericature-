@@ -74,4 +74,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvMyPurChar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="별명 : 강아지"
+        app:layout_constraintEnd_toEndOf="@+id/tvMyPurItemState"
+        app:layout_constraintTop_toTopOf="@+id/tvCharNick" />
 </androidx.constraintlayout.widget.ConstraintLayout>

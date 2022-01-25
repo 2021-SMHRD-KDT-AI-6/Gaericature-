@@ -79,14 +79,15 @@ public class Cart extends Fragment {
 
         RbPreference pref = new RbPreference(getActivity().getApplicationContext());
         String user_id = pref.getValue("user_id", null);
+        String url = pref.getValueUrl("url", null);
 
         OkHttpClient client = new OkHttpClient();
 
         RequestBody body = new FormBody.Builder()
                 .add("user_id", user_id)
                 .build();
-        String url = "http://192.168.0.115:5000/cart";
-        Request request = new Request.Builder().url(url).addHeader("Connection", "close").post(body).build();
+
+        Request request = new Request.Builder().url(url + "/cart").addHeader("Connection", "close").post(body).build();
 
         client.newCall(request).enqueue(new Callback() {
             @Override

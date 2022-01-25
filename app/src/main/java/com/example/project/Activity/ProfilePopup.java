@@ -68,6 +68,7 @@ public class ProfilePopup extends AppCompatActivity {
 
         RbPreference pref = new RbPreference(this);
         String user_id = pref.getValue("user_id", null);
+        String url = pref.getValueUrl("url", null);
 
         imgChange.setBackground(new ShapeDrawable(new OvalShape()));
         imgChange.setClipToOutline(true);
@@ -107,7 +108,7 @@ public class ProfilePopup extends AppCompatActivity {
                                 .addFormDataPart("user_id", user_id)
                                 .build();
 
-                        Request request = new Request.Builder().url("http://172.30.1.12:5000/profilecorr")
+                        Request request = new Request.Builder().url(url + "/profilecorr")
                                 .addHeader("Connection","close")
                                 .post(requestBody).build();
 

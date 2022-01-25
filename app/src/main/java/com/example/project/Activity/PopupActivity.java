@@ -54,6 +54,7 @@ public class PopupActivity extends AppCompatActivity {
         String check = getIntent().getStringExtra("purchaseType");
 
         RbPreference pref = new RbPreference(this);
+        String url = pref.getValueUrl("url", null);
         String user_id = pref.getValue("user_id", null);
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -70,7 +71,7 @@ public class PopupActivity extends AppCompatActivity {
                         .add("user_id",user_id)
                         .build();
 
-                Request request = new Request.Builder().url("http://192.168.0.115:5000/adddelivery")
+                Request request = new Request.Builder().url(url + "/adddelivery")
                         .addHeader("Connection","close").post(body).build();
 
                 client.newCall(request).enqueue(new Callback() {

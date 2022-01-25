@@ -23,6 +23,7 @@ import com.example.project.Adapter.PurchaseAdapter;
 import com.example.project.ExpandableHeightGridView;
 import com.example.project.Loading2;
 import com.example.project.R;
+import com.example.project.RbPreference;
 import com.example.project.VO.itemVO;
 
 import org.json.JSONArray;
@@ -62,10 +63,12 @@ public class Purchase extends Fragment {
         loading2.setCancelable(false);
         loading2.show();
 
+        RbPreference pref = new RbPreference(getActivity().getApplicationContext());
+        String url = pref.getValueUrl("url", null);
 
         OkHttpClient client = new OkHttpClient.Builder().build();
         RequestBody body = new FormBody.Builder().build();
-        Request request = new Request.Builder().url("http://192.168.0.115:5000/itemlist")
+        Request request = new Request.Builder().url(url + "/itemlist")
                 .addHeader("Connection","close").post(body).build();
         client.newCall(request).enqueue(new Callback() {
             @Override

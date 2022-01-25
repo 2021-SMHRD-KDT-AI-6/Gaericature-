@@ -3,6 +3,7 @@ package com.example.project.Activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -33,20 +34,19 @@ public class BeginActivity extends AppCompatActivity {
 
     EditText edId, edPw;
     Button btnLogin, btnSignUp;
-    String url = "http://192.168.0.115:5000/login";
+    String url = "http://172.30.1.12:5000";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_begin);
 
+        RbPreference pref = new RbPreference(this);
+        pref.putUrl("url", url);
 
 //        Toolbar tb = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(tb);
 //        getSupportActionBar().setDisplayShowTitleEnabled(false); // 타이틀 이름 안보이게
-
-
-
 
         edId = findViewById(R.id.edtImgNick);
         edPw = findViewById(R.id.edPw);
@@ -69,7 +69,7 @@ public class BeginActivity extends AppCompatActivity {
                         .add("user_pw", String.valueOf(edPw.getText()))
                         .build();
 
-                Request request = new Request.Builder().url(url).post(body).build();
+                Request request = new Request.Builder().url(url+"/login").post(body).build();
 
                 client.newCall(request).enqueue(new Callback() {
                     @Override

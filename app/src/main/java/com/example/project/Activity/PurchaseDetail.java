@@ -82,6 +82,9 @@ public class PurchaseDetail extends AppCompatActivity {
 
         tvPurCnt.bringToFront();
 
+        RbPreference pref = new RbPreference(getApplicationContext());
+        String url = pref.getValueUrl("url", null);
+
         loading2 = new Loading2(this);
         loading2.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         loading2.setCancelable(false);
@@ -99,7 +102,7 @@ public class PurchaseDetail extends AppCompatActivity {
                 .add("seq",String.valueOf(seq))
                 .build();
 
-        Request request = new Request.Builder().url("http://192.168.0.115:5000/itemdetail")
+        Request request = new Request.Builder().url(url + "/itemdetail")
                 .addHeader("Connection","close").post(body).build();
 
         client.newCall(request).enqueue(new Callback() {
@@ -210,7 +213,7 @@ public class PurchaseDetail extends AppCompatActivity {
                         .add("user_id", user_id)
                         .build();
 
-                Request request = new Request.Builder().url("http://192.168.0.115:5000/cartadd")
+                Request request = new Request.Builder().url(url + "/cartadd")
                         .addHeader("Connection","close").post(body).build();
 
                 client.newCall(request).enqueue(new Callback() {
